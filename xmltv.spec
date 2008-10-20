@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.5.53
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -32,8 +32,6 @@ BuildRequires: perl(WWW::Mechanize) => 1.16
 BuildRequires: perl(HTTP::Cookies) >= 1.39
 BuildRequires: perl(HTML::Form)
 BuildRequires: perl(HTTP::Cache::Transparent)
-# Still needed ? - No: needed for more than 6yo perl
-#BuildRequires: perl(Unicode::UTF8simple)
 BuildRequires: perl(LWP::Simple)
 BuildRequires: perl(IO::Scalar), perl(Archive::Zip)
 BuildRequires: perl(XML::Simple)
@@ -41,6 +39,8 @@ BuildRequires: perl(SOAP::Lite) >= 0.67, perl(Term::ReadKey)
 %{?_with_text_bidi:BuildRequires: perl(Text::Bidi)}
 BuildRequires: perl(Text::Kakasi)
 BuildRequires: perl(XML::LibXML)
+BuildRequires: perl(XML::DOM)
+BuildRequires: perl(XML::LibXSLT)
 BuildRequires: perl(Compress::Zlib)
 BuildRequires: perl(IO::Stringy)
 BuildRequires: perl(File::Temp)
@@ -208,6 +208,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Oct 15 2008 kwizart < kwizart at gmail.com > - 0.5.53-2
+- Add "is" (Iceland) grabber support
+
 * Tue Oct 14 2008 kwizart < kwizart at gmail.com > - 0.5.53-1
 - Update to 0.5.53
 - Remove -gui requirement on main
