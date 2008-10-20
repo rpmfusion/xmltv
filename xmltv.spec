@@ -25,7 +25,7 @@ BuildRequires: perl(Lingua::Preferred) >= 0.2.4
 BuildRequires: perl(Term::ProgressBar) >= 2.03
 BuildRequires: perl(Compress::Zlib)
 BuildRequires: perl(Unicode::String)
-###
+##
 BuildRequires: perl(HTML::TreeBuilder)
 BuildRequires: perl(HTML::Entities) >= 1.27
 BuildRequires: perl(WWW::Mechanize) => 1.16
