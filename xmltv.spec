@@ -1,6 +1,6 @@
 Name:           xmltv
-Version:        0.5.53
-Release:        2%{?dist}
+Version:        0.5.54
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -208,6 +208,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Feb 19 2009 kwizart < kwizart at gmail.com > - 0.5.54-1
+- Update to 0.5.54
+
 * Wed Oct 15 2008 kwizart < kwizart at gmail.com > - 0.5.53-2
 - Add "is" (Iceland) grabber support
 
