@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.5.56
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -208,6 +208,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Dec 30 2009 Nicolas Chauvet <kwizart@fedoraproject.org> - 0.5.56-2
+- Rebuild for perl
+
 * Sat Sep 19 2009 kwizart < kwizart at gmail.com > - 0.5.56-1
 - Update to 0.5.56
 
