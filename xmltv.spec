@@ -1,6 +1,6 @@
 Name:           xmltv
-Version:        0.5.56
-Release:        2%{?dist}
+Version:        0.5.57
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -50,6 +50,17 @@ BuildRequires: perl(HTML::TokeParser), perl(Date::Parse), perl(Time::Local)
 BuildRequires: perl(HTML::TableExtract) >= 1.08
 BuildRequires: perl(HTML::Parser) >= 3.34
 BuildRequires: perl(Log::TraceMessages)
+BuildRequires: perl(Time::HiRes)
+BuildRequires: perl(IO::Select)
+#BuildRequires: perl(Linux::DVB) #Not here yet
+BuildRequires: perl(Text::Iconv)
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(Parse::RecDescent)
+BuildRequires: perl(HTML::Entities)
+BuildRequires: perl(DateTime)
+BuildRequires: perl(HTML::Entities)
+BuildRequires: perl(DateTime::Format::Strptime)
+
 
 Requires: xmltv-grabbers >= %{version}-%{release}
 
@@ -208,6 +219,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat May 29 2010 Nicolas Chauvet <kwizart@fedoraproject.org> - 0.5.57-1
+- Update to 0.5.57
+- Add new BR
+
 * Wed Dec 30 2009 Nicolas Chauvet <kwizart@fedoraproject.org> - 0.5.56-2
 - Rebuild for perl
 
