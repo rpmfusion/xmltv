@@ -1,6 +1,6 @@
 Name:           xmltv
-Version:        0.5.57
-Release:        2%{?dist}
+Version:        0.5.58
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -8,7 +8,7 @@ License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        http://downloads.sourceforge.net/xmltv/xmltv-%{version}.tar.bz2
 Patch0:         xmltv-0.5.35-noask.patch
-Patch1:         xmltv-0.5.52-noutf8simple.patch
+Patch1:         xmltv-0.5.58-noutf8simple.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:     noarch
@@ -219,6 +219,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Oct 14 2010 Nicolas Chauvet <kwizart@gmail.com> - 0.5.58-1
+- Update to 0.5.58
+
 * Sun Jul 11 2010 Nicolas Chauvet <kwizart@gmail.com> - 0.5.57-2
 - rebuilt for perl
 
