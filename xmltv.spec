@@ -1,5 +1,5 @@
 Name:           xmltv
-Version:        0.5.58
+Version:        0.5.59
 Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
@@ -219,6 +219,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Nov 27 2010 Nicolas Chauvet <kwizart@gmail.com> - 0.5.59-1
+- rebuilt
+
 * Thu Oct 14 2010 Nicolas Chauvet <kwizart@gmail.com> - 0.5.58-1
 - Update to 0.5.58
 
