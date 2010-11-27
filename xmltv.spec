@@ -8,7 +8,6 @@ License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        http://downloads.sourceforge.net/xmltv/xmltv-%{version}.tar.bz2
 Patch0:         xmltv-0.5.35-noask.patch
-Patch1:         xmltv-0.5.58-noutf8simple.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:     noarch
@@ -121,7 +120,6 @@ This package contains graphical frontends to xmltv.
 %prep
 %setup -q
 %patch0 -p1 -b .noask
-%patch1 -p1 -b .noutf8simple
 
 # Fix encoding
 cp -pr ChangeLog ChangeLog.not-utf8
