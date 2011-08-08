@@ -1,5 +1,5 @@
 Name:           xmltv
-Version:        0.5.59
+Version:        0.5.61
 Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
@@ -51,6 +51,7 @@ BuildRequires: perl(HTML::Parser) >= 3.34
 BuildRequires: perl(Log::TraceMessages)
 BuildRequires: perl(Time::HiRes)
 BuildRequires: perl(IO::Select)
+BuildRequires: perl(JSON)
 #BuildRequires: perl(Linux::DVB) #Not here yet
 BuildRequires: perl(Text::Iconv)
 BuildRequires: perl(Data::Dumper)
@@ -217,6 +218,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Aug 08 2011 Nicolas Chauvet <kwizart@gmail.com> - 0.5.61-1
+- Update 0.5.61
+
 * Sat Nov 27 2010 Nicolas Chauvet <kwizart@gmail.com> - 0.5.59-1
 - rebuilt
 
