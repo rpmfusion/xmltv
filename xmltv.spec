@@ -1,5 +1,5 @@
 Name:           xmltv
-Version:        0.5.61
+Version:        0.5.63
 Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
@@ -7,16 +7,17 @@ Group:          Development/Libraries
 License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        http://downloads.sourceforge.net/xmltv/xmltv-%{version}.tar.bz2
-Patch0:         xmltv-0.5.35-noask.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Patch0:         xmltv-0.5.63-noask.patch
 
 BuildArch:     noarch
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(LWP) >= 5.65, perl(XML::Parser) >= 2.34
+BuildRequires: perl(LWP) >= 5.65
+BuildRequires: perl(XML::Parser) >= 2.34
 BuildRequires: perl(XML::Twig) >= 3.28
 BuildRequires: perl(Date::Manip) >= 5.42
 BuildRequires: perl(XML::Writer) >= 0.600
-BuildRequires: perl(Memoize), perl(Storable) >= 2.04
+BuildRequires: perl(Memoize)
+BuildRequires: perl(Storable) >= 2.04
 BuildRequires: perl(File::Slurp)
 # Recommended
 BuildRequires: perl(Lingua::EN::Numbers::Ordinate)
@@ -32,11 +33,14 @@ BuildRequires: perl(HTTP::Cookies) >= 1.39
 BuildRequires: perl(HTML::Form)
 BuildRequires: perl(HTTP::Cache::Transparent)
 BuildRequires: perl(LWP::Simple)
-BuildRequires: perl(IO::Scalar), perl(Archive::Zip)
+BuildRequires: perl(IO::Scalar)
+BuildRequires: perl(Archive::Zip)
 BuildRequires: perl(XML::Simple)
-BuildRequires: perl(SOAP::Lite) >= 0.67, perl(Term::ReadKey)
+BuildRequires: perl(SOAP::Lite) >= 0.67
+BuildRequires: perl(Term::ReadKey)
 %{?_with_text_bidi:BuildRequires: perl(Text::Bidi)}
-BuildRequires: perl(Text::Kakasi)
+# This is for tv_grab_jp which is currently disabled in source
+#BuildRequires: perl(Text::Kakasi)
 BuildRequires: perl(XML::LibXML)
 BuildRequires: perl(XML::DOM)
 BuildRequires: perl(XML::LibXSLT)
@@ -45,22 +49,24 @@ BuildRequires: perl(IO::Stringy)
 BuildRequires: perl(File::Temp)
 BuildRequires: perl(Tk::TableMatrix)
 BuildRequires: perl(CGI)
-BuildRequires: perl(HTML::TokeParser), perl(Date::Parse), perl(Time::Local)
+BuildRequires: perl(HTML::TokeParser)
 BuildRequires: perl(HTML::TableExtract) >= 1.08
 BuildRequires: perl(HTML::Parser) >= 3.34
+BuildRequires: perl(Time::Local)
+BuildRequires: perl(Date::Parse)
 BuildRequires: perl(Log::TraceMessages)
 BuildRequires: perl(Time::HiRes)
 BuildRequires: perl(IO::Select)
 BuildRequires: perl(JSON)
-#BuildRequires: perl(Linux::DVB) #Not here yet
+# Needed for tv_grab_it_dvb but is not available.
+#BuildRequires: perl(Linux::DVB)
 BuildRequires: perl(Text::Iconv)
 BuildRequires: perl(Data::Dumper)
 BuildRequires: perl(Parse::RecDescent)
 BuildRequires: perl(HTML::Entities)
 BuildRequires: perl(DateTime)
-BuildRequires: perl(HTML::Entities)
 BuildRequires: perl(DateTime::Format::Strptime)
-
+BuildRequires: perl(DateTime::Format::ISO8601)
 
 Requires: xmltv-grabbers >= %{version}-%{release}
 
@@ -122,6 +128,9 @@ This package contains graphical frontends to xmltv.
 %setup -q
 %patch0 -p1 -b .noask
 
+# Fix line endings
+sed -i 's/\r//' grab/ch_search/tv_grab_ch_search.in
+
 # Fix encoding
 cp -pr ChangeLog ChangeLog.not-utf8
 iconv -f ISO_8859-1 -t UTF8 ChangeLog.not-utf8 > ChangeLog
@@ -150,7 +159,6 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
 make pure_install PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -type f -name .packlist -exec rm -f {} ';'
 
@@ -162,12 +170,7 @@ chmod 0755 $RPM_BUILD_ROOT%{_bindir}/*
 make test
 
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
 %files
-%defattr(-,root,root,-)
 %doc ChangeLog README
 %doc doc/*
 %{_bindir}/tv_cat
@@ -184,6 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/tv_find_grabbers
 %{_bindir}/tv_validate_file
 %{_bindir}/tv_validate_grabber
+%{_bindir}/tv_augment_tz
 %{_mandir}/man1/tv_cat.1*
 %{_mandir}/man1/tv_extractinfo_en.1*
 %{_mandir}/man1/tv_extractinfo_ar.1*
@@ -198,26 +202,26 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/tv_find_grabbers.1*
 %{_mandir}/man1/tv_validate_file.1*
 %{_mandir}/man1/tv_validate_grabber.1*
+%{_mandir}/man1/tv_augment_tz.1*
 
 %files -n perl-XMLTV
-%defattr(-,root,root,-)
 %{perl_vendorlib}/XMLTV.pm
 %{perl_vendorlib}/XMLTV
 %{_mandir}/man3/*.3*
 
 %files grabbers
-%defattr(-,root,root,-)
 %{_bindir}/tv_grab_*
 %{_mandir}/man1/tv_grab_*.1*
 
 %files gui
-%defattr(-,root,root,-)
 %{_bindir}/tv_check
 %{_mandir}/man1/tv_check.1*
 
 
-
 %changelog
+* Tue Jul 24 2012 Richard Shaw <hobbes1069@gmail.com> - 0.5.63-1
+- Update to 0.5.63
+
 * Mon Aug 08 2011 Nicolas Chauvet <kwizart@gmail.com> - 0.5.61-1
 - Update 0.5.61
 
