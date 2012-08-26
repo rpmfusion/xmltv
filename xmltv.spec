@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.5.63
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -219,6 +219,9 @@ make test
 
 
 %changelog
+* Sun Aug 26 2012 Nicolas Chauvet <kwizart@gmail.com> - 0.5.63-2
+- Rebuilt (branching)
+
 * Tue Jul 24 2012 Richard Shaw <hobbes1069@gmail.com> - 0.5.63-1
 - Update to 0.5.63
 
