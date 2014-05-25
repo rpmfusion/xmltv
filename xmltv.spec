@@ -1,6 +1,6 @@
 Name:           xmltv
-Version:        0.5.63
-Release:        3%{?dist}
+Version:        0.5.65
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -8,8 +8,10 @@ License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        http://downloads.sourceforge.net/xmltv/xmltv-%{version}.tar.bz2
 Patch0:         xmltv-0.5.63-noask.patch
+Patch1:         xmltv-0.5.65-bad_tab.patch
 
 BuildArch:     noarch
+
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(LWP) >= 5.65
 BuildRequires: perl(XML::Parser) >= 2.34
@@ -127,6 +129,7 @@ This package contains graphical frontends to xmltv.
 %prep
 %setup -q
 %patch0 -p1 -b .noask
+%patch1 -p1 -b .bad_tab
 
 # Fix line endings
 sed -i 's/\r//' grab/ch_search/tv_grab_ch_search.in
@@ -188,6 +191,10 @@ make test
 %{_bindir}/tv_validate_file
 %{_bindir}/tv_validate_grabber
 %{_bindir}/tv_augment_tz
+%{_bindir}/tv_count
+%{_bindir}/tv_merge
+%{_mandir}/man1/tv_count.1*
+%{_mandir}/man1/tv_merge.1*
 %{_mandir}/man1/tv_cat.1*
 %{_mandir}/man1/tv_extractinfo_en.1*
 %{_mandir}/man1/tv_extractinfo_ar.1*
@@ -219,6 +226,15 @@ make test
 
 
 %changelog
+* Fri May  9 2014 Richard Shaw <hobbes1069@gmail.com> - 0.5.65-1
+- Update to lastest upstream release:
+  http://sourceforge.net/projects/xmltv/files/xmltv/0.5.65/
+
+* Wed Feb 12 2014 Richard Shaw <hobbes1069@gmail.com> - 0.5.64-1
+- Update to latest upstream release
+- For changes see:
+  http://sourceforge.net/projects/xmltv/files/xmltv/0.5.64/
+
 * Wed Oct 02 2013 Nicolas Chauvet <kwizart@gmail.com> - 0.5.63-3
 - Rebuilt
 
