@@ -1,5 +1,5 @@
 Name:           xmltv
-Version:        0.5.65
+Version:        0.5.66
 Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
@@ -226,6 +226,9 @@ make test
 
 
 %changelog
+* Tue Oct 28 2014 Nicolas Chauvet <kwizart@gmail.com> - 0.5.66-1
+- Update to 0.5.56
+
 * Fri May  9 2014 Richard Shaw <hobbes1069@gmail.com> - 0.5.65-1
 - Update to lastest upstream release:
   http://sourceforge.net/projects/xmltv/files/xmltv/0.5.65/
