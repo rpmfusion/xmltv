@@ -8,7 +8,6 @@ License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        http://downloads.sourceforge.net/xmltv/xmltv-%{version}.tar.bz2
 Patch0:         xmltv-0.5.63-noask.patch
-Patch1:         xmltv-0.5.65-bad_tab.patch
 
 BuildArch:     noarch
 
@@ -129,7 +128,6 @@ This package contains graphical frontends to xmltv.
 %prep
 %setup -q
 %patch0 -p1 -b .noask
-%patch1 -p1 -b .bad_tab
 
 # Fix line endings
 sed -i 's/\r//' grab/ch_search/tv_grab_ch_search.in
