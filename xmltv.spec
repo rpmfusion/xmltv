@@ -1,5 +1,5 @@
 Name:           xmltv
-Version:        0.5.65
+Version:        0.5.66
 Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
@@ -8,7 +8,6 @@ License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        http://downloads.sourceforge.net/xmltv/xmltv-%{version}.tar.bz2
 Patch0:         xmltv-0.5.63-noask.patch
-Patch1:         xmltv-0.5.65-bad_tab.patch
 
 BuildArch:     noarch
 
@@ -129,7 +128,6 @@ This package contains graphical frontends to xmltv.
 %prep
 %setup -q
 %patch0 -p1 -b .noask
-%patch1 -p1 -b .bad_tab
 
 # Fix line endings
 sed -i 's/\r//' grab/ch_search/tv_grab_ch_search.in
@@ -226,6 +224,9 @@ make test
 
 
 %changelog
+* Tue Oct 28 2014 Nicolas Chauvet <kwizart@gmail.com> - 0.5.66-1
+- Update to 0.5.56
+
 * Fri May  9 2014 Richard Shaw <hobbes1069@gmail.com> - 0.5.65-1
 - Update to lastest upstream release:
   http://sourceforge.net/projects/xmltv/files/xmltv/0.5.65/
