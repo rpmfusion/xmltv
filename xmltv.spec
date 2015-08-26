@@ -1,6 +1,6 @@
 Name:           xmltv
-Version:        0.5.66
-Release:        2%{?dist}
+Version:        0.5.67
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -8,7 +8,6 @@ License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        http://downloads.sourceforge.net/xmltv/xmltv-%{version}.tar.bz2
 Patch0:         xmltv-0.5.63-noask.patch
-Patch1:         xmltv-0.5.66-new-manip-data.patch
 
 BuildArch:     noarch
 
@@ -129,7 +128,6 @@ This package contains graphical frontends to xmltv.
 %prep
 %setup -q
 %patch0 -p1 -b .noask
-%patch1 -p1
 
 # Fix line endings
 sed -i 's/\r//' grab/ch_search/tv_grab_ch_search.in
@@ -176,6 +174,7 @@ make test
 %files
 %doc ChangeLog README
 %doc doc/*
+%{_bindir}/tv_augment
 %{_bindir}/tv_cat
 %{_bindir}/tv_extractinfo_en
 %{_bindir}/tv_extractinfo_ar
@@ -193,6 +192,7 @@ make test
 %{_bindir}/tv_augment_tz
 %{_bindir}/tv_count
 %{_bindir}/tv_merge
+%{_mandir}/man1/tv_augment.1*
 %{_mandir}/man1/tv_count.1*
 %{_mandir}/man1/tv_merge.1*
 %{_mandir}/man1/tv_cat.1*
@@ -226,14 +226,17 @@ make test
 
 
 %changelog
+* Tue Aug 25 2015 Richard Shaw <hobbes1069@gmail.com> - 0.5.67-1
+- Update to latest upstream release.
+
 * Mon May 18 2015 Hans de Goede <j.w.r.degoede@gmail.com> - 0.5.66-2
 - Fix FTBFS (rf#3621)
 
 * Tue Oct 28 2014 Nicolas Chauvet <kwizart@gmail.com> - 0.5.66-1
-- Update to 0.5.56
+- Update to 0.5.66.
 
 * Fri May  9 2014 Richard Shaw <hobbes1069@gmail.com> - 0.5.65-1
-- Update to lastest upstream release:
+- Update to latest upstream release:
   http://sourceforge.net/projects/xmltv/files/xmltv/0.5.65/
 
 * Wed Feb 12 2014 Richard Shaw <hobbes1069@gmail.com> - 0.5.64-1
