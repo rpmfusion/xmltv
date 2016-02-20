@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.5.67
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -68,6 +68,15 @@ BuildRequires: perl(HTML::Entities)
 BuildRequires: perl(DateTime)
 BuildRequires: perl(DateTime::Format::Strptime)
 BuildRequires: perl(DateTime::Format::ISO8601)
+BuildRequires: perl(Date::Manip)
+BuildRequires: perl(Encode)
+BuildRequires: perl(File::Path)
+BuildRequires: perl(Getopt::Long)
+BuildRequires: perl(IO::Uncompress::Unzip)
+BuildRequires: perl(JSON::PP)
+BuildRequires: perl(Tk)
+BuildRequires: perl(URI)
+BuildRequires: perl(XML::TreePP)
 
 Requires: xmltv-grabbers >= %{version}-%{release}
 
@@ -226,6 +235,10 @@ make test
 
 
 %changelog
+* Sat Feb 20 2016 Richard Shaw <hobbes1069@gmail.com> - 0.5.67-2
+- Add additional build requirements for additional grabbers.
+  Fixes BZ#3983.
+
 * Tue Aug 25 2015 Richard Shaw <hobbes1069@gmail.com> - 0.5.67-1
 - Update to latest upstream release.
 
