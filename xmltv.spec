@@ -1,6 +1,6 @@
 Name:           xmltv
-Version:        0.5.67
-Release:        2%{?dist}
+Version:        0.5.68
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -235,6 +235,9 @@ make test
 
 
 %changelog
+* Sun Jul 24 2016 Sérgio Basto <sergio@serjux.com> - 0.5.68-1
+- Update xmltv to 0.5.68
+
 * Sat Feb 20 2016 Richard Shaw <hobbes1069@gmail.com> - 0.5.67-2
 - Add additional build requirements for additional grabbers.
   Fixes BZ#3983.
