@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.5.68
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -11,6 +11,7 @@ Patch0:         xmltv-0.5.63-noask.patch
 
 BuildArch:     noarch
 
+BuildRequires: perl-generators
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(LWP) >= 5.65
 BuildRequires: perl(XML::Parser) >= 2.34
@@ -235,6 +236,9 @@ make test
 
 
 %changelog
+* Fri Sep 30 2016 Sérgio Basto <sergio@serjux.com> - 0.5.68-3
+- Add perl-generators to get proper requires/provides on F-25 and later
+
 * Fri Sep 30 2016 Sérgio Basto <sergio@serjux.com> - 0.5.68-2
 - Rebuild for Perl with locale (buildroot with glibc-all-langpacks)
 
