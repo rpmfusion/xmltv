@@ -1,6 +1,6 @@
 Name:           xmltv
-Version:        0.5.68
-Release:        3%{?dist}
+Version:        0.5.69
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -236,6 +236,9 @@ make test
 
 
 %changelog
+* Tue Jan 24 2017 Richard Shaw <hobbes1069@gmail.com> - 0.5.69-1
+- Update to latest upstream release.
+
 * Fri Sep 30 2016 Sérgio Basto <sergio@serjux.com> - 0.5.68-3
 - Add perl-generators to get proper requires/provides on F-25 and later
 
