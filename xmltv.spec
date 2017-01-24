@@ -11,7 +11,9 @@ Patch0:         xmltv-0.5.63-noask.patch
 
 BuildArch:     noarch
 
+%if 0%{?fedora}
 BuildRequires: perl-generators
+%endif
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(LWP) >= 5.65
 BuildRequires: perl(XML::Parser) >= 2.34
