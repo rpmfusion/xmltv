@@ -1,5 +1,5 @@
 Name:           xmltv
-Version:        0.5.66
+Version:        0.5.69
 Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
@@ -11,6 +11,9 @@ Patch0:         xmltv-0.5.63-noask.patch
 
 BuildArch:     noarch
 
+%if 0%{?fedora}
+BuildRequires: perl-generators
+%endif
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(LWP) >= 5.65
 BuildRequires: perl(XML::Parser) >= 2.34
@@ -68,6 +71,15 @@ BuildRequires: perl(HTML::Entities)
 BuildRequires: perl(DateTime)
 BuildRequires: perl(DateTime::Format::Strptime)
 BuildRequires: perl(DateTime::Format::ISO8601)
+BuildRequires: perl(Date::Manip)
+BuildRequires: perl(Encode)
+BuildRequires: perl(File::Path)
+BuildRequires: perl(Getopt::Long)
+BuildRequires: perl(IO::Uncompress::Unzip)
+BuildRequires: perl(JSON::PP)
+BuildRequires: perl(Tk)
+BuildRequires: perl(URI)
+BuildRequires: perl(XML::TreePP)
 
 Requires: xmltv-grabbers >= %{version}-%{release}
 
@@ -174,6 +186,7 @@ make test
 %files
 %doc ChangeLog README
 %doc doc/*
+%{_bindir}/tv_augment
 %{_bindir}/tv_cat
 %{_bindir}/tv_extractinfo_en
 %{_bindir}/tv_extractinfo_ar
@@ -191,6 +204,7 @@ make test
 %{_bindir}/tv_augment_tz
 %{_bindir}/tv_count
 %{_bindir}/tv_merge
+%{_mandir}/man1/tv_augment.1*
 %{_mandir}/man1/tv_count.1*
 %{_mandir}/man1/tv_merge.1*
 %{_mandir}/man1/tv_cat.1*
@@ -224,11 +238,33 @@ make test
 
 
 %changelog
+* Tue Jan 24 2017 Richard Shaw <hobbes1069@gmail.com> - 0.5.69-1
+- Update to latest upstream release.
+
+* Fri Sep 30 2016 Sérgio Basto <sergio@serjux.com> - 0.5.68-3
+- Add perl-generators to get proper requires/provides on F-25 and later
+
+* Fri Sep 30 2016 Sérgio Basto <sergio@serjux.com> - 0.5.68-2
+- Rebuild for Perl with locale (buildroot with glibc-all-langpacks)
+
+* Sun Jul 24 2016 Sérgio Basto <sergio@serjux.com> - 0.5.68-1
+- Update xmltv to 0.5.68
+
+* Sat Feb 20 2016 Richard Shaw <hobbes1069@gmail.com> - 0.5.67-2
+- Add additional build requirements for additional grabbers.
+  Fixes BZ#3983.
+
+* Tue Aug 25 2015 Richard Shaw <hobbes1069@gmail.com> - 0.5.67-1
+- Update to latest upstream release.
+
+* Mon May 18 2015 Hans de Goede <j.w.r.degoede@gmail.com> - 0.5.66-2
+- Fix FTBFS (rf#3621)
+
 * Tue Oct 28 2014 Nicolas Chauvet <kwizart@gmail.com> - 0.5.66-1
-- Update to 0.5.56
+- Update to 0.5.66.
 
 * Fri May  9 2014 Richard Shaw <hobbes1069@gmail.com> - 0.5.65-1
-- Update to lastest upstream release:
+- Update to latest upstream release:
   http://sourceforge.net/projects/xmltv/files/xmltv/0.5.65/
 
 * Wed Feb 12 2014 Richard Shaw <hobbes1069@gmail.com> - 0.5.64-1
