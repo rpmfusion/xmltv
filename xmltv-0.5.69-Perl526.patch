@@ -1,0 +1,80 @@
+--- filter/tv_grep.PL
++++ filter/tv_grep.PL
+@@ -10,6 +10,7 @@
+ # $Id: tv_grep.PL,v 1.6 2006/06/03 19:33:46 epaepa Exp $
+ #
+ 
++use lib '.';
+ use IO::File;
+ use XMLTV;
+ require 'filter/Grep.pm';
+--- filter/tv_to_latex
++++ filter/tv_to_latex
+@@ -37,7 +37,6 @@ spurious blank lines in the output.
+ use strict;
+ use XMLTV::Version '$Id: tv_to_latex,v 1.18 2014/05/05 16:02:53 bilbo_uk Exp $ ';
+ use IO::File;
+-use POSIX 'tmpnam';
+ use Getopt::Long;
+ 
+ # Use Log::TraceMessages if installed.
+--- filter/tv_to_text
++++ filter/tv_to_text
+@@ -34,7 +34,6 @@ use warnings;
+ use XMLTV::Version '$Id: tv_to_text,v 1.8 2015/06/08 17:41:14 stefanb2 Exp $ ';
+ use IO::File;
+ use Date::Manip;
+-use POSIX 'tmpnam';
+ use Getopt::Long;
+ 
+ BEGIN {
+--- grab/eu_egon/tv_grab_eu_egon.PL
++++ grab/eu_egon/tv_grab_eu_egon.PL
+@@ -2,6 +2,7 @@
+ #
+ 
+ use strict;
++use lib '.';
+ 
+ use IO::File;
+ my $out = shift @ARGV; die "no output file given" if not defined $out;
+--- grab/it/tv_grab_it.PL
++++ grab/it/tv_grab_it.PL
+@@ -13,6 +13,7 @@
+ # code below is based on lib/XMLTV.pm.pl
+ 
+ use strict;
++use lib '.';
+ 
+ use File::Copy qw/copy/;
+ 
+--- grab/se_swedb/tv_grab_se_swedb.PL
++++ grab/se_swedb/tv_grab_se_swedb.PL
+@@ -3,6 +3,7 @@
+ #
+ 
+ use strict;
++use lib '.';
+ 
+ use IO::File;
+ my $out = shift @ARGV; die "no output file given" if not defined $out;
+--- lib/XMLTV.pm.PL
++++ lib/XMLTV.pm.PL
+@@ -5,6 +5,7 @@
+ #
+ 
+ use strict;
++use lib '.';
+ sub print_list( $$ );
+ 
+ my $out = shift @ARGV; die "no output file given" if not defined $out;
+--- Makefile.PL
++++ Makefile.PL
+@@ -5,6 +5,7 @@ use ExtUtils::MakeMaker;
+ use Config;
+ use File::Basename ();
+ use File::Find;
++use lib'.';
+ 
+ # Don't use ':config pass_through' because that requires Getopt::Long
+ # 2.24 or later, and we don't have a clean way to require that.

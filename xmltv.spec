@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.5.69
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -8,6 +8,7 @@ License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        http://downloads.sourceforge.net/xmltv/xmltv-%{version}.tar.bz2
 Patch0:         xmltv-0.5.63-noask.patch
+Patch1:         xmltv-0.5.69-Perl526.patch
 
 BuildArch:     noarch
 
@@ -15,6 +16,7 @@ BuildArch:     noarch
 BuildRequires: perl-generators
 %endif
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(lib)
 BuildRequires: perl(LWP) >= 5.65
 BuildRequires: perl(XML::Parser) >= 2.34
 BuildRequires: perl(XML::Twig) >= 3.28
@@ -140,6 +142,7 @@ This package contains graphical frontends to xmltv.
 %prep
 %setup -q
 %patch0 -p1 -b .noask
+%patch1 -b .perl526
 
 # Fix line endings
 sed -i 's/\r//' grab/ch_search/tv_grab_ch_search.in
@@ -238,6 +241,9 @@ make test
 
 
 %changelog
+* Sun Jun 18 2017 Paul Howarth <paul@city-fan.org> - 0.5.69-3
+- Perl 5.26 rebuild
+
 * Tue Mar 21 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 0.5.69-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
