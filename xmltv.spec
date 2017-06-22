@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.5.69
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -113,6 +113,7 @@ This package contains the perl modules from xmltv.
 Summary: Backends for xmltv
 Group: Applications/Multimedia
 Requires: perl-XMLTV >= %{version}-%{release}
+Requires: perl(JSON::XS)
 
 %description grabbers
 XMLTV is a set of utilities to manage your TV viewing. They work with
@@ -241,6 +242,9 @@ make test
 
 
 %changelog
+* Thu Jun 22 2017 Sérgio Basto <sergio@serjux.com> - 0.5.69-4
+- Requires perl(JSON::XS) rfbz(#4563)
+
 * Sun Jun 18 2017 Paul Howarth <paul@city-fan.org> - 0.5.69-3
 - Perl 5.26 rebuild
 
