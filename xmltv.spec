@@ -1,6 +1,6 @@
 Name:           xmltv
-Version:        0.5.69
-Release:        5%{?dist}
+Version:        0.5.70
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -242,6 +242,9 @@ make test
 
 
 %changelog
+* Fri Dec 15 2017 Sérgio Basto <sergio@serjux.com> - 0.5.70-1
+- Update xmltv to 0.5.70
+
 * Thu Aug 31 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 0.5.69-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
