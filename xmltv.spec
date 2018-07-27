@@ -15,6 +15,7 @@ BuildArch:     noarch
 %if 0%{?fedora}
 BuildRequires: perl-generators
 %endif
+BuildRequires: perl-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(lib)
 BuildRequires: perl(LWP) >= 5.65
