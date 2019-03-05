@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.5.70
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 Group:          Development/Libraries
@@ -243,6 +243,9 @@ make test
 
 
 %changelog
+* Tue Mar 05 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.5.70-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Sun Aug 19 2018 Leigh Scott <leigh123linux@googlemail.com> - 0.5.70-4
 - Rebuilt for Fedora 29 Mass Rebuild binutils issue
 
