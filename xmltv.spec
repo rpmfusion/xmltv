@@ -1,11 +1,12 @@
 Name:           xmltv
 Version:        0.6.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        https://github.com/XMLTV/xmltv/archive/v%{version}/xmltv-v%{version}.tar.gz
+Patch0:         fix_grabber_requires.patch
 
 BuildArch:     noarch
 
@@ -26,7 +27,6 @@ BuildRequires: perl(Tie::RefHash)
 BuildRequires: perl(base)
 BuildRequires: perl(constant)
 BuildRequires: perl(open)
-BuildRequires: perl(strict)
 BuildRequires: perl(vars)
 BuildRequires: perl(warnings)
 BuildRequires: perl(lib)
@@ -174,8 +174,7 @@ This package contains graphical frontends to xmltv.
 
 
 %prep
-%setup -q
-
+%autosetup -p1
 
 %build
 %{__perl} Makefile.PL -default INSTALLDIRS=vendor
@@ -246,6 +245,9 @@ make test
 
 
 %changelog
+* Thu May 02 2019 Leigh Scott <leigh123linux@googlemail.com> - 0.6.1-2
+- Fix broken requires version (rfbz#5243)
+
 * Mon Apr 01 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-1
 - Update for XMLTV 0.6.1
 
