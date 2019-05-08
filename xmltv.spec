@@ -8,117 +8,117 @@ URL:            http://xmltv.org/wiki/
 Source0:        https://github.com/XMLTV/xmltv/archive/v%{version}/xmltv-v%{version}.tar.gz
 Patch0:         fix_grabber_requires.patch
 
-BuildArch:     noarch
+BuildArch:      noarch
 
-BuildRequires: perl-generators
-BuildRequires: perl-devel
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Term::ReadKey)
-BuildRequires: perl(Term::ProgressBar)
-BuildRequires: perl(Carp)
-BuildRequires: perl(Env)
-BuildRequires: perl(File::Slurp)
-BuildRequires: perl(File::Spec)
-BuildRequires: perl(File::Spec::Functions)
-BuildRequires: perl(HTTP::Status)
-BuildRequires: perl(Search::Dict)
-BuildRequires: perl(Tie::Handle)
-BuildRequires: perl(Tie::RefHash)
-BuildRequires: perl(base)
-BuildRequires: perl(constant)
-BuildRequires: perl(open)
-BuildRequires: perl(strict)
-BuildRequires: perl(vars)
-BuildRequires: perl(warnings)
-BuildRequires: perl(lib)
-BuildRequires: perl(integer)
-BuildRequires: perl(Unicode::String)
-BuildRequires: perl(CGI)
-BuildRequires: perl(Tk)
-BuildRequires: perl(Tk::ProgressBar)
-BuildRequires: perl(Tk::TableMatrix)
-BuildRequires: perl(PerlIO::gzip)
-BuildRequires: perl(Unicode::String)
-BuildRequires: perl(JSON::XS)
-BuildRequires: perl(Lingua::Preferred)
+BuildRequires:  perl-generators
+BuildRequires:  perl-devel
+BuildRequires:  perl(ExtUtils::MakeMaker)
+BuildRequires:  perl(Term::ReadKey)
+BuildRequires:  perl(Term::ProgressBar)
+BuildRequires:  perl(Carp)
+BuildRequires:  perl(Env)
+BuildRequires:  perl(File::Slurp)
+BuildRequires:  perl(File::Spec)
+BuildRequires:  perl(File::Spec::Functions)
+BuildRequires:  perl(HTTP::Status)
+BuildRequires:  perl(Search::Dict)
+BuildRequires:  perl(Tie::Handle)
+BuildRequires:  perl(Tie::RefHash)
+BuildRequires:  perl(base)
+BuildRequires:  perl(constant)
+BuildRequires:  perl(open)
+BuildRequires:  perl(strict)
+BuildRequires:  perl(vars)
+BuildRequires:  perl(warnings)
+BuildRequires:  perl(lib)
+BuildRequires:  perl(integer)
+BuildRequires:  perl(Unicode::String)
+BuildRequires:  perl(CGI)
+BuildRequires:  perl(Tk)
+BuildRequires:  perl(Tk::ProgressBar)
+BuildRequires:  perl(Tk::TableMatrix)
+BuildRequires:  perl(PerlIO::gzip)
+BuildRequires:  perl(Unicode::String)
+BuildRequires:  perl(JSON::XS)
+BuildRequires:  perl(Lingua::Preferred)
 # Grabber use
-BuildRequires: perl(Archive::Zip)
-BuildRequires: perl(Carp)
-BuildRequires: perl(Compress::Zlib)
-BuildRequires: perl(Cwd)
-BuildRequires: perl(Data::Dumper)
-BuildRequires: perl(Date::Format)
-BuildRequires: perl(Date::Language)
-BuildRequires: perl(Date::Manip)
-BuildRequires: perl(Date::Parse)
-BuildRequires: perl(DateTime)
-BuildRequires: perl(DateTime::Duration)
-BuildRequires: perl(DateTime::Format::ISO8601)
+BuildRequires:  perl(Archive::Zip)
+BuildRequires:  perl(Carp)
+BuildRequires:  perl(Compress::Zlib)
+BuildRequires:  perl(Cwd)
+BuildRequires:  perl(Data::Dumper)
+BuildRequires:  perl(Date::Format)
+BuildRequires:  perl(Date::Language)
+BuildRequires:  perl(Date::Manip)
+BuildRequires:  perl(Date::Parse)
+BuildRequires:  perl(DateTime)
+BuildRequires:  perl(DateTime::Duration)
+BuildRequires:  perl(DateTime::Format::ISO8601)
 %if 0%{?rhel} < 7
 # was in el6, no longer in el7?
-BuildRequires: perl(DateTime::Format::SQLite)
+BuildRequires:  perl(DateTime::Format::SQLite)
 %endif
-BuildRequires: perl(DateTime::Format::Strptime)
-BuildRequires: perl(DateTime::TimeZone)
-BuildRequires: perl(DBD::SQLite)
-BuildRequires: perl(DBI)
-BuildRequires: perl(Digest::SHA)
-BuildRequires: perl(Encode)
-BuildRequires: perl(Errno)
-BuildRequires: perl(Exporter)
-BuildRequires: perl(File::Basename)
-BuildRequires: perl(File::HomeDir)
-BuildRequires: perl(File::Path)
-BuildRequires: perl(File::Spec)
-BuildRequires: perl(File::Temp)
-BuildRequires: perl(File::Which)
-BuildRequires: perl(Getopt::Long)
-BuildRequires: perl(Getopt::Std)
-BuildRequires: perl(HTML::Entities)
-BuildRequires: perl(HTML::Parser)
-BuildRequires: perl(HTML::TreeBuilder)
-BuildRequires: perl(HTTP::Cache::Transparent)
-BuildRequires: perl(HTTP::Cookies)
-BuildRequires: perl(HTTP::Message)
-BuildRequires: perl(HTTP::Request)
-BuildRequires: perl(HTTP::Request::Common)
-BuildRequires: perl(IO::File)
-BuildRequires: perl(IO::Scalar)
-BuildRequires: perl(IO::Uncompress::Unzip)
-BuildRequires: perl(JSON)
-BuildRequires: perl(List::MoreUtils)
-BuildRequires: perl(List::Util)
-BuildRequires: perl(LWP)
-BuildRequires: perl(LWP::ConnCache)
-BuildRequires: perl(LWP::Protocol::https)
-BuildRequires: perl(LWP::Simple)
-BuildRequires: perl(LWP::UserAgent)
-BuildRequires: perl(LWP::UserAgent::Determined)
-BuildRequires: perl(Memoize)
-BuildRequires: perl(Pod::Usage)
-BuildRequires: perl(POSIX)
-BuildRequires: perl(Scalar::Util)
-BuildRequires: perl(SOAP::Lite)
-BuildRequires: perl(Storable)
-BuildRequires: perl(Time::HiRes)
-BuildRequires: perl(Time::Local)
-BuildRequires: perl(Time::Piece)
-BuildRequires: perl(Time::Seconds)
-BuildRequires: perl(Try::Tiny)
-BuildRequires: perl(URI)
-BuildRequires: perl(URI::Escape)
-BuildRequires: perl(URI::URL)
-BuildRequires: perl(XML::DOM)
-BuildRequires: perl(XML::LibXML)
-BuildRequires: perl(XML::LibXSLT)
-BuildRequires: perl(XML::Parser)
-BuildRequires: perl(XML::TreePP)
-BuildRequires: perl(XML::Twig) >= 3.10
-BuildRequires: perl(XML::Writer)
+BuildRequires:  perl(DateTime::Format::Strptime)
+BuildRequires:  perl(DateTime::TimeZone)
+BuildRequires:  perl(DBD::SQLite)
+BuildRequires:  perl(DBI)
+BuildRequires:  perl(Digest::SHA)
+BuildRequires:  perl(Encode)
+BuildRequires:  perl(Errno)
+BuildRequires:  perl(Exporter)
+BuildRequires:  perl(File::Basename)
+BuildRequires:  perl(File::HomeDir)
+BuildRequires:  perl(File::Path)
+BuildRequires:  perl(File::Spec)
+BuildRequires:  perl(File::Temp)
+BuildRequires:  perl(File::Which)
+BuildRequires:  perl(Getopt::Long)
+BuildRequires:  perl(Getopt::Std)
+BuildRequires:  perl(HTML::Entities)
+BuildRequires:  perl(HTML::Parser)
+BuildRequires:  perl(HTML::TreeBuilder)
+BuildRequires:  perl(HTTP::Cache::Transparent)
+BuildRequires:  perl(HTTP::Cookies)
+BuildRequires:  perl(HTTP::Message)
+BuildRequires:  perl(HTTP::Request)
+BuildRequires:  perl(HTTP::Request::Common)
+BuildRequires:  perl(IO::File)
+BuildRequires:  perl(IO::Scalar)
+BuildRequires:  perl(IO::Uncompress::Unzip)
+BuildRequires:  perl(JSON)
+BuildRequires:  perl(List::MoreUtils)
+BuildRequires:  perl(List::Util)
+BuildRequires:  perl(LWP)
+BuildRequires:  perl(LWP::ConnCache)
+BuildRequires:  perl(LWP::Protocol::https)
+BuildRequires:  perl(LWP::Simple)
+BuildRequires:  perl(LWP::UserAgent)
+BuildRequires:  perl(LWP::UserAgent::Determined)
+BuildRequires:  perl(Memoize)
+BuildRequires:  perl(Pod::Usage)
+BuildRequires:  perl(POSIX)
+BuildRequires:  perl(Scalar::Util)
+BuildRequires:  perl(SOAP::Lite)
+BuildRequires:  perl(Storable)
+BuildRequires:  perl(Time::HiRes)
+BuildRequires:  perl(Time::Local)
+BuildRequires:  perl(Time::Piece)
+BuildRequires:  perl(Time::Seconds)
+BuildRequires:  perl(Try::Tiny)
+BuildRequires:  perl(URI)
+BuildRequires:  perl(URI::Escape)
+BuildRequires:  perl(URI::URL)
+BuildRequires:  perl(XML::DOM)
+BuildRequires:  perl(XML::LibXML)
+BuildRequires:  perl(XML::LibXSLT)
+BuildRequires:  perl(XML::Parser)
+BuildRequires:  perl(XML::TreePP)
+BuildRequires:  perl(XML::Twig) >= 3.10
+BuildRequires:  perl(XML::Writer)
 
-Requires: xmltv-grabbers >= %{version}-%{release}
-Requires: perl(PerlIO::gzip)
-Requires: perl(Unicode::String)
+Requires:       xmltv-grabbers >= %{version}-%{release}
+Requires:       perl(PerlIO::gzip)
+Requires:       perl(Unicode::String)
 
 %description
 XMLTV is a set of utilities to manage your TV viewing. They work with
@@ -129,10 +129,10 @@ operations like picking out your favourite programmes as filters that
 read and write XML documents.
 
 %package -n perl-XMLTV
-Summary: Perl modules for managing your TV viewing
-Requires: perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
-Requires: perl(Term::ProgressBar)
-Requires: perl(Lingua::Preferred)
+Summary:        Perl modules for managing your TV viewing
+Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
+Requires:       perl(Term::ProgressBar)
+Requires:       perl(Lingua::Preferred)
 
 %description -n perl-XMLTV
 XMLTV is a set of utilities to manage your TV viewing. They work with
@@ -145,9 +145,9 @@ read and write XML documents.
 This package contains the perl modules from xmltv.
 
 %package grabbers
-Summary: Backends for xmltv
-Requires: perl-XMLTV >= %{version}-%{release}
-Requires: perl(JSON::XS)
+Summary:        Backends for xmltv
+Requires:       perl-XMLTV >= %{version}-%{release}
+Requires:       perl(JSON::XS)
 
 %description grabbers
 XMLTV is a set of utilities to manage your TV viewing. They work with
@@ -160,8 +160,8 @@ read and write XML documents.
 This package contains the backends (grabbers) for xmltv.
 
 %package gui
-Summary: Graphical frontends to xmltv
-Requires: perl-XMLTV >= %{version}-%{release}
+Summary:        Graphical frontends to xmltv
+Requires:       perl-XMLTV >= %{version}-%{release}
 
 %description gui
 XMLTV is a set of utilities to manage your TV viewing. They work with
