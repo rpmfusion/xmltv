@@ -10,6 +10,7 @@ Patch0:         fix_grabber_requires.patch
 
 BuildArch:      noarch
 
+BuildRequires:  perl-interpreter
 BuildRequires:  perl-generators
 BuildRequires:  perl-devel
 BuildRequires:  perl(ExtUtils::MakeMaker)
