@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.6.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -185,6 +185,7 @@ make %{?_smp_mflags}
 %install
 make pure_install PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -type f -name .packlist -delete
+%{_fixperms} $RPM_BUILD_ROOT
 
 
 %check
@@ -246,6 +247,9 @@ make test
 
 
 %changelog
+* Sun May 12 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-4
+- Correct permissions of installed files
+
 * Fri May 10 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-3
 - Fix el6 dependencies by not building tv_grab_zz_sdjson_sqlite on el6
 
