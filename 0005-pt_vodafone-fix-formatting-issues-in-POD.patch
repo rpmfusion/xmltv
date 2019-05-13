@@ -1,0 +1,45 @@
+From 814afd09f4f63f0999fe20ce2ace461da8b9de14 Mon Sep 17 00:00:00 2001
+From: Nick Morrott <knowledgejunkie@gmail.com>
+Date: Fri, 1 Mar 2019 01:12:26 +0000
+Subject: [PATCH 05/13] pt_vodafone: fix formatting issues in POD
+
+---
+ grab/pt_vodafone/tv_grab_pt_vodafone | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
+
+diff --git a/grab/pt_vodafone/tv_grab_pt_vodafone b/grab/pt_vodafone/tv_grab_pt_vodafone
+index b26b99eb0..b55541186 100755
+--- a/grab/pt_vodafone/tv_grab_pt_vodafone
++++ b/grab/pt_vodafone/tv_grab_pt_vodafone
+@@ -78,17 +78,21 @@ files are stored. All configuration is stored in $HOME/.xmltv/. On Windows,
+ it might be necessary to set HOME to a path without spaces in it.
+ 
+ =head1 CREDITS
++
+ Kevin Groeneveld (kgroeneveld at gmail dot com)
+ 
+-This grabber uses code from tv_grab_pt_meo by Karl Dietz, dekarl -at- users -dot- sourceforge -dot- net.
+-This grabber uses code from tv_grab_zz_sdjson by Kevin Groeneveld, kgroeneveld -at- gmail -dot- com.
+-The original idea of this grabber came from higuita's shell script,
+-see L<https://github.com/higuita/vodafone.pt-xmltv>.
+-Special thanks to Vodafone, for building a clean, fast and public access API,
+-much more reliable than Meo open API ( but sadly not as open) and much better
+-than lack of any API from NOS.
++This grabber uses code from tv_grab_pt_meo by Karl Dietz, dekarl -at- users -dot- sourceforge -dot- net,
++and from tv_grab_zz_sdjson by Kevin Groeneveld, kgroeneveld -at- gmail -dot- com.
++
++The original idea of this grabber came from higuita's shell script, see
++L<https://github.com/higuita/vodafone.pt-xmltv>.
++
++Special thanks to Vodafone for building a clean, fast, and public access API;
++much more reliable than Meo's open API (but sadly not as open) and much better
++than the lack of any API from NOS.
+ 
+ =head1 AUTHOR
++
+ Nuno Sénica, nsenica -at- gmail -dot- com.
+ 
+ =head1 BUGS
+-- 
+2.21.0
+

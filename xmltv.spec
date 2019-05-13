@@ -1,12 +1,37 @@
 Name:           xmltv
 Version:        0.6.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        https://github.com/XMLTV/xmltv/archive/v%{version}/xmltv-v%{version}.tar.gz
-Patch0:         fix_grabber_requires.patch
+# Upstream commit 5463cde - test_tv_imdb.t: specify input/output per published CLI
+Patch0001:      0001-test_tv_imdb.t-specify-input-output-per-published-CL.patch
+# Upstream commit 76dfb97 - test_tv_imdb.t: update usage documentation
+Patch0002:      0002-test_tv_imdb.t-update-usage-documentation.patch
+# Upstream commit 9dc7ae7 - tv_imdb: fix typo in documentation
+Patch0003:      0003-tv_imdb-fix-typo-in-documentation.patch
+# Upstream commit 5162eea - pt_vodafone: use utf8 in POD
+Patch0004:      0004-pt_vodafone-use-utf8-in-POD.patch
+# Upstream commit 814afd0 - pt_vodafone: fix formatting issues in POD
+Patch0005:      0005-pt_vodafone-fix-formatting-issues-in-POD.patch
+# Upstream commit 8f4a1bd - fix tv_grab_uk_tvguide urls
+Patch0006:      0006-fix-tv_grab_uk_tvguide-urls.patch
+# Upstream commit 9b90af5 - fix url (https) and fix graber
+Patch0007:      0007-fix-url-https-and-fix-graber.patch
+# Upstream commit d14fac1 - fix issue #59 tv_grab_uk_tvguide (#60)
+Patch0008:      0008-fix-issue-59-tv_grab_uk_tvguide-60.patch
+# Upstream commit 82abef0 - Fix regex for programme duration
+Patch0009:      0009-Fix-regex-for-programme-duration.patch
+# Upstream commit 370d3e5 - README.win32: drop details of Windows 98 error with Perl 5.8
+Patch0010:      0010-README.win32-drop-details-of-Windows-98-error-with-P.patch
+# Upstream commit 59b8a08 - fix fetch_channels() after website changes (issue #64)
+Patch0011:      0011-fix-fetch_channels-after-website-changes-issue-64.patch
+# Upstream commit 707fbd7 - correct FSF address (issue #65)
+Patch0012:      0012-correct-FSF-address-issue-65.patch
+# Upstream commit 240d203 - remove version on 'use XMLTV' to eliminate certain packaging issues.
+Patch0013:      0013-remove-version-on-use-XMLTV-to-eliminate-certain-pac.patch
 
 BuildArch:      noarch
 
@@ -247,6 +272,10 @@ make test
 
 
 %changelog
+* Mon May 13 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-5
+- Pull in patches from upstream to resolve various issues and remove
+  local fixup for versioning
+
 * Sun May 12 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-4
 - Correct permissions of installed files
 

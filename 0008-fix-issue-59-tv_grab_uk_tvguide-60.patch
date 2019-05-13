@@ -1,0 +1,42 @@
+From d14fac1b28b89682d62e07c4389c69b8c7632c85 Mon Sep 17 00:00:00 2001
+From: Geoff <honir999@gmail.com>
+Date: Fri, 29 Mar 2019 20:51:58 +0000
+Subject: [PATCH 08/13] fix issue #59 tv_grab_uk_tvguide (#60)
+
+* Add stop time to programmes which cross the GMT->BST transition (issue #59)
+---
+ grab/uk_tvguide/tv_grab_uk_tvguide | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/grab/uk_tvguide/tv_grab_uk_tvguide b/grab/uk_tvguide/tv_grab_uk_tvguide
+index 5d711f701..0b931f27c 100755
+--- a/grab/uk_tvguide/tv_grab_uk_tvguide
++++ b/grab/uk_tvguide/tv_grab_uk_tvguide
+@@ -392,6 +392,7 @@ sub fetch_listings {
+ 									$h2 -= 12 if $a2 eq 'am' && $h2 == 12;
+ 									$showtime->set(hour => $h, minute => $i, second => 0);
+ 									$prog{'start'} = $showtime->strftime("%Y%m%d%H%M%S %z");
++									my $showtime_ = $showtime->clone;
+ 									if (defined $h2 && $h2 >= 0) {
+ 										$showtime->add (days => 1) if $h2 < $h;
+ 										# see note above re errors with GMT/BST transition
+@@ -399,7 +400,15 @@ sub fetch_listings {
+ 											$showtime->set(hour => $h2, minute => $i2, second => 0);
+ 											$prog{'stop'} = $showtime->strftime("%Y%m%d%H%M%S %z");
+ 										} or do {			# catch
+-											# no output prog 'stop' time
++											# let's see if we can get a duration
++											my ($durh, $durm) = $lhs->as_text =~ /\((?:(\d*)\shours?\s)?(\d*)\sminutes?\)/;
++											if (defined $durh || defined $durm) {
++												$durh = 0 if !defined $durh; $durm = 0 if !defined $durm;
++												$showtime_->set_time_zone('UTC')->add( hours => $durh, minutes => $durm )->set_time_zone('Europe/London');
++												$prog{'stop'} = $showtime_->strftime("%Y%m%d%H%M%S %z");
++											} else {
++												# no output prog 'stop' time
++											}
+ 										}
+ 									} else {
+ 										# no output prog 'stop' time
+-- 
+2.21.0
+
