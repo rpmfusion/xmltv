@@ -1,0 +1,25 @@
+From 59b8a0830e1ca0f923737bff81c9fbf5f1bb1ef6 Mon Sep 17 00:00:00 2001
+From: Geoff Westcott <honir999@gmail.com>
+Date: Thu, 25 Apr 2019 18:51:31 +0100
+Subject: [PATCH 11/13] fix fetch_channels() after website changes (issue #64)
+
+---
+ grab/uk_tvguide/tv_grab_uk_tvguide | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/grab/uk_tvguide/tv_grab_uk_tvguide b/grab/uk_tvguide/tv_grab_uk_tvguide
+index 0f5ca5200..53c99a035 100755
+--- a/grab/uk_tvguide/tv_grab_uk_tvguide
++++ b/grab/uk_tvguide/tv_grab_uk_tvguide
+@@ -750,7 +750,7 @@ sub fetch_channels {
+ 
+ 	# Fetch channels via a dummy call to BBC1 listings
+ 	#		http://www.tvguide.co.uk/channellisting.asp?ch=86&cTime=
+-	my $channel_list = $ROOT_URL.'channellisting.asp?ch=86&cTime=';
++	my $channel_list = $ROOT_URL.'channellisting.asp?ch=74&cTime=';
+ 
+   my $result;
+   my $channels = {};
+-- 
+2.21.0
+

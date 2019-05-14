@@ -1,0 +1,25 @@
+From 5162eeacc2f34e007690a2d58d8aece9c80ca58a Mon Sep 17 00:00:00 2001
+From: Nick Morrott <knowledgejunkie@gmail.com>
+Date: Fri, 1 Mar 2019 01:06:47 +0000
+Subject: [PATCH 04/13] pt_vodafone: use utf8 in POD
+
+---
+ grab/pt_vodafone/tv_grab_pt_vodafone | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/grab/pt_vodafone/tv_grab_pt_vodafone b/grab/pt_vodafone/tv_grab_pt_vodafone
+index 1572c33da..b26b99eb0 100755
+--- a/grab/pt_vodafone/tv_grab_pt_vodafone
++++ b/grab/pt_vodafone/tv_grab_pt_vodafone
+@@ -2,6 +2,8 @@
+ 
+ =pod
+ 
++=encoding utf8
++
+ =head1 NAME
+ 
+ tv_grab_pt_vodafone - Grab TV listings for Vodafone in Portugal.
+-- 
+2.21.0
+

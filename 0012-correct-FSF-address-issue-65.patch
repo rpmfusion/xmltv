@@ -1,0 +1,25 @@
+From 707fbd7db3c2fc240eaea0d214880b3ec78875a4 Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Sun, 28 Apr 2019 00:52:12 +0000
+Subject: [PATCH 12/13] correct FSF address (issue #65)
+
+---
+ filter/tv_to_potatoe | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/filter/tv_to_potatoe b/filter/tv_to_potatoe
+index b238a5cdd..1660ca1bc 100755
+--- a/filter/tv_to_potatoe
++++ b/filter/tv_to_potatoe
+@@ -12,7 +12,7 @@
+ # You should have received a copy of the GNU General Public License
+ # along with this program; if not, you can either send email to this
+ # program's maintainer or write to: The Free Software Foundation,
+-# Inc.; 675 Massachusetts Avenue; Cambridge, MA 02139, USA.
++# Inc.; 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
+ =pod
+ 
+-- 
+2.21.0
+

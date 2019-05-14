@@ -1,0 +1,27 @@
+From 240d20348776add5dafb1642d05c4ee139131d29 Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Tue, 30 Apr 2019 04:19:30 +0000
+Subject: [PATCH 13/13] remove version on 'use XMLTV' to eliminate certain
+ packaging issues.
+
+(cherry picked from commit 2307a8d56e8dcf470423be63c4884ec560200dea)
+---
+ grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index 832e8f514..054634cf5 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -127,7 +127,7 @@ use utf8;
+ 
+ STDERR->autoflush(1);                          # Autoflush STDERR
+ 
+-use XMLTV 0.005067;
++use XMLTV;
+ use XMLTV::Options qw/ParseOptions/;
+ use XMLTV::Configure::Writer;
+ use XMLTV::Configure qw/LoadConfig SaveConfig/;
+-- 
+2.21.0
+
