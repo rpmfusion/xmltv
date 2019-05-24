@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.6.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -80,7 +80,7 @@ BuildRequires:  perl(Date::Parse)
 BuildRequires:  perl(DateTime)
 BuildRequires:  perl(DateTime::Duration)
 BuildRequires:  perl(DateTime::Format::ISO8601)
-%if 0%{?fedora}
+%if 0%{?fedora} || 0%{?rhel} > 6
 BuildRequires:  perl(DateTime::Format::SQLite)
 %endif
 BuildRequires:  perl(DateTime::Format::Strptime)
@@ -272,6 +272,10 @@ make test
 
 
 %changelog
+* Thu May 23 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-6
+- Build tv_grab_zz_sdjson_sqlite for el7 now that
+  perl-DateTime-Format-SQLite has landed in epel7
+
 * Mon May 13 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-5
 - Pull in patches from upstream to resolve various issues and remove
   local fixup for versioning
