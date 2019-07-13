@@ -1,0 +1,26 @@
+From 457954219a3e93f702bdb3875a9dd58450681fed Mon Sep 17 00:00:00 2001
+From: Geoff Westcott <honir999@gmail.com>
+Date: Thu, 11 Jul 2019 17:50:50 +0100
+Subject: [PATCH 14/14] Warning message when unable to retrieve web page (exit
+ status 1)
+
+---
+ grab/uk_tvguide/tv_grab_uk_tvguide | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/grab/uk_tvguide/tv_grab_uk_tvguide b/grab/uk_tvguide/tv_grab_uk_tvguide
+index 53c99a03..881a37c0 100755
+--- a/grab/uk_tvguide/tv_grab_uk_tvguide
++++ b/grab/uk_tvguide/tv_grab_uk_tvguide
+@@ -208,7 +208,7 @@ sub fetch_listings {
+ 
+ 					# tvguide website can be very slow - try to avoid barfing when no response
+ 					if (!defined $channelname) {
+-						print STDERR "Unable to retrieve web page for $channel_id \n";
++						warning "Unable to retrieve web page for $channel_id";
+ 						next;
+ 					}
+ 
+-- 
+2.21.0
+
