@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.6.1
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -32,6 +32,8 @@ Patch0011:      0011-fix-fetch_channels-after-website-changes-issue-64.patch
 Patch0012:      0012-correct-FSF-address-issue-65.patch
 # Upstream commit 240d203 - remove version on 'use XMLTV' to eliminate certain packaging issues.
 Patch0013:      0013-remove-version-on-use-XMLTV-to-eliminate-certain-pac.patch
+# Upstream commit 4579542 - Warning message when unable to retrieve web page (exit status 1)
+Patch0014:      0014-Warning-message-when-unable-to-retrieve-web-page-exi.patch
 
 BuildArch:      noarch
 
@@ -272,6 +274,9 @@ make test
 
 
 %changelog
+* Sat Jul 13 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-7
+- Pull in latest patch from upstream to produce warning message
+
 * Thu May 23 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-6
 - Build tv_grab_zz_sdjson_sqlite for el7 now that
   perl-DateTime-Format-SQLite has landed in epel7
