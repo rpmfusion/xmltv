@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.6.1
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -34,6 +34,11 @@ Patch0012:      0012-correct-FSF-address-issue-65.patch
 Patch0013:      0013-remove-version-on-use-XMLTV-to-eliminate-certain-pac.patch
 # Upstream commit 4579542 - Warning message when unable to retrieve web page (exit status 1)
 Patch0014:      0014-Warning-message-when-unable-to-retrieve-web-page-exi.patch
+# Upstream commit 7aec62e - telsu: update time parser for new format
+Patch0015:      0015-telsu-update-time-parser-for-new-format.patch
+# Upstream commit b25f211 - ampparit: update for new class names in HTML
+Patch0016:      0016-ampparit-update-for-new-class-names-in-HTML.patch
+
 
 BuildArch:      noarch
 
@@ -274,6 +279,9 @@ make test
 
 
 %changelog
+* Sun Sep 29 2019 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-9
+- Pull in upstream patches to resolve grabber issues
+
 * Fri Aug 09 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.6.1-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 

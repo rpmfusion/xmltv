@@ -1,0 +1,65 @@
+From b25f2115957cd60a3f08927e65b081849bdae2ff Mon Sep 17 00:00:00 2001
+From: Stefan Becker <chemobejk@gmail.com>
+Date: Sun, 1 Sep 2019 01:28:52 +0300
+Subject: [PATCH 16/16] ampparit: update for new class names in HTML
+
+---
+ grab/fi/fi/source/ampparit.pm | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/grab/fi/fi/source/ampparit.pm b/grab/fi/fi/source/ampparit.pm
+index 3984bc03..8d2768e9 100644
+--- a/grab/fi/fi/source/ampparit.pm
++++ b/grab/fi/fi/source/ampparit.pm
+@@ -39,7 +39,8 @@ sub channels {
+     #	 <div class="channel col-xs-6 col-sm-4 col-md-3 col-lg-3">
+     #     <div class="channel-wrap">
+     #      <div class="channel-header">
+-    #       <a class="logo" href="/tv/yle-tv1">
++    #       <a class="channel-title__logo" href="/tv/yle-tv1">
++    # or    <a class="channel-title__name" href="/tv/yle-tv1">
+     #        <img src="..." alt="Yle TV1">
+     #       </a>
+     #       ...
+@@ -52,7 +53,7 @@ sub channels {
+     #
+     if (my $container = $root->look_down("class" => "programming-container")) {
+       if (my @links = $container->look_down("_tag"  => "a",
+-					    "class" => qr/^(?:logo|name)$/)) {
++					    "class" => qr/^channel-title__(?:logo|name)$/)) {
+ 	foreach my $link (@links) {
+ 	  my $id = $link->attr("href");
+ 
+@@ -108,12 +109,12 @@ sub grab {
+     #    ...
+     #    <div class="programs">
+     #     <div data-tip="..." data-for="..." class="program">
+-    #      <time class="program-start-time" title="ke 25.7. 6:00" datetime="2018-07-25T03:00:00.000Z">
++    #      <time class="program__start-time" title="ke 25.7. 6:00" datetime="2018-07-25T03:00:00.000Z">
+     #       06:00
+     #      </time>
+-    #      <div class="program-right">
+-    #       <div class="program-title">Aamun AVAus</div>
+-    #       <div class="program-description">
++    #      <div class="program__right">
++    #       <div class="program__title">Aamun AVAus</div>
++    #       <div class="program__description">
+     #        ...
+     #       </div>
+     #      </div>
+@@ -126,9 +127,9 @@ sub grab {
+       if (my @programmes = $container->look_down("class" => "program")) {
+ 	foreach my $programme (@programmes) {
+ 	  my $start = $programme->look_down("_tag"  => "time",
+-					    "class" => "program-start-time");
+-	  my $title = $programme->look_down("class" => "program-title");
+-	  my $desc  = $programme->look_down("class" => "program-description");
++					    "class" => "program__start-time");
++	  my $title = $programme->look_down("class" => "program__title");
++	  my $desc  = $programme->look_down("class" => "program__description");
+ 
+ 	  if ($start && $title && $desc) {
+ 	    if (my($hour, $minute) =
+-- 
+2.21.0
+
