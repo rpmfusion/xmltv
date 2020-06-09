@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.6.1
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -209,9 +209,10 @@ This package contains graphical frontends to xmltv.
 %prep
 %autosetup -p1
 
+
 %build
 %{__perl} Makefile.PL -default INSTALLDIRS=vendor
-make %{?_smp_mflags}
+%{make_build}
 
 
 %install
@@ -281,6 +282,9 @@ make test
 
 
 %changelog
+* Tue Jun 09 2020 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-12
+- use preferred make macro for build
+
 * Tue Jun 09 2020 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-11
 - install share files
 
