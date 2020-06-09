@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.6.1
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -216,6 +216,7 @@ make %{?_smp_mflags}
 
 %install
 make pure_install PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
+make share_install PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -type f -name .packlist -delete
 %{_fixperms} $RPM_BUILD_ROOT
 
@@ -263,6 +264,7 @@ make test
 %{_mandir}/man1/tv_validate_file.1*
 %{_mandir}/man1/tv_validate_grabber.1*
 %{_mandir}/man1/tv_augment_tz.1*
+%{_datadir}/%{name}
 
 %files -n perl-XMLTV
 %{perl_vendorlib}/XMLTV.pm
@@ -279,6 +281,9 @@ make test
 
 
 %changelog
+* Tue Jun 09 2020 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-11
+- install share files
+
 * Wed Feb 05 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.6.1-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
