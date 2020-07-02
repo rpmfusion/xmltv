@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.6.1
-Release:        12%{?dist}
+Release:        13%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -282,6 +282,9 @@ make test
 
 
 %changelog
+* Thu Jul 02 2020 Paul Howarth <paul@city-fan.org> - 0.6.1-13
+- Perl 5.32 rebuild
+
 * Tue Jun 09 2020 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.1-12
 - use preferred make macro for build
 
