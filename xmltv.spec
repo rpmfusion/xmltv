@@ -1,44 +1,11 @@
 Name:           xmltv
-Version:        0.6.1
-Release:        14%{?dist}
+Version:        0.6.3
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        https://github.com/XMLTV/xmltv/archive/v%{version}/xmltv-v%{version}.tar.gz
-# Upstream commit 5463cde - test_tv_imdb.t: specify input/output per published CLI
-Patch0001:      0001-test_tv_imdb.t-specify-input-output-per-published-CL.patch
-# Upstream commit 76dfb97 - test_tv_imdb.t: update usage documentation
-Patch0002:      0002-test_tv_imdb.t-update-usage-documentation.patch
-# Upstream commit 9dc7ae7 - tv_imdb: fix typo in documentation
-Patch0003:      0003-tv_imdb-fix-typo-in-documentation.patch
-# Upstream commit 5162eea - pt_vodafone: use utf8 in POD
-Patch0004:      0004-pt_vodafone-use-utf8-in-POD.patch
-# Upstream commit 814afd0 - pt_vodafone: fix formatting issues in POD
-Patch0005:      0005-pt_vodafone-fix-formatting-issues-in-POD.patch
-# Upstream commit 8f4a1bd - fix tv_grab_uk_tvguide urls
-Patch0006:      0006-fix-tv_grab_uk_tvguide-urls.patch
-# Upstream commit 9b90af5 - fix url (https) and fix graber
-Patch0007:      0007-fix-url-https-and-fix-graber.patch
-# Upstream commit d14fac1 - fix issue #59 tv_grab_uk_tvguide (#60)
-Patch0008:      0008-fix-issue-59-tv_grab_uk_tvguide-60.patch
-# Upstream commit 82abef0 - Fix regex for programme duration
-Patch0009:      0009-Fix-regex-for-programme-duration.patch
-# Upstream commit 370d3e5 - README.win32: drop details of Windows 98 error with Perl 5.8
-Patch0010:      0010-README.win32-drop-details-of-Windows-98-error-with-P.patch
-# Upstream commit 59b8a08 - fix fetch_channels() after website changes (issue #64)
-Patch0011:      0011-fix-fetch_channels-after-website-changes-issue-64.patch
-# Upstream commit 707fbd7 - correct FSF address (issue #65)
-Patch0012:      0012-correct-FSF-address-issue-65.patch
-# Upstream commit 240d203 - remove version on 'use XMLTV' to eliminate certain packaging issues.
-Patch0013:      0013-remove-version-on-use-XMLTV-to-eliminate-certain-pac.patch
-# Upstream commit 4579542 - Warning message when unable to retrieve web page (exit status 1)
-Patch0014:      0014-Warning-message-when-unable-to-retrieve-web-page-exi.patch
-# Upstream commit 7aec62e - telsu: update time parser for new format
-Patch0015:      0015-telsu-update-time-parser-for-new-format.patch
-# Upstream commit b25f211 - ampparit: update for new class names in HTML
-Patch0016:      0016-ampparit-update-for-new-class-names-in-HTML.patch
-
 
 BuildArch:      noarch
 
@@ -138,6 +105,7 @@ BuildRequires:  perl(Time::Piece)
 BuildRequires:  perl(Time::Seconds)
 BuildRequires:  perl(Try::Tiny)
 BuildRequires:  perl(URI)
+BuildRequires:  perl(URI::Encode)
 BuildRequires:  perl(URI::Escape)
 BuildRequires:  perl(URI::URL)
 BuildRequires:  perl(XML::DOM)
@@ -227,7 +195,7 @@ make test
 
 
 %files
-%doc Changes README
+%doc Changes README.md
 %doc doc/*
 %{_bindir}/tv_augment
 %{_bindir}/tv_cat
@@ -282,6 +250,9 @@ make test
 
 
 %changelog
+* Sat Aug 22 2020 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.3-1
+- Update to xmltv 0.6.3 release
+
 * Wed Aug 19 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.6.1-14
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
