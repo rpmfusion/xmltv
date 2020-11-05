@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        0.6.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -115,6 +115,7 @@ BuildRequires:  perl(XML::Parser)
 BuildRequires:  perl(XML::TreePP)
 BuildRequires:  perl(XML::Twig) >= 3.10
 BuildRequires:  perl(XML::Writer)
+BuildRequires:  make
 
 Requires:       xmltv-grabbers >= %{version}-%{release}
 Requires:       perl(PerlIO::gzip)
@@ -250,6 +251,9 @@ make test
 
 
 %changelog
+* Wed Nov 04 2020 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.3-2
+- Add BR make
+
 * Sat Aug 22 2020 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 0.6.3-1
 - Update to xmltv 0.6.3 release
 
