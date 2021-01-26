@@ -1,0 +1,32 @@
+From 47d346da47b3a8afefc435e0d6439c2a2ae63115 Mon Sep 17 00:00:00 2001
+From: Nick Morrott <knowledgejunkie@gmail.com>
+Date: Tue, 8 Sep 2020 02:17:02 +0100
+Subject: [PATCH 03/50] README.md: refresh req'd/rec'd modules list
+
+---
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/README.md b/README.md
+index dbabddf4..a63b19d5 100644
+--- a/README.md
++++ b/README.md
+@@ -166,6 +166,7 @@ Time::Seconds                 (tv_grab_huro, core module since 5.9.5)
+ Tk                            (tv_check)
+ Tk::TableMatrix               (tv_check)
+ URI                           (for some of the grabbers, part of URI)
++URI::Encode                   (tv_grab_pt_vodafone)
+ URI::Escape                   (for some of the grabbers, part of URI)
+ XML::DOM                      (tv_grab_is)
+ XML::LibXSLT                  (tv_grab_is)
+@@ -185,6 +186,7 @@ Log::TraceMessages               (useful for debugging, not needed for normal us
+ PerlIO::gzip                     (can make tv_imdb a bit faster)
+ Term::ProgressBar                (displays pretty progress bars)
+ Unicode::String                  (improved character handling in tv_to_latex)
++URI::Escape::XS                  (faster URI handling)
+ ```
+ 
+ ### JSON libraries
+-- 
+2.29.2
+

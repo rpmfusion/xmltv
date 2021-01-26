@@ -1,0 +1,48 @@
+From 92ed6ce8d0f9662ce4362c95a05d9cb6f9b4eff5 Mon Sep 17 00:00:00 2001
+From: Honir <honir@c4b.co.uk>
+Date: Mon, 28 Dec 2020 08:51:36 +0000
+Subject: [PATCH 29/50] Add info message about frozen IMDb data
+
+---
+ filter/tv_imdb | 23 +++++++++++++++++++----
+ 1 file changed, 19 insertions(+), 4 deletions(-)
+
+diff --git a/filter/tv_imdb b/filter/tv_imdb
+index 83570b4b..914a421b 100755
+--- a/filter/tv_imdb
++++ b/filter/tv_imdb
+@@ -243,12 +243,27 @@ else {
+ $opt_debug=0  if $opt_quiet;
+ 
+ if ( defined($opt_prepStage) ) {
+-	print STDERR <<END
+-Building indices.  Be warned, this needs a lot of memory for the final stage
+-(working set about 250 megabytes).
++	if ( ! $opt_quiet ) {
++		print STDERR <<END;
++Building data files.
+ 
++The IMDb data files used by XMLTV were frozen by Amazon in December 2017.
++No updates will be made to the data files after this date.
++No new films will be added.
++
++If you have a successful build of these data files then there is no reason
++to build them again unless you suspect your existing files are corrupt.
++
++END
++		if ($opt_prepStage eq 'all') {
++			print STDERR <<END;
++Do you wish to continue with a new IMDb data build? (y/n) 
+ END
+-	if ( ! $opt_quiet ) ;
++			my $yn = <>; # ask for user input
++			chomp($yn);
++			exit(1) if (lc($yn) ne "y");
++		}
++	}
+ 
+ 	my %options =
+ 		('imdbDir' => $opt_imdbDir,
+-- 
+2.29.2
+

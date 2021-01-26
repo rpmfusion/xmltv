@@ -1,0 +1,31 @@
+From fdb2097e41630def708e1ca3786f79fa6dec7fac Mon Sep 17 00:00:00 2001
+From: Ian Cameron <1661072+mkbloke@users.noreply.github.com>
+Date: Mon, 21 Dec 2020 11:23:47 +0000
+Subject: [PATCH 14/50] tv_grab_uk_tvguide: fix for missing form options in
+ channel listings (#125)
+
+---
+ grab/uk_tvguide/tv_grab_uk_tvguide | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/grab/uk_tvguide/tv_grab_uk_tvguide b/grab/uk_tvguide/tv_grab_uk_tvguide
+index 8838ec31..208e6a03 100755
+--- a/grab/uk_tvguide/tv_grab_uk_tvguide
++++ b/grab/uk_tvguide/tv_grab_uk_tvguide
+@@ -206,6 +206,13 @@ sub fetch_listings {
+ 				if ($tree) {
+ 					my $channelname = $tree->look_down('_tag' => 'option', 'value' => $channel_id);
+ 
++					# Try a fallback method if the form options are missing
++					if (!defined $channelname) {
++						my $fallback = $tree->look_down('_tag' => 'input', 'name' => 'cTime');
++						$fallback = $fallback->look_up('_tag', 'tr') if $fallback;
++						$channelname = $fallback->look_down('_tag' => 'span', 'class' => 'programmeheading') if $fallback;
++					}
++
+ 					# tvguide website can be very slow - try to avoid barfing when no response
+ 					if (!defined $channelname) {
+ 						warning "Unable to retrieve web page for $channel_id";
+-- 
+2.29.2
+

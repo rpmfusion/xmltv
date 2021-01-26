@@ -1,0 +1,251 @@
+From 1747b204af78a0ed1672525a9b277ad1b2f9b906 Mon Sep 17 00:00:00 2001
+From: Robert Eden <rmeden@gmail.com>
+Date: Fri, 1 Jan 2021 20:45:24 -0600
+Subject: [PATCH 36/50] update windows xmltv.exe to use PAR::Packer rather than
+ discontinued PerlApp
+
+---
+ Makefile.PL                   |   9 +--
+ lib/exe_opt.pl                | 107 ++++++++++++++++++++--------------
+ lib/{exe_wrap.pl => xmltv.pl} |  30 ++++++++--
+ 3 files changed, 90 insertions(+), 56 deletions(-)
+ rename lib/{exe_wrap.pl => xmltv.pl} (84%)
+
+diff --git a/Makefile.PL b/Makefile.PL
+index c85c976e..f5c86683 100644
+--- a/Makefile.PL
++++ b/Makefile.PL
+@@ -915,14 +915,11 @@ END
+     #
+     $inherited .= q{
+ 
+-xmltv.exe :: $(EXE_FILES) lib/exe_wrap.pl lib/exe_opt.pl
++xmltv.exe :: $(EXE_FILES) lib/xmltv.pl lib/exe_opt.pl
+ 	echo $(EXE_FILES)                             >exe_files.txt
+ 	perl lib/exe_opt.pl $(VERSION)                >exe_opt.txt
+-	echo -lib  $(INST_ARCHLIB) --lib $(INST_LIB) >>exe_opt.txt
+-	echo -add  "$(EXE_FILES)"                    >>exe_opt.txt
+-	echo -bind exe_files.txt                     >>exe_opt.txt
+-	echo -exe  xmltv.exe                         >>exe_opt.txt
+-	perlapp @exe_opt.txt lib/exe_wrap.pl
++	echo -a exe_files.txt                        >>exe_opt.txt
++	pp_autolink -o xmltv.exe --cachedeps=pp.cache --reusable @exe_opt.txt lib/xmltv.pl $(EXE_FILES)
+ 	$(RM_F) exe_files.txt
+ 	$(RM_F) exe_opt.txt
+ 
+diff --git a/lib/exe_opt.pl b/lib/exe_opt.pl
+index 62f9e5aa..57a285f2 100755
+--- a/lib/exe_opt.pl
++++ b/lib/exe_opt.pl
+@@ -11,39 +11,57 @@ use File::Spec;
+ #
+ # output constants
+ #
+-print '-nologo
+--force
+--add=XMLTV::
+--add=Date::Manip::
+--add DateTime::
+--add Params::Validate::**
+--add Date::Language::
+--add Class::MethodMaker::
+--add Class::MethodMaker::Engine
+--add arybase
+--bind=libexpat-1_.dll[file=C:\strawberry\c\bin\libexpat-1_.dll,extract]
+--bind=libxml2-2_.dll[file=C:\strawberry\c\bin\libxml2-2_.dll,extract]
+--bind=libiconv-2_.dll[file=C:\strawberry\c\bin\libiconv-2_.dll,extract]
+--bind=liblzma-5_.dll[file=C:\strawberry\c\bin\liblzma-5_.dll,extract]
+--bind=zlib1_.dll[file=C:\strawberry\c\bin\zlib1_.dll,extract]
+--bind=libgcc_x86_470.dll[file=C:\strawberry\perl\bin\libgcc_x86_470.dll,extract]
+--bind=libeay32_.dll[file=C:\strawberry\c\bin\libeay32_.dll,extract]
+--bind=SSLeay32_.dll[file=C:\strawberry\c\bin\SSLeay32_.dll,extract]
+--bind DateTime/Format/Builder/Parser/Regex.pm[file=c:\Strawberry\Perl\site\lib\DateTime\Format\Builder\Parser\Regex.pm,extract]
+--trim=Class::MethodMaker::Scalar
+--trim=Class::MethodMaker::Engine
+--trim=JSON::PP58
+--trim=Test::Builder::IO::Scalar;
+--trim=Win32::Console
+--info CompanyName="XMLTV Project http://www.xmltv.org"
+--info FileDescription="EXE bundle of XMLTV tools to manage TV Listings"
+--info InternalName=xmltv.exe
+--info OriginalFilename=xmltv.exe
+--info ProductName=xmltv
+--info LegalCopyright="GNU General Public License http://www.gnu.org/licenses/gpl.txt"
+--icon xmltv_logo.ico
++print '
++-M XMLTV::
++-M Date::Manip::
++-M DateTime::
++-M Params::Validate::
++-M Date::Language::
++-M Class::MethodMaker::
++-X JSON::PP58
++-X Test::Builder::IO::Scalar
++-X Win32::Console
+ ';
+ 
++#-l C:/strawberry/c/bin/libexpat-1__.dll
++#-l C:/strawberry/c/bin/libxml2-2__.dll
++#-l C:/strawberry/c/bin/libiconv-2__.dll
++#-l C:/strawberry/c/bin/liblzma-5__.dll
++#-l C:/strawberry/c/bin/zlib1__.dll
++
++# not found
++#-l C:/strawberry/perl/bin/libgcc__x86__470.dll
++#-l C:/strawberry/c/bin/libeay32__.dll
++#-l C:/strawberry/c/bin/SSLeay32__.dll
++#-M arybase
++
++# add executable scripts
++open(FILE,"exe_files.txt");
++foreach (split(/ /,<FILE>)) {
++  chomp;
++  next unless $_;
++#  print "-a $_\n";  
++#  print "-c $_\n";  # -a doesn't scan for dependancies
++}
++close FILE;
++
++#-info CompanyName="XMLTV Project http://www.xmltv.org"
++#-info FileDescription="EXE bundle of XMLTV tools to manage TV Listings"
++#-info InternalName=xmltv.exe
++#-info OriginalFilename=xmltv.exe
++#-info ProductName=xmltv
++#-info LegalCopyright="GNU General Public License http://www.gnu.org/licenses/gpl.txt"
++#-icon xmltv_logo.ico
++#-l libexpat-1_.dll[file=C:\strawberry\c\bin\libexpat-1_.dll
++#-l libxml2-2_.dll[file=C:\strawberry\c\bin\libxml2-2_.dll
++#-l libiconv-2_.dll[file=C:\strawberry\c\bin\libiconv-2_.dll
++#-l liblzma-5_.dll[file=C:\strawberry\c\bin\liblzma-5_.dll
++#-l zlib1_.dll[file=C:\strawberry\c\bin\zlib1_.dll
++#-l libgcc_x86_470.dll[file=C:\strawberry\perl\bin\libgcc_x86_470.dll
++#-l libeay32_.dll[file=C:\strawberry\c\bin\libeay32_.dll
++#-l SSLeay32_.dll[file=C:\strawberry\c\bin\SSLeay32_.dll
++#-bind DateTime/Format/Builder/Parser/Regex.pm[file=c:\Strawberry\Perl\site\lib\DateTime\Format\Builder\Parser\Regex.pm
++
+ #
+ # Add XML\Parser\encodings
+ #
+@@ -56,20 +74,21 @@ foreach $dir (@Encoding_Path) {
+     while ($file = readdir DIR)
+     {
+        next unless $file =~ /.enc$/i;
+-       print "-bind=XML/Parser/Encodings/${file}[file=$dir/${file},extract]\n";
++#       print "-l XML/Parser/Encodings/${file}[file=$dir/${file}\n";
++#       print "-a c:/Strawberry/perl/vendor/lib/XML/Parser/Encodings/${file}\n";
+     }
+ }
+ 
+-#
+-# put date in file version field
+-#
+-@date=localtime; $date[4]++; $date[5]+=1900;
+-printf "-info FileVersion=%4d.%d.%d.%d\n",@date[5,4,3,2];
++##
++## put date in file version field
++##
++#@date=localtime; $date[4]++; $date[5]+=1900;
++#printf "-info FileVersion=%4d.%d.%d.%d\n",@date[5,4,3,2];
+ 
+-#
+-# last fields in product version should ommitable, but it doesn't work.
+-#
+-$version=shift;
+-@_=split(/\./,$version);
+-map {$_=0 unless defined $_} @_[0..4];
+-printf "-info ProductVersion=%d.%d.%d.%d\n",@_;
++##
++## last fields in product version should ommitable, but it doesn't work.
++##
++#$version=shift;
++#@_=split(/\./,$version);
++#map {$_=0 unless defined $_} @_[0..4];
++#printf "-info ProductVersion=%d.%d.%d.%d\n",@_;
+diff --git a/lib/exe_wrap.pl b/lib/xmltv.pl
+similarity index 84%
+rename from lib/exe_wrap.pl
+rename to lib/xmltv.pl
+index 5ddf73d0..8540dff6 100755
+--- a/lib/exe_wrap.pl
++++ b/lib/xmltv.pl
+@@ -16,6 +16,13 @@
+ 
+ use File::Basename;
+ use Carp;
++use XMLTV;
++use Date::Manip;
++use DateTime;
++use Params::Validate;
++use Date::Language;
++use Class::MethodMaker;
++use Class::MethodMaker::Engine;
+ 
+ $Carp::MaxEvalLen=40; # limit confess output
+ 
+@@ -68,7 +75,7 @@ print STDERR "Timezone is $ENV{TZ}\n" unless $opt_quiet;
+ $cmd = shift || "";
+ 
+ # --version (and abbreviations thereof)
+-my $VERSION = '0.6.3';
++my $VERSION = '0.6.1';
+ if (index('--version', $cmd) == 0 and length $cmd >= 3) {
+     print "xmltv $VERSION\n";
+     exit;
+@@ -83,9 +90,8 @@ if ($cmd eq 'tv_grab_na_dd',
+ {
+     unless (grep(/^--share/i,@ARGV))  # don't add our --share if one supplied
+     {
+-        my $dir = dirname(PerlApp::exe()); # get full program path
++        my $dir = dirname($0); # get full program path
+         $dir =~ s!\\!/!g;      # use / not \
+-#       die "EXE path contains spaces.  This is known to cause problems.\nPlease move xmltv.exe to a different directory\n" if $dir =~ / /;
+         $dir .= "/share/xmltv";
+     	unless (-d $dir )
+     	    {
+@@ -109,8 +115,11 @@ if ($cmd eq 'exec')
+ {
+    my $exe=shift;
+    $0=$exe;
+-   do $exe;
++   print "doing $exe\n";
++   print STDERR "STDERR doing $exe\n";
++   do "./$exe";
+    print STDERR $@ if length($@);
++   print "STDOUT $@"  if length($@);
+    exit 1 if length($@);
+    exit 0;
+ }
+@@ -118,7 +127,10 @@ if ($cmd eq 'exec')
+ #
+ # scan through attached files and execute program if found
+ #
+-$files=PerlApp::get_bound_file("exe_files.txt");
++
++#main thread!
++
++$files=PAR::read_file("exe_files.txt");
+ foreach my $exe (split(/ /,$files))
+ {
+     next unless length($exe)>3; #ignore trash
+@@ -128,11 +140,17 @@ foreach my $exe (split(/ /,$files))
+ 
+     next unless $cmd eq $_;
+ 
++	$exe="script/$cmd";
++	
+ #
+ # execute our command
+ #
+-    $0 = $_;        # set $0 to our script
++#   $0 = $_;        # set $0 to our script
++#	print STDERR "STDERR about to execute $exe\n";
++#	print STDOUT "STDOUT about to execute $exe\n";
+     do $exe;
++#	print STDERR "STDERR got <$!> <$?> <$^E> <$@>\n";
++#	print STDOUT "STDOUT got <$!> <$?> <$^E> <$@>\n";
+     print STDERR $@ if length($@);
+     exit 1 if length($@);
+     exit 0;
+-- 
+2.29.2
+

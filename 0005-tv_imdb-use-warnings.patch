@@ -1,0 +1,30 @@
+From 4556b5bb04792894a8eac4aebae5b1b038b7128c Mon Sep 17 00:00:00 2001
+From: Nick Morrott <knowledgejunkie@gmail.com>
+Date: Tue, 8 Sep 2020 03:34:08 +0100
+Subject: [PATCH 05/50] tv_imdb: use warnings
+
+---
+ filter/tv_imdb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/filter/tv_imdb b/filter/tv_imdb
+index 0addb452..bb7206f2 100755
+--- a/filter/tv_imdb
++++ b/filter/tv_imdb
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/usr/bin/perl
+ 
+ =pod
+ 
+@@ -177,6 +177,7 @@ Jerry Veldhuis, jerry@matilda.com
+ =cut
+ 
+ use strict;
++use warnings;
+ use XMLTV;
+ use XMLTV::Version "$XMLTV::VERSION";
+ use Data::Dumper;
+-- 
+2.29.2
+

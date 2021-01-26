@@ -1,0 +1,26 @@
+From 4a9d4274b056ed039e9dcf894a77d179e249e22b Mon Sep 17 00:00:00 2001
+From: Honir <honir@c4b.co.uk>
+Date: Wed, 23 Dec 2020 16:49:41 +0000
+Subject: [PATCH 19/50] download optional file if its prepStage is specifically
+ requested
+
+---
+ lib/IMDB.pm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/IMDB.pm b/lib/IMDB.pm
+index 1996a115..1e794ff9 100644
+--- a/lib/IMDB.pm
++++ b/lib/IMDB.pm
+@@ -1439,7 +1439,7 @@ sub checkFiles () {
+ 	if ( not $filenameExists and not $filenameGzExists ) {
+ 	    # Just report one of the filenames, keep the message simple.
+ 	    warn "$filenameGz does not exist\n";
+-            if ( $self->{optionalStages}{$file} ) {
++            if ( $self->{optionalStages}{$file} && lc($self->{stageToRun}) eq 'all' ) {
+                 warn "$file will not be added to database\n";
+             } else {
+                 $missingListFiles{$file}=$filenameGz;
+-- 
+2.29.2
+

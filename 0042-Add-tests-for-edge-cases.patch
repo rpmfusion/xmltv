@@ -1,0 +1,1112 @@
+From c32d625fb7fa32f3ed2f7cf6eff386a3d1cba8a0 Mon Sep 17 00:00:00 2001
+From: Honir <honir@c4b.co.uk>
+Date: Wed, 13 Jan 2021 17:29:53 +0000
+Subject: [PATCH 42/50] Add tests for edge cases
+
+---
+ MANIFEST                                      | 64 +++++++++++++++----
+ t/data-tv_imdb/After-data-freeze.xml          |  8 +++
+ t/data-tv_imdb/After-data-freeze.xml-expected |  9 +++
+ t/data-tv_imdb/Cast-actor-with-generation.xml |  8 +++
+ .../Cast-actor-with-generation.xml-expected   | 14 ++++
+ t/data-tv_imdb/Cast-actors-and-actresses.xml  |  8 +++
+ .../Cast-actors-and-actresses.xml-expected    | 15 +++++
+ t/data-tv_imdb/Cast-billing.xml               |  8 +++
+ t/data-tv_imdb/Cast-billing.xml-expected      | 16 +++++
+ t/data-tv_imdb/Cast-duplicate.xml             |  8 +++
+ t/data-tv_imdb/Cast-duplicate.xml-expected    | 14 ++++
+ t/data-tv_imdb/Cast-host-or-narrator.xml      | 28 ++++++++
+ .../Cast-host-or-narrator.xml-expected        | 59 +++++++++++++++++
+ t/data-tv_imdb/Cast-name-with-suffix.xml      |  9 +++
+ .../Cast-name-with-suffix.xml-expected        | 17 +++++
+ t/data-tv_imdb/Cast-role.xml                  | 12 ++++
+ t/data-tv_imdb/Cast-role.xml-expected         | 25 ++++++++
+ ...ector-multiple-and-duplicate-directors.xml | 12 ++++
+ ...tiple-and-duplicate-directors.xml-expected | 24 +++++++
+ t/data-tv_imdb/Director-name-with-suffix.xml  |  8 +++
+ .../Director-name-with-suffix.xml-expected    | 14 ++++
+ t/data-tv_imdb/Director-with-generation.xml   |  8 +++
+ .../Director-with-generation.xml-expected     | 14 ++++
+ t/data-tv_imdb/Genres-duplicate.xml           |  8 +++
+ t/data-tv_imdb/Genres-duplicate.xml-expected  | 14 ++++
+ t/data-tv_imdb/Genres-multiple.xml            |  8 +++
+ t/data-tv_imdb/Genres-multiple.xml-expected   | 14 ++++
+ t/data-tv_imdb/Genres-single.xml              |  8 +++
+ t/data-tv_imdb/Genres-single.xml-expected     | 12 ++++
+ .../Movie-same-year-movie-and-series.xml      | 14 ++++
+ ...ie-same-year-movie-and-series.xml-expected | 15 +++++
+ t/data-tv_imdb/Movie-startswith-hyphen.xml    |  8 +++
+ .../Movie-startswith-hyphen.xml-expected      | 11 ++++
+ t/data-tv_imdb/Movie-two-in-same-year.xml     |  9 +++
+ .../Movie-two-in-same-year.xml-expected       | 10 +++
+ t/data-tv_imdb/Movie-with-aka.xml             |  8 +++
+ t/data-tv_imdb/Movie-with-aka.xml-expected    | 11 ++++
+ t/data-tv_imdb/Movie-with-unknown-year.xml    | 14 ++++
+ .../Movie-with-unknown-year.xml-expected      | 15 +++++
+ t/data-tv_imdb/Ratings.xml                    |  8 +++
+ t/data-tv_imdb/Ratings.xml-expected           | 14 ++++
+ t/data-tv_imdb/lists/actors.list              | 14 ++++
+ t/data-tv_imdb/lists/actresses.list           | 21 ++++++
+ t/data-tv_imdb/lists/directors.list           | 12 ++++
+ t/data-tv_imdb/lists/genres.list              |  8 +++
+ t/data-tv_imdb/lists/movies.list              | 41 ++++++++++++
+ t/data-tv_imdb/lists/ratings.list             |  1 +
+ 47 files changed, 688 insertions(+), 12 deletions(-)
+ create mode 100644 t/data-tv_imdb/After-data-freeze.xml
+ create mode 100644 t/data-tv_imdb/After-data-freeze.xml-expected
+ create mode 100644 t/data-tv_imdb/Cast-actor-with-generation.xml
+ create mode 100644 t/data-tv_imdb/Cast-actor-with-generation.xml-expected
+ create mode 100644 t/data-tv_imdb/Cast-actors-and-actresses.xml
+ create mode 100644 t/data-tv_imdb/Cast-actors-and-actresses.xml-expected
+ create mode 100644 t/data-tv_imdb/Cast-billing.xml
+ create mode 100644 t/data-tv_imdb/Cast-billing.xml-expected
+ create mode 100644 t/data-tv_imdb/Cast-duplicate.xml
+ create mode 100644 t/data-tv_imdb/Cast-duplicate.xml-expected
+ create mode 100644 t/data-tv_imdb/Cast-host-or-narrator.xml
+ create mode 100644 t/data-tv_imdb/Cast-host-or-narrator.xml-expected
+ create mode 100644 t/data-tv_imdb/Cast-name-with-suffix.xml
+ create mode 100644 t/data-tv_imdb/Cast-name-with-suffix.xml-expected
+ create mode 100644 t/data-tv_imdb/Cast-role.xml
+ create mode 100644 t/data-tv_imdb/Cast-role.xml-expected
+ create mode 100644 t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml
+ create mode 100644 t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml-expected
+ create mode 100644 t/data-tv_imdb/Director-name-with-suffix.xml
+ create mode 100644 t/data-tv_imdb/Director-name-with-suffix.xml-expected
+ create mode 100644 t/data-tv_imdb/Director-with-generation.xml
+ create mode 100644 t/data-tv_imdb/Director-with-generation.xml-expected
+ create mode 100644 t/data-tv_imdb/Genres-duplicate.xml
+ create mode 100644 t/data-tv_imdb/Genres-duplicate.xml-expected
+ create mode 100644 t/data-tv_imdb/Genres-multiple.xml
+ create mode 100644 t/data-tv_imdb/Genres-multiple.xml-expected
+ create mode 100644 t/data-tv_imdb/Genres-single.xml
+ create mode 100644 t/data-tv_imdb/Genres-single.xml-expected
+ create mode 100644 t/data-tv_imdb/Movie-same-year-movie-and-series.xml
+ create mode 100644 t/data-tv_imdb/Movie-same-year-movie-and-series.xml-expected
+ create mode 100644 t/data-tv_imdb/Movie-startswith-hyphen.xml
+ create mode 100644 t/data-tv_imdb/Movie-startswith-hyphen.xml-expected
+ create mode 100644 t/data-tv_imdb/Movie-two-in-same-year.xml
+ create mode 100644 t/data-tv_imdb/Movie-two-in-same-year.xml-expected
+ create mode 100644 t/data-tv_imdb/Movie-with-aka.xml
+ create mode 100644 t/data-tv_imdb/Movie-with-aka.xml-expected
+ create mode 100644 t/data-tv_imdb/Movie-with-unknown-year.xml
+ create mode 100644 t/data-tv_imdb/Movie-with-unknown-year.xml-expected
+ create mode 100644 t/data-tv_imdb/Ratings.xml
+ create mode 100644 t/data-tv_imdb/Ratings.xml-expected
+
+diff --git a/MANIFEST b/MANIFEST
+index d96fc2fe..fcf6a34e 100644
+--- a/MANIFEST
++++ b/MANIFEST
+@@ -911,20 +911,40 @@ t/data-tv_imdb/lists/keywords.list
+ t/data-tv_imdb/lists/movies.list
+ t/data-tv_imdb/lists/plot.list
+ t/data-tv_imdb/lists/ratings.list
++t/data-tv_imdb/After-data-freeze.xml
++t/data-tv_imdb/After-data-freeze.xml-expected
++t/data-tv_imdb/Cast-actor-with-generation.xml
++t/data-tv_imdb/Cast-actor-with-generation.xml-expected
++t/data-tv_imdb/Cast-actors-and-actresses.xml
++t/data-tv_imdb/Cast-actors-and-actresses.xml-expected
++t/data-tv_imdb/Cast-billing.xml
++t/data-tv_imdb/Cast-billing.xml-expected
++t/data-tv_imdb/Cast-duplicate.xml
++t/data-tv_imdb/Cast-duplicate.xml-expected
++t/data-tv_imdb/Cast-host-or-narrator.xml
++t/data-tv_imdb/Cast-host-or-narrator.xml-expected
++t/data-tv_imdb/Cast-name-with-suffix.xml
++t/data-tv_imdb/Cast-name-with-suffix.xml-expected
++t/data-tv_imdb/Cast-role.xml
++t/data-tv_imdb/Cast-role.xml-expected
++t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml
++t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml-expected
++t/data-tv_imdb/Director-name-with-suffix.xml
++t/data-tv_imdb/Director-name-with-suffix.xml-expected
++t/data-tv_imdb/Director-with-generation.xml
++t/data-tv_imdb/Director-with-generation.xml-expected
++t/data-tv_imdb/Genres-duplicate.xml
++t/data-tv_imdb/Genres-duplicate.xml-expected
++t/data-tv_imdb/Genres-multiple.xml
++t/data-tv_imdb/Genres-multiple.xml-expected
++t/data-tv_imdb/Genres-single.xml
++t/data-tv_imdb/Genres-single.xml-expected
++t/data-tv_imdb/Movie1.xml
++t/data-tv_imdb/Movie1.xml-expected
+ t/data-tv_imdb/Movie1-case-insensitive.xml
+ t/data-tv_imdb/Movie1-case-insensitive.xml-expected
+ t/data-tv_imdb/Movie1-movies-only.xml
+ t/data-tv_imdb/Movie1-movies-only.xml-expected
+-t/data-tv_imdb/Movie1.xml
+-t/data-tv_imdb/Movie1.xml-expected
+-t/data-tv_imdb/Movie100-years.xml
+-t/data-tv_imdb/Movie100-years.xml-expected
+-t/data-tv_imdb/Movie101-movie-and-tv.xml
+-t/data-tv_imdb/Movie101-movie-and-tv.xml-expected
+-t/data-tv_imdb/Movie21-accents.xml
+-t/data-tv_imdb/Movie21-accents.xml-expected
+-t/data-tv_imdb/Movie22-dots.xml
+-t/data-tv_imdb/Movie22-dots.xml-expected
+ t/data-tv_imdb/Movie3-and-amp.xml
+ t/data-tv_imdb/Movie3-and-amp.xml-expected
+ t/data-tv_imdb/Movie5-ignore-punc.xml
+@@ -933,10 +953,30 @@ t/data-tv_imdb/Movie5-with-punc.xml
+ t/data-tv_imdb/Movie5-with-punc.xml-expected
+ t/data-tv_imdb/Movie6-articles.xml
+ t/data-tv_imdb/Movie6-articles.xml-expected
+-t/data-tv_imdb/Show1-movies-only.xml
+-t/data-tv_imdb/Show1-movies-only.xml-expected
++t/data-tv_imdb/Movie21-accents.xml
++t/data-tv_imdb/Movie21-accents.xml-expected
++t/data-tv_imdb/Movie22-dots.xml
++t/data-tv_imdb/Movie22-dots.xml-expected
++t/data-tv_imdb/Movie100-years.xml
++t/data-tv_imdb/Movie100-years.xml-expected
++t/data-tv_imdb/Movie101-movie-and-tv.xml
++t/data-tv_imdb/Movie101-movie-and-tv.xml-expected
++t/data-tv_imdb/Movie-same-year-movie-and-series.xml
++t/data-tv_imdb/Movie-same-year-movie-and-series.xml-expected
++t/data-tv_imdb/Movie-startswith-hyphen.xml
++t/data-tv_imdb/Movie-startswith-hyphen.xml-expected
++t/data-tv_imdb/Movie-two-in-same-year.xml
++t/data-tv_imdb/Movie-two-in-same-year.xml-expected
++t/data-tv_imdb/Movie-with-aka.xml
++t/data-tv_imdb/Movie-with-aka.xml-expected
++t/data-tv_imdb/Movie-with-unknown-year.xml
++t/data-tv_imdb/Movie-with-unknown-year.xml-expected
++t/data-tv_imdb/Ratings.xml
++t/data-tv_imdb/Ratings.xml-expected
+ t/data-tv_imdb/Show1.xml
+ t/data-tv_imdb/Show1.xml-expected
++t/data-tv_imdb/Show1-movies-only.xml
++t/data-tv_imdb/Show1-movies-only.xml-expected
+ t/test_tv_imdb.t
+ t/data/tv_sort_all_UTF8.expected
+ t/data/tv_sort_amp_xml_amp_xml.expected
+diff --git a/t/data-tv_imdb/After-data-freeze.xml b/t/data-tv_imdb/After-data-freeze.xml
+new file mode 100644
+index 00000000..4f0e1aac
+--- /dev/null
++++ b/t/data-tv_imdb/After-data-freeze.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Unarmed Man</title>
++    <date>2019</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/After-data-freeze.xml-expected b/t/data-tv_imdb/After-data-freeze.xml-expected
+new file mode 100644
+index 00000000..24b1003f
+--- /dev/null
++++ b/t/data-tv_imdb/After-data-freeze.xml-expected
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Unarmed Man</title>
++    <date>2019</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-actor-with-generation.xml b/t/data-tv_imdb/Cast-actor-with-generation.xml
+new file mode 100644
+index 00000000..076b8ed1
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-actor-with-generation.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Murder101</title>
++    <date>2014</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-actor-with-generation.xml-expected b/t/data-tv_imdb/Cast-actor-with-generation.xml-expected
+new file mode 100644
+index 00000000..0ba748c2
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-actor-with-generation.xml-expected
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Murder101</title>
++    <credits>
++      <actor>Percy Daggs III</actor>
++    </credits>
++    <date>2014</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?Murder101%20%282014%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-actors-and-actresses.xml b/t/data-tv_imdb/Cast-actors-and-actresses.xml
+new file mode 100644
+index 00000000..307f6bb1
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-actors-and-actresses.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Titanic</title>
++    <date>1997</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-actors-and-actresses.xml-expected b/t/data-tv_imdb/Cast-actors-and-actresses.xml-expected
+new file mode 100644
+index 00000000..ce979dc3
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-actors-and-actresses.xml-expected
+@@ -0,0 +1,15 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Titanic</title>
++    <credits>
++      <actor>Leonardo DiCaprio</actor>
++      <actor>Kate Winslet</actor>
++    </credits>
++    <date>1997</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?Titanic%20%281997%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-billing.xml b/t/data-tv_imdb/Cast-billing.xml
+new file mode 100644
+index 00000000..9c237686
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-billing.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>#Rip</title>
++    <date>2013</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-billing.xml-expected b/t/data-tv_imdb/Cast-billing.xml-expected
+new file mode 100644
+index 00000000..9ff477c0
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-billing.xml-expected
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>#Rip</title>
++    <credits>
++      <actor>Marilyn Ghigliotti</actor>
++      <actor>Missi Pyle</actor>
++      <actor>Naomi Grossman</actor>
++    </credits>
++    <date>2013</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?%23Rip%20%282013%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-duplicate.xml b/t/data-tv_imdb/Cast-duplicate.xml
+new file mode 100644
+index 00000000..3e82dbcc
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-duplicate.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>#SketchPack</title>
++    <date>2015</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-duplicate.xml-expected b/t/data-tv_imdb/Cast-duplicate.xml-expected
+new file mode 100644
+index 00000000..8e2c59ed
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-duplicate.xml-expected
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>#SketchPack</title>
++    <credits>
++      <actor>Lucy Scott-Smith</actor>
++    </credits>
++    <date>2015</date>
++    <category lang="en">TV Series</category>
++    <url>http://us.imdb.com/M/title-exact?%22%23SketchPack%22%20%282015%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-host-or-narrator.xml b/t/data-tv_imdb/Cast-host-or-narrator.xml
+new file mode 100644
+index 00000000..0eedc3a5
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-host-or-narrator.xml
+@@ -0,0 +1,28 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Bookclub</title>
++    <date>2015</date>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>LolliLove</title>
++    <date>2004</date>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Breaking Genres</title>
++    <date>2015</date>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>The Jean Bowring Show</title>
++    <date>1957</date>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>New Now Next Awards</title>
++    <date>2008</date>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>3 Weeks in Yerevan</title>
++    <date>2016</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-host-or-narrator.xml-expected b/t/data-tv_imdb/Cast-host-or-narrator.xml-expected
+new file mode 100644
+index 00000000..eba20fa5
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-host-or-narrator.xml-expected
+@@ -0,0 +1,59 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Bookclub</title>
++    <credits>
++      <presenter>Fabio Huwyler</presenter>
++    </credits>
++    <date>2015</date>
++    <category lang="en">TV Series</category>
++    <url>http://us.imdb.com/M/title-exact?%22Bookclub%22%20%282015%29</url>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>LolliLove</title>
++    <credits>
++      <commentator>Peter Alton</commentator>
++    </credits>
++    <date>2004</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?LolliLove%20%282004%29</url>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Breaking Genres</title>
++    <credits>
++      <presenter>Amrit Singh</presenter>
++    </credits>
++    <date>2015</date>
++    <category lang="en">TV Movie</category>
++    <url>http://us.imdb.com/M/title-exact?Breaking%20Genres%20%282015%29</url>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>The Jean Bowring Show</title>
++    <credits>
++      <presenter>Jean Bowring</presenter>
++    </credits>
++    <date>1957</date>
++    <category lang="en">TV Series</category>
++    <url>http://us.imdb.com/M/title-exact?%22The%20Jean%20Bowring%20Show%22%20%281957%29</url>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>New Now Next Awards</title>
++    <credits>
++      <presenter>Gloria Bigelow</presenter>
++    </credits>
++    <date>2008</date>
++    <category lang="en">TV Movie</category>
++    <url>http://us.imdb.com/M/title-exact?New%20Now%20Next%20Awards%20%282008%29</url>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>3 Weeks in Yerevan</title>
++    <credits>
++      <presenter>Mary Asatryan</presenter>
++    </credits>
++    <date>2016</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?3%20Weeks%20in%20Yerevan%20%282016%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-name-with-suffix.xml b/t/data-tv_imdb/Cast-name-with-suffix.xml
+new file mode 100644
+index 00000000..3b8d11c2
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-name-with-suffix.xml
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>#Selfie</title>
++    <desc>cast: Elizabeth Kent should appear twice</desc>
++    <date>2015</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-name-with-suffix.xml-expected b/t/data-tv_imdb/Cast-name-with-suffix.xml-expected
+new file mode 100644
+index 00000000..3c8441e3
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-name-with-suffix.xml-expected
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>#Selfie</title>
++    <desc>cast: Elizabeth Kent should appear twice</desc>
++    <credits>
++      <actor>Karina Cornwell</actor>
++      <actor>Elizabeth Kent</actor>
++      <actor>Elizabeth Kent</actor>
++    </credits>
++    <date>2015</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?%23Selfie%20%282015%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-role.xml b/t/data-tv_imdb/Cast-role.xml
+new file mode 100644
+index 00000000..51dcc97a
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-role.xml
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>#REV</title>
++    <date>2015</date>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Titanic</title>
++    <date>1997</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Cast-role.xml-expected b/t/data-tv_imdb/Cast-role.xml-expected
+new file mode 100644
+index 00000000..1553f0c3
+--- /dev/null
++++ b/t/data-tv_imdb/Cast-role.xml-expected
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>#REV</title>
++    <credits>
++      <actor>Poroma Banerjee</actor>
++      <actor>Sharon Zachariah</actor>
++    </credits>
++    <date>2015</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?%23REV%20%282015%29</url>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Titanic</title>
++    <credits>
++      <actor>Leonardo DiCaprio</actor>
++      <actor>Kate Winslet</actor>
++    </credits>
++    <date>1997</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?Titanic%20%281997%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml b/t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml
+new file mode 100644
+index 00000000..0600b9f9
+--- /dev/null
++++ b/t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>#Illusion</title>
++    <date>2014</date>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>#iScream</title>
++    <date>2014</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml-expected b/t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml-expected
+new file mode 100644
+index 00000000..d159117f
+--- /dev/null
++++ b/t/data-tv_imdb/Director-multiple-and-duplicate-directors.xml-expected
+@@ -0,0 +1,24 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>#Illusion</title>
++    <credits>
++      <director>Teodora Berglund</director>
++      <director>Alexandra Jousset</director>
++    </credits>
++    <date>2014</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?%23Illusion%20%282014%29</url>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>#iScream</title>
++    <credits>
++      <director>Gibran Tanwir</director>
++    </credits>
++    <date>2014</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?%23iScream%20%282014%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Director-name-with-suffix.xml b/t/data-tv_imdb/Director-name-with-suffix.xml
+new file mode 100644
+index 00000000..8d1c547f
+--- /dev/null
++++ b/t/data-tv_imdb/Director-name-with-suffix.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Grease Monkeys</title>
++    <date>1979</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Director-name-with-suffix.xml-expected b/t/data-tv_imdb/Director-name-with-suffix.xml-expected
+new file mode 100644
+index 00000000..e0654ee4
+--- /dev/null
++++ b/t/data-tv_imdb/Director-name-with-suffix.xml-expected
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Grease Monkeys</title>
++    <credits>
++      <director>Mark Aaron</director>
++    </credits>
++    <date>1979</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?Grease%20Monkeys%20%281979%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Director-with-generation.xml b/t/data-tv_imdb/Director-with-generation.xml
+new file mode 100644
+index 00000000..1e067899
+--- /dev/null
++++ b/t/data-tv_imdb/Director-with-generation.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>The Meek</title>
++    <date>2017</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Director-with-generation.xml-expected b/t/data-tv_imdb/Director-with-generation.xml-expected
+new file mode 100644
+index 00000000..d033ef0b
+--- /dev/null
++++ b/t/data-tv_imdb/Director-with-generation.xml-expected
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>The Meek</title>
++    <credits>
++      <director>Harold Jackson III</director>
++    </credits>
++    <date>2017</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?The%20Meek%20%282017%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Genres-duplicate.xml b/t/data-tv_imdb/Genres-duplicate.xml
+new file mode 100644
+index 00000000..a852100c
+--- /dev/null
++++ b/t/data-tv_imdb/Genres-duplicate.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>'C'-Man</title>
++    <date>1949</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Genres-duplicate.xml-expected b/t/data-tv_imdb/Genres-duplicate.xml-expected
+new file mode 100644
+index 00000000..9787f5b5
+--- /dev/null
++++ b/t/data-tv_imdb/Genres-duplicate.xml-expected
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>'C'-Man</title>
++    <date>1949</date>
++    <category lang="en">Movie</category>
++    <category lang="en">Crime</category>
++    <category lang="en">Drama</category>
++    <category lang="en">Film-Noir</category>
++    <url>http://us.imdb.com/M/title-exact?%27C%27-Man%20%281949%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Genres-multiple.xml b/t/data-tv_imdb/Genres-multiple.xml
+new file mode 100644
+index 00000000..e5923e70
+--- /dev/null
++++ b/t/data-tv_imdb/Genres-multiple.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>[Film #9 Title]</title>
++    <date>2015</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Genres-multiple.xml-expected b/t/data-tv_imdb/Genres-multiple.xml-expected
+new file mode 100644
+index 00000000..60cc308a
+--- /dev/null
++++ b/t/data-tv_imdb/Genres-multiple.xml-expected
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>[Film #9 Title]</title>
++    <date>2015</date>
++    <category lang="en">Movie</category>
++    <category lang="en">Comedy</category>
++    <category lang="en">Fantasy</category>
++    <category lang="en">Short</category>
++    <url>http://us.imdb.com/M/title-exact?%5BFilm%20%239%20Title%5D%20%282015%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Genres-single.xml b/t/data-tv_imdb/Genres-single.xml
+new file mode 100644
+index 00000000..aeb16a46
+--- /dev/null
++++ b/t/data-tv_imdb/Genres-single.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>(Mon) Jour de chance</title>
++    <date>2004</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Genres-single.xml-expected b/t/data-tv_imdb/Genres-single.xml-expected
+new file mode 100644
+index 00000000..bebe755b
+--- /dev/null
++++ b/t/data-tv_imdb/Genres-single.xml-expected
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>(Mon) Jour de chance</title>
++    <date>2004</date>
++    <category lang="en">Movie</category>
++    <category lang="en">Short</category>
++    <url>http://us.imdb.com/M/title-exact?%28Mon%29%20Jour%20de%20chance%20%282004%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-same-year-movie-and-series.xml b/t/data-tv_imdb/Movie-same-year-movie-and-series.xml
+new file mode 100644
+index 00000000..b99be2d8
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-same-year-movie-and-series.xml
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Journey to the Center of the Earth</title>
++    <desc>Multiple titles (movie,video,tv) with same title+year</desc>
++    <date>2008</date>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Ashes to Ashes</title>
++    <desc>Movie and tv-series with same title+year</desc>
++    <date>2008</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-same-year-movie-and-series.xml-expected b/t/data-tv_imdb/Movie-same-year-movie-and-series.xml-expected
+new file mode 100644
+index 00000000..2ef612ba
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-same-year-movie-and-series.xml-expected
+@@ -0,0 +1,15 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Journey to the Center of the Earth</title>
++    <desc>Multiple titles (movie,video,tv) with same title+year</desc>
++    <date>2008</date>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Ashes to Ashes</title>
++    <desc>Movie and tv-series with same title+year</desc>
++    <date>2008</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-startswith-hyphen.xml b/t/data-tv_imdb/Movie-startswith-hyphen.xml
+new file mode 100644
+index 00000000..f70ca6a1
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-startswith-hyphen.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>-1: Minus One</title>
++    <date>2016</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-startswith-hyphen.xml-expected b/t/data-tv_imdb/Movie-startswith-hyphen.xml-expected
+new file mode 100644
+index 00000000..467c72c7
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-startswith-hyphen.xml-expected
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>-1: Minus One</title>
++    <date>2016</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?-1%3A%20Minus%20One%20%282016%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-two-in-same-year.xml b/t/data-tv_imdb/Movie-two-in-same-year.xml
+new file mode 100644
+index 00000000..cdc65bd6
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-two-in-same-year.xml
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>'83</title>
++    <desc>tv_imdb cannot identify a sole hit - two films in same year with this title</desc>
++    <date>2017</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-two-in-same-year.xml-expected b/t/data-tv_imdb/Movie-two-in-same-year.xml-expected
+new file mode 100644
+index 00000000..f420c42a
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-two-in-same-year.xml-expected
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>'83</title>
++    <desc>tv_imdb cannot identify a sole hit - two films in same year with this title</desc>
++    <date>2017</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-with-aka.xml b/t/data-tv_imdb/Movie-with-aka.xml
+new file mode 100644
+index 00000000..c7afdebf
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-with-aka.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Family Prayers</title>
++    <date>2010</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-with-aka.xml-expected b/t/data-tv_imdb/Movie-with-aka.xml-expected
+new file mode 100644
+index 00000000..cfd756c2
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-with-aka.xml-expected
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Family Prayers</title>
++    <date>2010</date>
++    <category lang="en">Movie</category>
++    <url>http://us.imdb.com/M/title-exact?Family%20Prayers%20%282010%29</url>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-with-unknown-year.xml b/t/data-tv_imdb/Movie-with-unknown-year.xml
+new file mode 100644
+index 00000000..319bd6b6
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-with-unknown-year.xml
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Zed</title>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>Zed</title>
++    <date>2010</date>
++  </programme>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>California Cornflakes</title>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Movie-with-unknown-year.xml-expected b/t/data-tv_imdb/Movie-with-unknown-year.xml-expected
+new file mode 100644
+index 00000000..09481a82
+--- /dev/null
++++ b/t/data-tv_imdb/Movie-with-unknown-year.xml-expected
+@@ -0,0 +1,15 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Zed</title>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>Zed</title>
++    <date>2010</date>
++  </programme>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>California Cornflakes</title>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Ratings.xml b/t/data-tv_imdb/Ratings.xml
+new file mode 100644
+index 00000000..b445c8ba
+--- /dev/null
++++ b/t/data-tv_imdb/Ratings.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++<tv>
++  <programme channel="channel0" start="20010829000500 MST">
++    <title>#nitTWITS</title>
++    <date>2011</date>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/Ratings.xml-expected b/t/data-tv_imdb/Ratings.xml-expected
+new file mode 100644
+index 00000000..d4e0885c
+--- /dev/null
++++ b/t/data-tv_imdb/Ratings.xml-expected
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE tv SYSTEM "xmltv.dtd">
++
++<tv>
++  <programme start="20010829000500 MST" channel="channel0">
++    <title>#nitTWITS</title>
++    <date>2011</date>
++    <category lang="en">TV Series</category>
++    <url>http://us.imdb.com/M/title-exact?%22%23nitTWITS%22%20%282011%29</url>
++    <star-rating system="IMDB User Rating">
++      <value>7.0/10</value>
++    </star-rating>
++  </programme>
++</tv>
+diff --git a/t/data-tv_imdb/lists/actors.list b/t/data-tv_imdb/lists/actors.list
+index 90a787a0..e9f75e9f 100644
+--- a/t/data-tv_imdb/lists/actors.list
++++ b/t/data-tv_imdb/lists/actors.list
+@@ -11,3 +11,17 @@ Name			Titles
+ Campbell, Bruce (I)    	Army of Darkness (1992) [Ash] <1>
+ Actor, Bruce (I)	Movie1 (1990)  [Ash]  <1>
+ 			Movie2 (1991)  [Ash]  <1>
++Dibnah, Fred		A Tribute to Fred Dibnah (2004) (TV)  (archive footage)  [Himself]  <2>
++			Dig with Dibnah (2004) (TV)  [Himself - Presenter]  <1>
++			Fred Dibnah: Steeplejack (1979) (TV)  [Himself]  <1>
++DiCaprio, Leonardo	'Catch Me If You Can': Behind the Camera (2003) (V)  [Himself]  <6>
++			Titanic (1997)  [Jack Dawson]  <1>
++Huwyler, Fabio		"Bookclub" (2015)  [Himself - Host]
++Daggs III, Percy	Murder101 (2014)  [Carlyle]  <9>
++Alton, Peter		LolliLove (2004)  (voice)  [Narrator]  <3>
++Singh, Amrit (I)	2016 Winter Film Awards (2016) (TV)  [Presenter]
++			A Social Conversation with Bernie (2016) (TV)  [Himself - Host]
++			Breaking Genres (2015) (TV)  [Himself - Host]
++Singh, Amit (I)		Corporate (2006)
++			
++			
+diff --git a/t/data-tv_imdb/lists/actresses.list b/t/data-tv_imdb/lists/actresses.list
+index 446e779d..77bc7953 100644
+--- a/t/data-tv_imdb/lists/actresses.list
++++ b/t/data-tv_imdb/lists/actresses.list
+@@ -10,3 +10,24 @@ Name			Titles
+ ----			------
+ Actor, Betty (I)	Movie1 (1990)  [Betty]  <1>
+ 			Movie2 (1991)  [Betty]  <1>
++Banerjee, Poroma (II)	#REV (2015)  [Cinematographer]
++Zachariah, Sharon	#REV (2015)  [Interviewee]
++Ghigliotti, Marilyn	#Rip (2013)  (voice)  [Lydia Walters]  <1>
++Griffin, Martina	#Rip (2013)  [Juanita]  <10>
++Grossman, Naomi (II)	#Rip (2013)  [Bella Tiavas]  <3>
++Lee, Michelle (XXXVI)	#Rip (2013)  [Female News Anchor]  <11>
++Leonards, Ammie		#Rip (2013)  [CourtNay]  <6>
++Pyle, Missi		#Rip (2013)  [Lydia Walters]  <2>
++Shea, Beth		#Rip (2013)  [Liz Tanner]  <4>
++Cornwell, Karina (II)	#Selfie (2015)  (as Karina Cornell)  [Robot Girl]
++Kent, Elizabeth (V)	#Selfie (2015)  [The Woman]
++Kent, Elizabeth (VI)	#Selfie (2015)  [The Woman]
++Winslet, Kate		11th Annual Screen Actors Guild Awards (2005) (TV)  [Herself - Nominee & Presenter]
++			Titanic (1997)  [Rose Dewitt Bukater]  <2>
++			Reflections on Titanic (2012)  [Herself]  <3>
++Asatryan, Mary		3 Weeks in Yerevan (2016)  [Radio Host #2]
++Bowring, Jean		"The Jean Bowring Show" (1957)  [Herself - Hostess]
++Bigelow, Gloria		New Now Next Awards (2008) (TV)  [Herself - Host]
++Haze, Roxxy		"#BedTimeBitchin" (2014)  [Herself - Host]
++Scott-Smith, Lucy	"#SketchPack" (2015)
++Scott-Smith, Lucy	"#SketchPack" (2015)  [Various (2015)]
+diff --git a/t/data-tv_imdb/lists/directors.list b/t/data-tv_imdb/lists/directors.list
+index 03de5934..deb541f3 100644
+--- a/t/data-tv_imdb/lists/directors.list
++++ b/t/data-tv_imdb/lists/directors.list
+@@ -14,3 +14,15 @@ Director,Joe		Movie1 (1990)
+ Director,In1915		Movie100 (1915)
+ Director,In1943		Movie100 (1943)
+ Director,In1953		Movie100 (1953)
++Aaron, Mark (I)		Grease Monkeys (1979)
++			The Rivermen (1980)
++Berglund, Teodora (II)	#Illusion (2014)
++			#Illusion (2014)  (co-director)
++Jousset, Alexandra	#Illusion (2014)
++			#Illusion (2014)  (co-director)
++Tanwir, Gibran		#iScream (2014)  (segment "Beauty Boarding")
++			#iScream (2014)  (segment "Caller ID")
++			#iScream (2014)  (segment "Nightmare")
++			#iScream (2014)  (segment "The Anniversary")
++			#iScream (2014)  (segment "VooDoo")
++Jackson III, Harold	The Meek (2017)
+diff --git a/t/data-tv_imdb/lists/genres.list b/t/data-tv_imdb/lists/genres.list
+index 5fc0c0af..96d43647 100644
+--- a/t/data-tv_imdb/lists/genres.list
++++ b/t/data-tv_imdb/lists/genres.list
+@@ -9,5 +9,13 @@
+ Army of Darkness (1992)					Horror
+ Movie1 (1990)						Horror
+ Movie2 (1991)						Mystery
++[Film #9 Title] (2015)					Comedy
++[Film #9 Title] (2015)					Fantasy
++[Film #9 Title] (2015)					Short
++(Mon) Jour de chance (2004)				Short
++'C'-Man (1949)						Crime
++'C'-Man (1949)						Drama
++'C'-Man (1949)						Film-Noir
++'C'-Man (1949)						Crime
+ 
+ 
+diff --git a/t/data-tv_imdb/lists/movies.list b/t/data-tv_imdb/lists/movies.list
+index 89379710..5bc32861 100644
+--- a/t/data-tv_imdb/lists/movies.list
++++ b/t/data-tv_imdb/lists/movies.list
+@@ -46,3 +46,44 @@ Movie101 (1992)						1992
+ Movie101 (1993)	(V)					1993
+ "Movie101" (1988)					1988
+ "Movie101" (1988) {Episode1 Part 1 (#8.1)}		1992
++'83 (2017/I)						2017
++'83 (2017/II)						2017
++Journey to the Center of the Earth (2008)		2008
++Journey to the Center of the Earth (2008) (TV)	2008
++Journey to the Center of the Earth (2008) (V)	2008
++"Ashes to Ashes" (2008)				2008
++Ashes to Ashes (2008)				2008
++California Cornflakes (????)		????
++Zed (????/II)						????
++Family Prayers (aka Karim & Suha) (2010)	2010
++"Grease Monkeys" (2003)					2003-????
++"Grease Monkeys" (2003) {Almost Blue (#1.4)}		2003
++Grease Monkeys (1979)					1979
++#Illusion (2014)					2014
++#iScream (2014)						2014
++#REV (2015)							2015
++#Rip (2013)							2013
++#Selfie (2015)						2015
++Titanic (1997)						1997
++Titanic (2012)						2012
++Fred Dibnah: Steeplejack (1979) (TV)			1979 
++"Bookclub" (2015)					2015-????
++Murder101 (2014)					2014
++LolliLove (2004)					2004
++Breaking Genres (2015) (TV)				2015
++Corporate (2006)					2006
++3 Weeks in Yerevan (2016)				2016
++"The Jean Bowring Show" (1957)				1957-1960
++New Now Next Awards (2008) (TV)				2008
++"#BedTimeBitchin" (2014)				2014-????
++#ClivesClub: The Somers Solstice (2015)		2015
++"#SketchPack" (2015)					2015-???? 
++[Film #9 Title] (2015)					2015
++(Mon) Jour de chance (2004)				2004
++'C'-Man (1949)						1949 
++"#nitTWITS" (2011)					2011-????
++The Meek (2015)						2015
++The Meek (2017)						2017
++-1: Minus One (2016)					2016
++
++
+diff --git a/t/data-tv_imdb/lists/ratings.list b/t/data-tv_imdb/lists/ratings.list
+index ee7b97c2..e114eafa 100644
+--- a/t/data-tv_imdb/lists/ratings.list
++++ b/t/data-tv_imdb/lists/ratings.list
+@@ -9,3 +9,4 @@ New  Distribution  Votes  Rank  Title
+       0000002211  000001   9.9  Army of Darkness (1992)
+       0000002211  000001   1.0  Movie1 (1990)
+       0000002211  000002   1.1  Movie2 (1991)
++      1.1..2...5       8   7.0  "#nitTWITS" (2011)
+-- 
+2.29.2
+

@@ -1,0 +1,65 @@
+From b1a03a4a3a982596284806b37b37901589f87710 Mon Sep 17 00:00:00 2001
+From: Stefan Becker <chemobejk@gmail.com>
+Date: Sat, 26 Dec 2020 18:59:44 +0200
+Subject: [PATCH 25/50] source: avoid name clashes between modules
+
+Don't use lexically-scoped variables on the top-level of a module, as
+they will clash with same-named variables in another module in the
+merged script. Although they are private use "our" instead of "my".
+---
+ grab/fi/fi/source/foxtv.pm  | 2 +-
+ grab/fi/fi/source/telkku.pm | 4 ++--
+ grab/fi/fi/source/yle.pm    | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/grab/fi/fi/source/foxtv.pm b/grab/fi/fi/source/foxtv.pm
+index 0ecd2b2c..f42d97d4 100644
+--- a/grab/fi/fi/source/foxtv.pm
++++ b/grab/fi/fi/source/foxtv.pm
+@@ -20,7 +20,7 @@ fi::common->import();
+ fi::programmeStartOnly->import();
+ 
+ # Cleanup filter regexes
+-my $cleanup_match = qr!\s*(?:(?:\d+\.\s+)?(?:Kausi|Jakso|Osa)\.?(?:\s+(:?\d+/)?\d+\.\s+)?){1,2}!i;
++our $cleanup_match = qr!\s*(?:(?:\d+\.\s+)?(?:Kausi|Jakso|Osa)\.?(?:\s+(:?\d+/)?\d+\.\s+)?){1,2}!i;
+ 
+ # Description
+ sub description { 'foxtv.fi' }
+diff --git a/grab/fi/fi/source/telkku.pm b/grab/fi/fi/source/telkku.pm
+index b852da13..99dd8c13 100644
+--- a/grab/fi/fi/source/telkku.pm
++++ b/grab/fi/fi/source/telkku.pm
+@@ -23,7 +23,7 @@ fi::common->import();
+ # Description
+ sub description { 'telkku.com' }
+ 
+-my %categories = (
++our %categories = (
+   SPORTS => "urheilu",
+   MOVIE  => "elokuvat",
+ );
+@@ -52,7 +52,7 @@ sub _getJSON($) {
+ }
+ 
+ # cache for group name to API ID mapping
+-my %group2id;
++our %group2id;
+ 
+ # Grab channel list
+ sub channels {
+diff --git a/grab/fi/fi/source/yle.pm b/grab/fi/fi/source/yle.pm
+index 78e611c2..6dbaadc3 100644
+--- a/grab/fi/fi/source/yle.pm
++++ b/grab/fi/fi/source/yle.pm
+@@ -22,7 +22,7 @@ fi::common->import();
+ # Description
+ sub description { 'yle.fi' }
+ 
+-my %languages = (
++our %languages = (
+     "fi" => [ "areena", "opas"  ],
+     "sv" => [ "arenan", "guide" ],
+ );
+-- 
+2.29.2
+

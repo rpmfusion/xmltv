@@ -1,0 +1,25 @@
+From c4f600054cbd1b912d2ba0bd7e1c533484b0e5c7 Mon Sep 17 00:00:00 2001
+From: Honir <honir@c4b.co.uk>
+Date: Tue, 29 Dec 2020 12:06:50 +0000
+Subject: [PATCH 31/50] Reduce memory usage during final build stage
+
+---
+ lib/IMDB.pm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/IMDB.pm b/lib/IMDB.pm
+index f5d25a15..0aa8e6e3 100644
+--- a/lib/IMDB.pm
++++ b/lib/IMDB.pm
+@@ -3138,7 +3138,7 @@ sub invokeStage($$)
+ 			my $next_update=0;
+ 
+ 			my $count=0;
+-			for my $key (keys %movies) {
++			while (my ($key, $val) = each (%movies)) {
+ 				my $dbkey=$key;
+ 
+ 				# drop episode information - ex: {Twelve Angry Men (1954)}
+-- 
+2.29.2
+

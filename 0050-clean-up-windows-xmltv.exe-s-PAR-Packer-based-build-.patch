@@ -1,0 +1,145 @@
+From bb01ecc1a6902a7f4eab2e0cb661176841c6973f Mon Sep 17 00:00:00 2001
+From: Robert Eden <rmeden@gmail.com>
+Date: Mon, 18 Jan 2021 20:20:43 -0600
+Subject: [PATCH 50/50] clean up windows xmltv.exe's PAR::Packer based build
+ files.
+
+---
+ lib/exe_opt.pl | 63 --------------------------------------------------
+ lib/xmltv.pl   | 25 +++++++++++++-------
+ 2 files changed, 17 insertions(+), 71 deletions(-)
+
+diff --git a/lib/exe_opt.pl b/lib/exe_opt.pl
+index 57a285f2..a93b09d6 100755
+--- a/lib/exe_opt.pl
++++ b/lib/exe_opt.pl
+@@ -1,8 +1,6 @@
+ #!perl -w
+ #
+ # This is a simple script to generate options so PerlApp can make the EXE
+-# it needs time values, so might as well put it in a perl script!
+-# (windows has a limited date function)
+ #
+ # Robert Eden rmeden@yahoo.com
+ 
+@@ -23,72 +21,11 @@ print '
+ -X Win32::Console
+ ';
+ 
+-#-l C:/strawberry/c/bin/libexpat-1__.dll
+-#-l C:/strawberry/c/bin/libxml2-2__.dll
+-#-l C:/strawberry/c/bin/libiconv-2__.dll
+-#-l C:/strawberry/c/bin/liblzma-5__.dll
+-#-l C:/strawberry/c/bin/zlib1__.dll
+-
+-# not found
+-#-l C:/strawberry/perl/bin/libgcc__x86__470.dll
+-#-l C:/strawberry/c/bin/libeay32__.dll
+-#-l C:/strawberry/c/bin/SSLeay32__.dll
+-#-M arybase
+-
+ # add executable scripts
+ open(FILE,"exe_files.txt");
+ foreach (split(/ /,<FILE>)) {
+   chomp;
+   next unless $_;
+-#  print "-a $_\n";  
+-#  print "-c $_\n";  # -a doesn't scan for dependancies
+ }
+ close FILE;
+ 
+-#-info CompanyName="XMLTV Project http://www.xmltv.org"
+-#-info FileDescription="EXE bundle of XMLTV tools to manage TV Listings"
+-#-info InternalName=xmltv.exe
+-#-info OriginalFilename=xmltv.exe
+-#-info ProductName=xmltv
+-#-info LegalCopyright="GNU General Public License http://www.gnu.org/licenses/gpl.txt"
+-#-icon xmltv_logo.ico
+-#-l libexpat-1_.dll[file=C:\strawberry\c\bin\libexpat-1_.dll
+-#-l libxml2-2_.dll[file=C:\strawberry\c\bin\libxml2-2_.dll
+-#-l libiconv-2_.dll[file=C:\strawberry\c\bin\libiconv-2_.dll
+-#-l liblzma-5_.dll[file=C:\strawberry\c\bin\liblzma-5_.dll
+-#-l zlib1_.dll[file=C:\strawberry\c\bin\zlib1_.dll
+-#-l libgcc_x86_470.dll[file=C:\strawberry\perl\bin\libgcc_x86_470.dll
+-#-l libeay32_.dll[file=C:\strawberry\c\bin\libeay32_.dll
+-#-l SSLeay32_.dll[file=C:\strawberry\c\bin\SSLeay32_.dll
+-#-bind DateTime/Format/Builder/Parser/Regex.pm[file=c:\Strawberry\Perl\site\lib\DateTime\Format\Builder\Parser\Regex.pm
+-
+-#
+-# Add XML\Parser\encodings
+-#
+-@Encoding_Path = (grep(-d $_,
+-                         map(File::Spec->catdir($_, qw(XML Parser Encodings)),
+-                             @INC)
+-                      ));
+-foreach $dir (@Encoding_Path) {
+-    opendir DIR,$dir || die "Can't open encoding path directory\n";
+-    while ($file = readdir DIR)
+-    {
+-       next unless $file =~ /.enc$/i;
+-#       print "-l XML/Parser/Encodings/${file}[file=$dir/${file}\n";
+-#       print "-a c:/Strawberry/perl/vendor/lib/XML/Parser/Encodings/${file}\n";
+-    }
+-}
+-
+-##
+-## put date in file version field
+-##
+-#@date=localtime; $date[4]++; $date[5]+=1900;
+-#printf "-info FileVersion=%4d.%d.%d.%d\n",@date[5,4,3,2];
+-
+-##
+-## last fields in product version should ommitable, but it doesn't work.
+-##
+-#$version=shift;
+-#@_=split(/\./,$version);
+-#map {$_=0 unless defined $_} @_[0..4];
+-#printf "-info ProductVersion=%d.%d.%d.%d\n",@_;
+diff --git a/lib/xmltv.pl b/lib/xmltv.pl
+index 8540dff6..3f6d3d3d 100755
+--- a/lib/xmltv.pl
++++ b/lib/xmltv.pl
+@@ -3,13 +3,23 @@
+ # This is a quick XMLTV shell routing to use with the windows exe
+ #
+ # A single EXE is needed to allow sharing of modules and dlls of all the
+-# programs.  If PerlAPP was run on each one, the total size would be more than
+-# 12MB, even leaving out PERL56.DLL!
++# programs.
++#
++# Now users PAR::Packer to build the exe.  It takes a very long time on first run, which can
++# appear to be a problem. 
++#
++# There currently isn't a way for PAR::Packer to warn users about a first time run.
++# I've modified the boot.c file in Par::Packer to do that.  It's not great as it also
++# displays when building, but it's good enough.  Here's what the change is (for documenation purposes)
++# I'm trying to work  with the PAR::Packer folks for a better fix.
++#
++# boot.c:188
++#    rc = my_mkdir(stmpdir, 0700);
++#// 2021-01-18 rmeden hack to print a message on first run
++#	if ( rc == 0 ) fprintf(stderr,"Note: This will take a while on first run\n");
++#// rmeden
++#    if ( rc == -1 && errno != EEXIST) {
+ #
+-# Perlapp allows you to attach pathed files, but you need the same path
+-# to access them.  The Makefile creates a text file of these files which is
+-# used to build a translation table, allowing users to just type the app name
+-# and not the development path.
+ #
+ # Robert Eden rmeden@yahoo.com
+ #
+@@ -75,9 +85,8 @@ print STDERR "Timezone is $ENV{TZ}\n" unless $opt_quiet;
+ $cmd = shift || "";
+ 
+ # --version (and abbreviations thereof)
+-my $VERSION = '0.6.1';
+ if (index('--version', $cmd) == 0 and length $cmd >= 3) {
+-    print "xmltv $VERSION\n";
++    print "xmltv $XMLTV::VERSION\n";
+     exit;
+ }
+ 
+-- 
+2.29.2
+

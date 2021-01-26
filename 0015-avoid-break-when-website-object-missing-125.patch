@@ -1,0 +1,77 @@
+From e63cab357a41b77bde693946e5ca32452a48f668 Mon Sep 17 00:00:00 2001
+From: Honir <honir@c4b.co.uk>
+Date: Mon, 21 Dec 2020 12:04:49 +0000
+Subject: [PATCH 15/50] avoid break when website object missing (#125)
+
+---
+ grab/uk_tvguide/tv_grab_uk_tvguide | 35 ++++++++++++++++++++++++------
+ 1 file changed, 28 insertions(+), 7 deletions(-)
+
+diff --git a/grab/uk_tvguide/tv_grab_uk_tvguide b/grab/uk_tvguide/tv_grab_uk_tvguide
+index 208e6a03..9fd62d44 100755
+--- a/grab/uk_tvguide/tv_grab_uk_tvguide
++++ b/grab/uk_tvguide/tv_grab_uk_tvguide
+@@ -124,6 +124,9 @@ my $bar = new XMLTV::ProgressBar({
+ my $programmes = ();
+ my $channels = ();
+ 
++# Store channel names during fetch
++my $channames = undef;
++
+ # Get the schedule(s) from TV Guide
+ fetch_listings();
+ 
+@@ -204,25 +207,43 @@ sub fetch_listings {
+ 
+ 				# Scrub the page
+ 				if ($tree) {
+-					my $channelname = $tree->look_down('_tag' => 'option', 'value' => $channel_id);
+-
+-					# Try a fallback method if the form options are missing
++					my $channelname = undef;
++					
++					# Store the channel ids in a list (do this only once per program run)
++					if (!defined $channames) {
++						#debug 'fetching options tags';
++						my $choptions = $tree->look_down('_tag' => 'select', 'name' => 'ch');
++						if (defined $choptions) {
++							my @choptionslist = $choptions->look_down('_tag' => 'option');
++							if (@choptionslist) {
++								foreach my $choption (@choptionslist) {
++									$channames->{$choption->attr('value')} = $choption->as_text;
++								}
++							}
++						}
++					}
++					
++					$channelname = $channames->{$channel_id} if $channames;
++					
++					# Try a fallback method if the form options are missing [Credit mkbloke]
+ 					if (!defined $channelname) {
++						#debug 'using fallback method';
+ 						my $fallback = $tree->look_down('_tag' => 'input', 'name' => 'cTime');
+ 						$fallback = $fallback->look_up('_tag', 'tr') if $fallback;
+ 						$channelname = $fallback->look_down('_tag' => 'span', 'class' => 'programmeheading') if $fallback;
++						$channelname = $channelname->as_text if $channelname;
+ 					}
+-
++					
++					#debug 'found channel name: '.$channelname;
++						
+ 					# tvguide website can be very slow - try to avoid barfing when no response
+ 					if (!defined $channelname) {
+ 						warning "Unable to retrieve web page for $channel_id";
+ 						next;
+ 					}
+ 
+-					$channelname = $channelname->as_text;
+-
+ 					# 	<table border="0" cellpadding="0" style="background:black;border-collapse: collapse;background-image: url(http://i.g8.tv/HighlightImages/Large/);background-repeat: no-repeat;" width="677">
+-
++					#
+ 					my @shows = $tree->look_down('_tag' => 'table', 'border' => '0', 'cellpadding' => '0', 'style' => qr/background:\s*black;border-collapse:\s*collapse;/);
+ 
+ 					if (@shows) {
+-- 
+2.29.2
+

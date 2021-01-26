@@ -1,0 +1,25 @@
+From 40ce66847e8ba575d38ee6c6cd081d70cf4d6f67 Mon Sep 17 00:00:00 2001
+From: Honir <honir@c4b.co.uk>
+Date: Thu, 14 Jan 2021 13:08:14 +0000
+Subject: [PATCH 46/50] fix minor typo in example
+
+---
+ filter/tv_imdb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/filter/tv_imdb b/filter/tv_imdb
+index d9e660d4..2ca3f625 100755
+--- a/filter/tv_imdb
++++ b/filter/tv_imdb
+@@ -139,7 +139,7 @@ Feel free to report any problems with these steps at https://github.com/XMLTV/xm
+ The --validate-title and --validate-year flags can be used to validate the
+ information in the tv_imdb database. For exmple:
+ 
+-   tv_imdb --imdbdir . --validate-title 'Army of Darness' --validate-year 1994
++   tv_imdb --imdbdir . --validate-title 'Army of Darkness' --validate-year 1994
+ 
+ =head1 BUGS
+ 
+-- 
+2.29.2
+

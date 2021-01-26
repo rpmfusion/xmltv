@@ -1,0 +1,33 @@
+From 8ce679b822966481d87ccdc98d6576c2b66f44d7 Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Tue, 15 Sep 2020 21:39:00 +0000
+Subject: [PATCH 09/50] update version for cherry-pick typo correction
+
+---
+ grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index 656c86f4..ce73bdcb 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -44,6 +44,7 @@
+ #
+ # Version history:
+ #
++# 2020/09/15 - 1.102 - update for cherry-pick typo correction
+ # 2020/06/21 - 1.101 - rename scaledownload to scale-download
+ # 2020/06/20 - 1.100 - add support for --scaledownload
+ # 2020/06/12 - 1.99 - include programID in metadata
+@@ -193,7 +194,7 @@ use sort 'stable';
+ my $RFC2838_COMPLIANT          = 1;            # RFC2838 compliant station ids, which makes XMLTV
+                                                # validate even though the docs say "SHOULD" not "MUST"
+ 
+-my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.101 2020/06/21 20:30:00 gtb Exp ed $';
++my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.102 2020/09/15 21:30:00 gtb Exp ed $';
+ my $SCRIPT_URL                 = 'https://github.com/garybuhrmaster/tv_grab_zz_sdjson_sqlite';
+ my $SCRIPT_NAME                = basename("$0");
+ my $SCRIPT_NAME_DIR            = dirname("$0");
+-- 
+2.29.2
+

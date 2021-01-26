@@ -1,0 +1,66 @@
+From f25ff2b9b98cd7931f37272c64896da412a08d35 Mon Sep 17 00:00:00 2001
+From: Honir <honir@c4b.co.uk>
+Date: Mon, 28 Dec 2020 08:17:56 +0000
+Subject: [PATCH 27/50] Make channel ids compliant with the DTD. Use
+ --legacychannels for previous format
+
+---
+ grab/uk_tvguide/tv_grab_uk_tvguide | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/grab/uk_tvguide/tv_grab_uk_tvguide b/grab/uk_tvguide/tv_grab_uk_tvguide
+index 9fd62d44..fb8d4329 100755
+--- a/grab/uk_tvguide/tv_grab_uk_tvguide
++++ b/grab/uk_tvguide/tv_grab_uk_tvguide
+@@ -74,7 +74,7 @@ my ($opt, $conf) = ParseOptions({
+ 			listchannels_sub 	=> \&fetch_channels,
+ 			version 					=> $VERSION,
+ 			description 			=> $GRABBER_DESC,
+-			extra_options			=> [qw/nodetailspage/],
++			extra_options			=> [qw/nodetailspage legacychannels/],
+ });
+ 
+ #print Dumper($conf); exit;
+@@ -198,7 +198,8 @@ sub fetch_listings {
+ 
+ 				# If we need to map the fetched channel_id to a different value
+ 				my $xmlchannel_id = $channel_id;
+-				if (defined(&map_channel_id)) { $xmlchannel_id = map_channel_id($channel_id); }
++				$xmlchannel_id .= '.tvguide.co.uk' unless $opt->{legacychannels};		# make channel RFC2838 compliant
++				if (defined(&map_channel_id)) { $xmlchannel_id = map_channel_id($xmlchannel_id); }
+ 
+ 				# Fetch the page
+ 				#   my $tree = XMLTV::Get_nice::get_nice_tree($url);
+@@ -237,6 +238,7 @@ sub fetch_listings {
+ 					#debug 'found channel name: '.$channelname;
+ 						
+ 					# tvguide website can be very slow - try to avoid barfing when no response
++					# if no channelname then assume we got no response from website
+ 					if (!defined $channelname) {
+ 						warning "Unable to retrieve web page for $channel_id";
+ 						next;
+@@ -723,8 +725,8 @@ sub text_to_num {
+ 
+ sub map_channel_id {
+ 		# Map the fetched channel_id to a different value (e.g. our PVR needs specific channel ids)
+-		# mapped channels should be stored in a file called  tv_grab_uk_guardian.map.conf
+-		# containing lines of the form:  map==fromchan==tochan  e.g. 'map==5-star==5STAR'
++		# mapped channels should be stored in a file called  tv_grab_uk_tvguide.map.conf
++		# containing lines of the form:  map==fromchan==tochan  e.g. 'map==109==BBC4'
+ 		#
+ 		my ($channel_id) = @_;
+ 		my $mapchannels = \%mapchannelhash;
+@@ -974,6 +976,10 @@ format for the channels you chose for available days including today.
+ 
+ Please see B<tv_grab_uk_tvguide --help>
+ 
++Additional options may be specified on the commandline.
++use --nodetailspage to only fetch the main details of the programme schedule. (May be useful if you have problems accessing the tvguide website.)
++Channel ids were made compliant with the XMLTV specification in December 2020. Use --legacychannels to output channel ids in the previous format (i.e. number only).
++
+ =head1 INSTALLATION
+ 
+ The file F<tv_grab_uk_tvguide.map.conf> has two purposes.  Firstly you can map the channel ids used by the site into something more meaningful to your PVR. E.g.
+-- 
+2.29.2
+

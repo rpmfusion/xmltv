@@ -1,0 +1,29 @@
+From b6dd5a2c315e4529a7f2e0e4f55799c2ea42fe6a Mon Sep 17 00:00:00 2001
+From: Nick Morrott <knowledgejunkie@gmail.com>
+Date: Tue, 8 Sep 2020 03:35:45 +0100
+Subject: [PATCH 06/50] tv_imdb: refresh short description (POD)
+
+---
+ filter/tv_imdb | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/filter/tv_imdb b/filter/tv_imdb
+index bb7206f2..4e8652ce 100755
+--- a/filter/tv_imdb
++++ b/filter/tv_imdb
+@@ -25,10 +25,9 @@ tv_imdb --imdbdir <dir>
+ 
+ =head1 DESCRIPTION
+ 
+-Very similar to tv_cat in semantics (see tv_cat),
++tv_imdb is very similar to tv_cat in semantics (see tv_cat),
+ except whenever a programme appears with "date" entry the
+-title and date are used to look up extra data by using the
+-XMLTV::IMDB package.
++title and date are used to look up extra data using XMLTV::IMDB.
+ 
+ B<--output FILE> write to FILE rather than standard output.
+ 
+-- 
+2.29.2
+

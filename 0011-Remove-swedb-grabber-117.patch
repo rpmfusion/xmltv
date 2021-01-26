@@ -1,0 +1,678 @@
+From 64e0fe74b752fbc1286fe6f27db12ca247fb3c7c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Joakim=20Nyl=C3=A9n?= <git@joakim.nylen.nu>
+Date: Sun, 1 Nov 2020 03:01:15 +0100
+Subject: [PATCH 11/50] Remove swedb grabber (#117)
+
+---
+ MANIFEST                          |   3 -
+ Makefile.PL                       |  14 -
+ grab/se_swedb/test.conf           | 100 -------
+ grab/se_swedb/tv_grab_se_swedb.PL |  24 --
+ grab/se_swedb/tv_grab_se_swedb.in | 478 ------------------------------
+ 5 files changed, 619 deletions(-)
+ delete mode 100644 grab/se_swedb/test.conf
+ delete mode 100644 grab/se_swedb/tv_grab_se_swedb.PL
+ delete mode 100755 grab/se_swedb/tv_grab_se_swedb.in
+
+diff --git a/MANIFEST b/MANIFEST
+index 599065c7..d96fc2fe 100644
+--- a/MANIFEST
++++ b/MANIFEST
+@@ -119,9 +119,6 @@ grab/pt_meo/test.conf
+ grab/pt_meo/tv_grab_pt_meo
+ grab/pt_vodafone/test.conf
+ grab/pt_vodafone/tv_grab_pt_vodafone
+-grab/se_swedb/test.conf
+-grab/se_swedb/tv_grab_se_swedb.PL
+-grab/se_swedb/tv_grab_se_swedb.in
+ grab/test_grabbers
+ grab/tr/test.conf
+ grab/tr/tv_grab_tr
+diff --git a/Makefile.PL b/Makefile.PL
+index 5d3be741..270add4c 100644
+--- a/Makefile.PL
++++ b/Makefile.PL
+@@ -472,20 +472,6 @@ my @opt_components
+                     'URI::Encode' => 0, },
+      },
+ 
+-     # { name => 'tv_grab_se_swedb',
+-     #   blurb => 'Grabber for Sweden',
+-     #   exes => [ 'grab/se_swedb/tv_grab_se_swedb' ],
+-     #   pl_files => { 'grab/se_swedb/tv_grab_se_swedb.PL'
+-     #                 => 'grab/se_swedb/tv_grab_se_swedb' },
+-     #   to_clean => [ 'grab/se_swedb/tv_grab_se_swedb' ],
+-     #   deps => [ 'grab/se_swedb/tv_grab_se_swedb'
+-     #             => [ 'grab/se_swedb/tv_grab_se_swedb.in' ] ],
+-     #   prereqs => { 'Compress::Zlib' => 0,
+-     #                'HTTP::Cache::Transparent' => 0,
+-     #                'IO::Scalar'     => 0,
+-     #                'XML::LibXML'    => 0, },
+-     # },
+-
+      { name => 'tv_grab_tr',
+        blurb => 'Grabber for Turkey (Digiturk)',
+        exes => [ 'grab/tr/tv_grab_tr' ],
+diff --git a/grab/se_swedb/test.conf b/grab/se_swedb/test.conf
+deleted file mode 100644
+index 702f9d72..00000000
+--- a/grab/se_swedb/test.conf
++++ /dev/null
+@@ -1,100 +0,0 @@
+-root-url=http://xmltv.tvsajten.com/xmltv/channels.xml.gz
+-cachedir=/tmp/.xmltv/cache
+-channel!14hd.viasat.se
+-channel!action.cmore.se
+-channel!action.viasat.se
+-channel!axess.se
+-channel!classic.viasat.se
+-channel!comedy.viasat.se
+-channel!dance.mtv.se
+-channel!disneychannel.se
+-channel=dr1.dr.dk
+-channel!dr2.dr.dk
+-channel!drama.viasat.se
+-channel!elva.tv
+-channel!emotion.cmore.se
+-channel!eurosport.com
+-channel!eurosport2.eurosport.com
+-channel!explorer.viasat.se
+-channel!extreme.cmore.se
+-channel!fakta.tv4.se
+-channel!family.viasat.se
+-channel!film.tv4.se
+-channel!film.viasat.se
+-channel!first.cmore.se
+-channel!firsthd.cmore.se
+-channel!fotboll-hockey-kids.cmore.se
+-channel!fotboll.cmore.se
+-channel!fotboll.viasat.se
+-channel!fotbollhd.viasat.se
+-channel!fxl.tv4.se
+-channel!golf.viasat.se
+-channel!guld.tv4.se
+-channel!hd.animalplanet.discovery.com
+-channel!hd.dr.dk
+-channel!hd.ngcsverige.com
+-channel!hdshowcase.discovery.com
+-channel!history.viasat.se
+-channel!hits.cmore.se
+-channel!hits.mtv.se
+-channel!hitshd.cmore.se
+-channel!hockey.cmore.se
+-channel!hockey.viasat.se
+-channel!investigation.discovery.com
+-channel!jr.nickelodeon.se
+-channel!kanal5.se
+-channel!kanal9.se
+-channel!kids.cmore.se
+-channel!komedi.tv4.se
+-channel!kunskapskanalen.svt.se
+-channel!live.cmore.se
+-channel!live2.cmore.se
+-channel!live3.cmore.se
+-channel!live4.cmore.se
+-channel!livehd.cmore.se
+-channel!motor.viasat.se
+-channel!motorhd.viasat.se
+-channel!mtv.se
+-channel!nature.viasat.se
+-channel!ngcsverige.com
+-channel!nickelodeon.se
+-channel!nordic.animalplanet.discovery.com
+-channel!nordic.discovery.com
+-channel!nordic.science.discovery.com
+-channel!nordic.viasat.se
+-channel!p1.sr.se
+-channel!p2.sr.se
+-channel!p3.sr.se
+-channel!playhouse.disneychannel.se
+-channel!premierleaguehd.viasat.se
+-channel!rocks.mtv.se
+-channel!se.comedycentral.tv
+-channel!series.cmore.se
+-channel!serieshd.cmore.se
+-channel!sf.cmore.se
+-channel!showcasehd.discovery.com
+-channel!sjuan.tv4.se
+-channel!sport-hd.cmore.se
+-channel!sport.cmore.se
+-channel!sport.tv4.se
+-channel!sport.viasat.se
+-channel!sport1-sf.cmore.se
+-channel!sporthd.cmore.se
+-channel=svt1.svt.se
+-channel!svt2.svt.se
+-channel!svt24.svt.se
+-channel!svtb.svt.se
+-channel!tennis.cmore.se
+-channel!tlc.discovery.com
+-channel!tnt7.se
+-channel!tv10.viasat.se
+-channel!tv12.tv4.se
+-channel!tv3.viasat.se
+-channel!tv4.se
+-channel!tv6.viasat.se
+-channel!tv8.viasat.se
+-channel!vh1.com
+-channel!world.discovery.com
+-channel!world.svt.se
+-channel!xd.disneychannel.se
+-channel!xtra.viasat.se
+diff --git a/grab/se_swedb/tv_grab_se_swedb.PL b/grab/se_swedb/tv_grab_se_swedb.PL
+deleted file mode 100644
+index 6f9598a1..00000000
+--- a/grab/se_swedb/tv_grab_se_swedb.PL
++++ /dev/null
+@@ -1,24 +0,0 @@
+-# Generate tv_grab_se_swedb from tv_grab_se_swedb.in. This is done
+-# to allow grabbers for other countries to use the same code.
+-#
+-
+-use strict;
+-
+-use IO::File;
+-my $out = shift @ARGV; die "no output file given" if not defined $out;
+-my $in = 'grab/se_swedb/tv_grab_se_swedb.in';
+-my $in_fh = new IO::File "< $in" or die "cannot read $in: $!";
+-my $out_fh = new IO::File "> $out" or die "cannot write to $out: $!";
+-my $seen = 0;
+-while (<$in_fh>) {
+-    s/\@\@name/tv_grab_se_swedb/;
+-    s/\@\@nspc/                /;
+-    s/\@\@country/Sweden/;
+-    s/\@\@desc/Sweden (swedb\/tvsajten)/;
+-    s%\@\@url%http://xmltv.tvsajten.com/channels.xml.gz%;
+-    s%\@\@site%http://xmltv.tvsajten.com/%;
+-    print $out_fh $_;
+-}
+-close $out_fh or die "cannot close $out: $!";
+-close $in_fh or die "cannot close $in: $!";
+-
+diff --git a/grab/se_swedb/tv_grab_se_swedb.in b/grab/se_swedb/tv_grab_se_swedb.in
+deleted file mode 100755
+index 23fe1738..00000000
+--- a/grab/se_swedb/tv_grab_se_swedb.in
++++ /dev/null
+@@ -1,478 +0,0 @@
+-#!/usr/bin/perl -w
+-
+-=pod
+-
+-=head1 NAME
+-
+-@@name - Grab TV listings for @@country.
+-
+-=head1 SYNOPSIS
+-
+-@@name --help
+-
+-@@name --configure [--config-file FILE] [--gui OPTION]
+-
+-@@name [--config-file FILE]
+-@@nspc [--days N] [--offset N]
+-@@nspc [--output FILE] [--quiet] [--debug]
+-
+-@@name --list-channels [--config-file FILE]
+-@@nspc [--output FILE] [--quiet] [--debug]
+-
+-
+-=head1 DESCRIPTION
+-
+-Output TV and listings in XMLTV format for many stations
+-available in @@country.
+-
+-First you must run B<@@name --configure> to choose which stations
+-you want to receive.
+-
+-Then running B<@@name> with no arguments will get a listings for
+-the stations you chose for five days including today.
+-
+-=head1 OPTIONS
+-
+-B<--configure> Prompt for which stations to download and write the
+-configuration file.
+-
+-B<--config-file FILE> Set the name of the configuration file, the
+-default is B<~/.xmltv/@@name.conf>.  This is the file written by
+-B<--configure> and read when grabbing.
+-
+-B<--gui OPTION> Use this option to enable a graphical interface to be used.
+-OPTION may be 'Tk', or left blank for the best available choice.
+-Additional allowed values of OPTION are 'Term' for normal terminal output
+-(default) and 'TermNoProgressBar' to disable the use of Term::ProgressBar.
+-
+-B<--output FILE> When grabbing, write output to FILE rather than
+-standard output.
+-
+-B<--days N> When grabbing, grab N days rather than 5.
+-
+-B<--offset N> Start grabbing at today + N days.  N may be negative.
+-
+-B<--quiet> Suppress the progress-bar normally shown on standard error.
+-
+-B<--debug> Provide more information on progress to stderr to help in
+-debugging.
+-
+-B<--list-channels>    Output a list of all channels that data is available
+-                      for. The list is in xmltv-format.
+-
+-B<--version> Show the version of the grabber.
+-
+-B<--help> Print a help message and exit.
+-
+-=head1 ERROR HANDLING
+-
+-If the grabber fails to download data for some channel on a specific day,
+-it will print an errormessage to STDERR and then continue with the other
+-channels and days. The grabber will exit with a status code of 1 to indicate
+-that the data is incomplete.
+-
+-=head1 ENVIRONMENT VARIABLES
+-
+-The environment variable HOME can be set to change where configuration
+-files are stored. All configuration is stored in $HOME/.xmltv/. On Windows,
+-it might be necessary to set HOME to a path without spaces in it.
+-
+-=head1 SUPPORTED CHANNELS
+-
+-For information on supported channels, see @@site
+-
+-=head1 AUTHOR
+-
+-Mattias Holmlund, mattias -at- holmlund -dot- se. This documentation
+-and parts of the code copied from tv_grab_uk by
+-Ed Avis, ed -at- membled -dot- com.
+-
+-=head1 BUGS
+-
+-=cut
+-
+-use strict;
+-
+-use XMLTV;
+-use XMLTV::ProgressBar;
+-use XMLTV::Options qw/ParseOptions/;
+-use XMLTV::Configure::Writer;
+-
+-use XML::LibXML;
+-use Date::Manip;
+-use Compress::Zlib;
+-use File::Path;
+-use File::Basename;
+-use IO::Scalar;
+-use LWP;
+-
+-my $ua;
+-$ua = LWP::UserAgent->new();
+-$ua->agent("xmltv/$XMLTV::VERSION");
+-$ua->env_proxy();
+-
+-use HTTP::Cache::Transparent;
+-
+-# Although we use HTTP::Cache::Transparent, this undocumented --cache
+-# option for debugging is still useful since it will _always_ use a
+-# cached copy of a page, without contacting the server at all.
+-#
+-use XMLTV::Memoize; XMLTV::Memoize::check_argv('getuncompressed');
+-
+-sub t;
+-
+-my $default_root_url = '@@url';
+-my $default_cachedir = get_default_cachedir();
+-
+-my( $opt, $conf ) = ParseOptions( {
+-    grabber_name => "@@name",
+-    capabilities => [qw/baseline manualconfig tkconfig apiconfig cache/],
+-    stage_sub => \&config_stage,
+-    listchannels_sub => \&list_channels,
+-    load_old_config_sub => \&load_old_config,
+-    version => "$XMLTV::VERSION",
+-    description => "@@desc",
+-
+-} );
+-
+-if (not defined( $conf->{cachedir} )) {
+-    print STDERR "No cachedir defined in configfile " .
+-                 $opt->{'config-file'} . "\n" .
+-                 "Please run the grabber with --configure.\n";
+-    exit 1;
+-}
+-
+-if (not defined( $conf->{'root-url'} )) {
+-    print STDERR "No root-url defined in configfile " .
+-                 $opt->{'config-file'} . "\n" .
+-                 "Please run the grabber with --configure.\n";
+-    exit 1;
+-}
+-
+-if (not defined( $conf->{'channel'} )) {
+-    print STDERR "No channels selected in configfile " .
+-                 $opt->{'config-file'} . "\n" .
+-                 "Please run the grabber with --configure.\n";
+-    exit 1;
+-}
+-
+-init_cachedir( $conf->{cachedir}->[0] );
+-HTTP::Cache::Transparent::init( {
+-    BasePath => $conf->{cachedir}->[0],
+-    NoUpdate => 15*60,
+-    Verbose => $opt->{debug},
+-    } );
+-
+-binmode (STDOUT);
+-
+-my($xmldecl, $channels) = load_channels( $conf->{'root-url'}->[0] );
+-
+-my( $odoc, $root );
+-my $warnings = 0;
+-
+-write_header( $xmldecl );
+-
+-write_channel_list( $conf->{channel} );
+-
+-my $now = ParseDate( 'now' );
+-my $date =$now;
+-$date = DateCalc( $now, "+$opt->{offset} days" )
+-    if( $opt->{offset} );
+-
+-my $bar = undef;
+-$bar = new XMLTV::ProgressBar( {
+-    name => 'downloading listings',
+-    count => $opt->{days} * @{$conf->{channel}},
+-    }) if (not $opt->{quiet}) && (not $opt->{debug});
+-
+-for( my $i=0; $i < $opt->{days}; $i++ )
+-{
+-    t "Date: $date";
+-    foreach my $channel_id (@{$conf->{channel}})
+-    {
+-        # We have already warned the user if the channel doesn't exist.
+-        if( exists $channels->{$channel_id} )
+-        {
+-            t "  $channel_id";
+-            my( $channel_name, $url ) = @{$channels->{$channel_id}};
+-            print_data( $url, $channel_id, $date )
+-                or warning( "Failed to download data for $channel_id on " .
+-                            UnixDate( $date, "%Y-%m-%d" ) . "." );
+-        }
+-        $bar->update() if defined( $bar );
+-    }
+-    $date = DateCalc( $date, "+1 days" );
+-}
+-
+-$bar->finish() if defined $bar;
+-
+-write_footer();
+-
+-# Signal that something went wrong if there were warnings.
+-exit(1) if $warnings;
+-
+-# All data fetched ok.
+-t "Exiting without warnings.";
+-exit(0);
+-
+-sub t
+-{
+-    my( $message ) = @_;
+-    print STDERR $message . "\n" if $opt->{debug};
+-}
+-
+-sub warning
+-{
+-    my( $message ) = @_;
+-    print STDERR $message . "\n";
+-    $warnings++;
+-}
+-
+-sub list_channels
+-{
+-    my( $conf, $opt ) = @_;
+-
+-    ( $xmldecl, $channels ) = load_channels( $conf->{'root-url'}->[0] );
+-
+-    my $result="";
+-    my $fh = new IO::Scalar \$result;
+-    my $oldfh = select( $fh );
+-    write_header( $xmldecl );
+-    write_channel_list( [sort keys %{$channels}] );
+-    write_footer();
+-    select( $oldfh );
+-    $fh->close();
+-
+-    return $result;
+-}
+-
+-sub config_stage
+-{
+-    my( $stage, $conf ) = @_;
+-
+-    die "Unknown stage $stage" if $stage ne "start";
+-
+-    my $result;
+-    my $writer = new XMLTV::Configure::Writer( OUTPUT => \$result,
+-                                               encoding => 'iso-8859-1' );
+-    $writer->start( { grabber => '@@name' } );
+-    $writer->write_string( {
+-        id => 'root-url',
+-        title => [ [ 'Root URL for grabbing data', 'en' ] ],
+-        description => [
+-         [ 'The file at this URL describes which channels are available and ' .
+-           'where data can be found for them. ', 'en' ] ],
+-        default => $default_root_url,
+-     } );
+-    $writer->write_string( {
+-        id => 'cachedir',
+-        title => [ [ 'Directory to store the cache in', 'en' ] ],
+-        description => [
+-         [ '@@name uses a cache with files that it has already '.
+-           'downloaded. Please specify where the cache shall be stored. ',
+-           'en' ] ],
+-        default => $default_cachedir,
+-     } );
+-
+-    $writer->end( 'select-channels' );
+-
+-    return $result;
+-}
+-
+-#
+-# Load a configuration file in the old format.
+-#
+-
+-sub load_old_config
+-{
+-    my( $config_file ) = @_;
+-
+-    my @lines = XMLTV::Config_file::read_lines( $config_file );
+-
+-    my $conf = {};
+-    $conf->{cachedir}->[0] = $default_cachedir;
+-    $conf->{'root-url'}->[0] = $default_root_url;
+-    $conf->{channel} = [];
+-
+-    foreach my $line (@lines)
+-    {
+-        next unless defined $line;
+-
+-        my( $command, $param ) = split( /\s+/, $line, 2 );
+-        $param =~ tr/\n\r//d;
+-        $param =~ s/\s+$//;
+-
+-        if ( $command =~ /^\s*root-url\s*$/) {
+-            $conf->{'root-url'}->[0] = $param;
+-        } elsif  ( $command =~ /^\s*channel\s*$/) {
+-            push @{$conf->{channel}}, $param;
+-        } elsif ( $command eq 'cache-dir' ) {
+-            $conf->{'cachedir'}->[0] = $param;
+-        } else {
+-            die "Unknown command $command in config-file $config_file"
+-        }
+-    }
+-
+-    return $conf;
+-}
+-
+-sub get_default_cachedir
+-{
+-    my $winhome = $ENV{HOMEDRIVE} . $ENV{HOMEPATH}
+-    if defined( $ENV{HOMEDRIVE} )
+-        and defined( $ENV{HOMEPATH} );
+-
+-    my $home = $ENV{HOME} || $winhome || ".";
+-    return "$home/.xmltv/cache";
+-}
+-
+-sub init_cachedir
+-{
+-    my( $path ) = @_;
+-    if( not -d $path )
+-    {
+-        mkpath( $path ) or die "Failed to create cache-directory $path: $@";
+-    }
+-}
+-
+-sub load_channels
+-{
+-    my( $url ) = @_;
+-
+-    my %channels;
+-
+-    my $xmldata = getuncompressed( $url );
+-
+-    defined( $xmldata ) or die "Failed to fetch $url";
+-
+-    my $xml = XML::LibXML->new;
+-
+-    my $doc = $xml->parse_string($xmldata);
+-
+-    my $xmldecl = "<?xml version='" . $doc->version() . "' " .
+-        "encoding='" . $doc->encoding() . "'?>\n";
+-
+-    my $ns = $doc->find( "//channel" );
+-
+-    foreach my $node ($ns->get_nodelist)
+-    {
+-        my $id = $node->findvalue( '@id' );
+-        my $name = $node->findvalue( 'display-name[1]' );
+-        my $url = $node->findvalue( 'base-url' );
+-        my $urlns = $node->find( './base-url' );
+-        foreach my $urlnode ($urlns->get_nodelist)
+-        {
+-            $node->removeChild( $urlnode );
+-        }
+-        $channels{$id} = [ $name, $url, $node->toString(0, 1) ];
+-    }
+-
+-    return ($xmldecl, \%channels);
+-}
+-
+-sub print_data
+-{
+-    my( $rooturl, $channel_id, $date ) = @_;
+-
+-    my $url = $rooturl . $channel_id . "_" . UnixDate( $date, "%Y-%m-%d" ) .
+-        ".xml.gz";
+-
+-    my $xmldata = getuncompressed( $url );
+-
+-    defined $xmldata or return 0;
+-
+-    my $in = new IO::Scalar \$xmldata;
+-    while( my $line = $in->getline() )
+-    {
+-        last if $line =~ /<tv/;
+-    }
+-
+-    while( my $line = $in->getline() )
+-    {
+-        last if $line =~ /<\/tv>/;
+-        print $line;
+-    }
+-
+-    return 1;
+-}
+-
+-sub write_header
+-{
+-    my( $xmldecl ) = @_;
+-
+-    # Use the same xml declaration as the one in
+-    # channels.xml
+-    print $xmldecl;
+-    print '<!DOCTYPE tv SYSTEM "xmltv.dtd">' . "\n";
+-    print "<tv>\n";
+-}
+-
+-sub write_channel_list
+-{
+-    my( $channel_list ) = @_;
+-
+-    # Write list of channels.
+-    t 'Writing list of channels.';
+-
+-    foreach my $channel_id (@{$channel_list})
+-    {
+-        if( not exists $channels->{$channel_id} )
+-        {
+-            print STDERR "Unknown channel $channel_id." .
+-                " See @@site" .
+-                " for a list of available channels or run" .
+-                " @@name --configure to reconfigure.\n";
+-            next;
+-        }
+-
+-        my( $channel_name, $url, $def ) = @{$channels->{$channel_id}};
+-        print "  $def\n";
+-    }
+-}
+-
+-sub write_footer
+-{
+-    print "</tv>\n";
+-}
+-
+-sub getuncompressed {
+-    my( $url ) = @_;
+-
+-    my $response = $ua->get($url);
+-
+-    return undef
+-        unless $response->is_success;
+-
+-    my $compressed = $response->content
+-        or return undef;
+-
+-    # Since LWP 5.827, the result from get() is already
+-    # uncompressed.
+-
+-    my $uncompressed;
+-
+-    eval {
+-	$uncompressed = Compress::Zlib::memGunzip( \$compressed );
+-    };
+-
+-    $uncompressed = $compressed if not defined $uncompressed;
+-
+-    return $uncompressed;
+-}
+-
+-### Setup indentation in Emacs
+-## Local Variables:
+-## perl-indent-level: 4
+-## perl-continued-statement-offset: 4
+-## perl-continued-brace-offset: 0
+-## perl-brace-offset: -4
+-## perl-brace-imaginary-offset: 0
+-## perl-label-offset: -2
+-## cperl-indent-level: 4
+-## cperl-brace-offset: 0
+-## cperl-continued-brace-offset: 0
+-## cperl-label-offset: -2
+-## cperl-extra-newline-before-brace: t
+-## cperl-merge-trailing-else: nil
+-## cperl-continued-statement-offset: 2
+-## End:
+-- 
+2.29.2
+
