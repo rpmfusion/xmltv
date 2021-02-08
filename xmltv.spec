@@ -1,63 +1,11 @@
 Name:           xmltv
-Version:        0.6.3
-Release:        4%{?dist}
+Version:        1.0.0
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
 URL:            http://xmltv.org/wiki/
 Source0:        https://github.com/XMLTV/xmltv/archive/v%{version}/xmltv-v%{version}.tar.gz
-
-# Upstream patches since release
-Patch0001:      0001-Reenable-tv_grab_ch_search.patch
-Patch0002:      0002-README.md-update-TOC.patch
-Patch0003:      0003-README.md-refresh-req-d-rec-d-modules-list.patch
-Patch0004:      0004-tv_imdb-fix-some-typos.patch
-Patch0005:      0005-tv_imdb-use-warnings.patch
-Patch0006:      0006-tv_imdb-refresh-short-description-POD.patch
-Patch0007:      0007-tv_grab_zz_sdjson_sqlite-fix-a-typo.patch
-Patch0008:      0008-Update-tv_grab_eu_xmltvse-to-use-SSL-116.patch
-Patch0009:      0009-update-version-for-cherry-pick-typo-correction.patch
-Patch0010:      0010-programme-detect-parental-level-with-white-space.patch
-Patch0011:      0011-Remove-swedb-grabber-117.patch
-Patch0012:      0012-ampparit-add-missing-empty-title-check.patch
-Patch0013:      0013-telsu-add-missing-empty-title-check.patch
-Patch0014:      0014-tv_grab_uk_tvguide-fix-for-missing-form-options-in-c.patch
-Patch0015:      0015-avoid-break-when-website-object-missing-125.patch
-Patch0016:      0016-fix-UA-page-debug-is-on-stdout-should-be-on-stderr-1.patch
-Patch0017:      0017-Fetch-programme-data-via-SSL-avoids-301-redirects.patch
-Patch0018:      0018-for-compatability-with-older-versions-of-Perl-122.patch
-Patch0019:      0019-download-optional-file-if-its-prepStage-is-specifica.patch
-Patch0020:      0020-Unbreak-parsing-of-keywords-file.patch
-Patch0021:      0021-Reduce-memory-consumption-in-building-database-63.patch
-Patch0022:      0022-replace-spaces-with-tabs-and-prettify-the-code.patch
-Patch0023:      0023-iltapulu-fix-channel-parser.patch
-Patch0024:      0024-iltapulu-fix-grab-parser.patch
-Patch0025:      0025-source-avoid-name-clashes-between-modules.patch
-Patch0026:      0026-test.conf-update-to-latest-list-channels-output.patch
-Patch0027:      0027-Make-channel-ids-compliant-with-the-DTD.-Use-legacyc.patch
-Patch0028:      0028-Change-whitespace-to-tabs.patch
-Patch0029:      0029-Add-info-message-about-frozen-IMDb-data.patch
-Patch0030:      0030-Add-undocumented-sample-option-to-limit-records-proc.patch
-Patch0031:      0031-Reduce-memory-usage-during-final-build-stage.patch
-Patch0032:      0032-Remove-tv-episodes-from-intermediate-files.patch
-Patch0033:      0033-eu_xmltvse-refresh-test.conf.patch
-Patch0034:      0034-dk_dr-disable-grabber-after-source-site-disappeared.patch
-Patch0035:      0035-Fix-testsuite-for-the-change-to-episode-handling-63.patch
-Patch0036:      0036-update-windows-xmltv.exe-to-use-PAR-Packer-rather-th.patch
-Patch0037:      0037-extend-scope-of-title-person-qualifier.patch
-Patch0038:      0038-eu-epgdata-Add-channel-IDs.patch
-Patch0039:      0039-whitespace-changes.patch
-Patch0040:      0040-Reduce-memory-usage-during-database-build-bug-fixes.patch
-Patch0041:      0041-bugfixes-in-augment-function.patch
-Patch0042:      0042-Add-tests-for-edge-cases.patch
-Patch0043:      0043-Use-disc-sort-to-reduce-memory-usage-63.patch
-Patch0044:      0044-Option-to-exclude-tv-series-from-the-database-build.patch
-Patch0045:      0045-fix-broken-url-to-imdb-website.patch
-Patch0046:      0046-fix-minor-typo-in-example.patch
-Patch0047:      0047-fix-broken-tests.patch
-Patch0048:      0048-Added-option-channel-id-exp-to-filter-by-regex-on-ch.patch
-Patch0049:      0049-tv_grep-added-tests-for-new-option-channel-id-exp.patch
-Patch0050:      0050-clean-up-windows-xmltv.exe-s-PAR-Packer-based-build-.patch
 
 BuildArch:      noarch
 
@@ -303,6 +251,9 @@ make test
 
 
 %changelog
+* Sun Feb 07 2021 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.0.0-1
+- Update to xmltv 1.0.0 release
+
 * Thu Feb 04 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.6.3-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
