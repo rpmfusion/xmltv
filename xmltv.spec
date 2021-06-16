@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -251,6 +251,9 @@ make test
 
 
 %changelog
+* Wed Jun 16 2021 Leigh Scott <leigh123linux@gmail.com> - 1.0.0-2
+- Rebuild for new perl version
+
 * Sun Feb 07 2021 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.0.0-1
 - Update to xmltv 1.0.0 release
 
