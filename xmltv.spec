@@ -1,6 +1,6 @@
 Name:           xmltv
-Version:        1.0.0
-Release:        3%{?dist}
+Version:        1.1.0
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -216,6 +216,7 @@ make test
 %{_bindir}/tv_augment_tz
 %{_bindir}/tv_count
 %{_bindir}/tv_merge
+%{_bindir}/tv_tmdb
 %{_mandir}/man1/tv_augment.1*
 %{_mandir}/man1/tv_count.1*
 %{_mandir}/man1/tv_merge.1*
@@ -234,6 +235,7 @@ make test
 %{_mandir}/man1/tv_validate_file.1*
 %{_mandir}/man1/tv_validate_grabber.1*
 %{_mandir}/man1/tv_augment_tz.1*
+%{_mandir}/man1/tv_tmdb.1*
 %{_datadir}/%{name}
 
 %files -n perl-XMLTV
@@ -251,6 +253,9 @@ make test
 
 
 %changelog
+* Mon Jan 31 2022 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.1.0-1
+- Update to xmltv 1.1.0 release
+
 * Tue Aug 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.0.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
