@@ -1,5 +1,5 @@
 Name:           xmltv
-Version:        1.1.1
+Version:        1.1.2
 Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
@@ -9,6 +9,7 @@ Source0:        https://github.com/XMLTV/xmltv/archive/v%{version}/xmltv-v%{vers
 
 BuildArch:      noarch
 
+BuildRequires:  perl
 BuildRequires:  perl-interpreter
 BuildRequires:  perl-generators
 BuildRequires:  perl-devel
@@ -46,6 +47,7 @@ BuildRequires:  perl(Archive::Zip)
 BuildRequires:  perl(Carp)
 BuildRequires:  perl(Compress::Zlib)
 BuildRequires:  perl(Cwd)
+BuildRequires:  perl(Data::Dump)
 BuildRequires:  perl(Data::Dumper)
 BuildRequires:  perl(Date::Format)
 BuildRequires:  perl(Date::Language)
@@ -253,6 +255,9 @@ make test
 
 
 %changelog
+* Mon Apr 18 2022 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.1.2-1
+- Update to xmltv 1.1.2 release
+
 * Sun Feb 20 2022 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.1.1-1
 - Update to xmltv 1.1.1 release
 
