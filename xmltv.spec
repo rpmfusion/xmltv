@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        1.1.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPLv2+
@@ -255,6 +255,9 @@ make test
 
 
 %changelog
+* Tue Jun 21 2022 Paul Howarth <paul@city-fan.org> - 1.1.2-2
+- Perl 5.36 rebuild
+
 * Mon Apr 18 2022 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.1.2-1
 - Update to xmltv 1.1.2 release
 
