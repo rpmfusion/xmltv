@@ -1,9 +1,9 @@
 Name:           xmltv
-Version:        1.1.2
-Release:        3%{?dist}
+Version:        1.2.0
+Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
-License:        GPLv2+
+License:        GPL-2.0
 URL:            http://xmltv.org/wiki/
 Source0:        https://github.com/XMLTV/xmltv/archive/v%{version}/xmltv-v%{version}.tar.gz
 
@@ -133,7 +133,6 @@ read and write XML documents.
 
 %package -n perl-XMLTV
 Summary:        Perl modules for managing your TV viewing
-Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Requires:       perl(Term::ProgressBar)
 Requires:       perl(Lingua::Preferred)
 
@@ -182,15 +181,15 @@ This package contains graphical frontends to xmltv.
 
 
 %build
-%{__perl} Makefile.PL -default INSTALLDIRS=vendor
+perl Makefile.PL -default INSTALLDIRS=vendor NO_PERLLOCAL=1 NO_PACKLIST=1
 %{make_build}
 
 
 %install
-make pure_install PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
-make share_install PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
-find $RPM_BUILD_ROOT -type f -name .packlist -delete
-%{_fixperms} $RPM_BUILD_ROOT
+make pure_install DESTDIR=%{buildroot}
+make share_install DESTDIR=%{buildroot}
+find %{buildroot} -type f -name .packlist -delete
+%{_fixperms} %{buildroot}
 
 
 %check
@@ -243,7 +242,7 @@ make test
 %files -n perl-XMLTV
 %{perl_vendorlib}/XMLTV.pm
 %{perl_vendorlib}/XMLTV
-%{_mandir}/man3/*.3*
+%{_mandir}/man3/XMLTV*.3*
 
 %files grabbers
 %{_bindir}/tv_grab_*
@@ -255,6 +254,13 @@ make test
 
 
 %changelog
+* Tue Feb 21 2023 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.2.0-1
+- Update to xmltv 1.2.0 release
+- Remove perl compat requirements (now done via perl-generators)
+- Modernize perl make/install (with el7 compat)
+- Adjust file globbing per recent packaging guidelines (with el7 compat)
+- SPDX license (actual license is GPL-2.0 per upstream)
+
 * Mon Aug 08 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.1.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
