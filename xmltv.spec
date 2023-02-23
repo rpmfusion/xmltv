@@ -1,5 +1,5 @@
 Name:           xmltv
-Version:        1.2.0
+Version:        1.2.1
 Release:        1%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
@@ -254,6 +254,9 @@ make test
 
 
 %changelog
+* Thu Feb 23 2023 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.2.1-1
+- Update to xmltv 1.2.1 release
+
 * Tue Feb 21 2023 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.2.0-1
 - Update to xmltv 1.2.0 release
 - Remove perl compat requirements (now done via perl-generators)
