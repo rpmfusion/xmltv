@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        1.2.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPL-2.0
@@ -254,6 +254,9 @@ make test
 
 
 %changelog
+* Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.2.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
+
 * Thu Feb 23 2023 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.2.1-1
 - Update to xmltv 1.2.1 release
 
