@@ -1,7 +1,7 @@
 From fb4bae00ee029235b6d4de38f7e9c1857d4224cd Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Fri, 24 Feb 2023 14:03:11 +0000
-Subject: [PATCH 01/30] doc: remove disabled grabbers
+Subject: [PATCH 01/41] doc: remove disabled grabbers
 
 ---
  doc/QuickStart | 2 --
@@ -34,7 +34,7 @@ index b583de3e..4546af52 100644
 From b8d844346708aa0836cf54eec7528058c4bd6726 Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Fri, 24 Feb 2023 20:34:41 +0000
-Subject: [PATCH 02/30] win32: to facilitate build of xmltv32.exe
+Subject: [PATCH 02/41] win32: to facilitate build of xmltv32.exe
 
 ---
  Makefile.PL    | 4 ++--
@@ -74,7 +74,7 @@ index 00000000..2f0af844
 From 0b79b7b5500e9b67ffd94259218bf088816aaa8c Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Fri, 24 Feb 2023 20:35:47 +0000
-Subject: [PATCH 03/30] doc: update comments for 32-bit Windows build
+Subject: [PATCH 03/41] doc: update comments for 32-bit Windows build
 
 ---
  doc/README-Windows.md | 2 +-
@@ -100,7 +100,7 @@ index e97d5af4..f27b847c 100644
 From 6fec1b0326baf82d5f2324bd4bb45163e4007eb1 Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Sun, 26 Feb 2023 19:18:55 +0000
-Subject: [PATCH 04/30] exe: add Encode::Byte module to windows build (#201)
+Subject: [PATCH 04/41] exe: add Encode::Byte module to windows build (#201)
 
 ---
  lib/exe_opt.pl | 1 +
@@ -125,7 +125,7 @@ index ef877deb..98ce4154 100755
 From f674296520cfcd8c6a4a07ebbc8bcf1a9ac26914 Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Sat, 25 Mar 2023 16:49:37 +0000
-Subject: [PATCH 05/30] uk_tvguide: fix programmes overlapping 6am being added
+Subject: [PATCH 05/41] uk_tvguide: fix programmes overlapping 6am being added
  to tomorrow's schedule (#203)
 
 ---
@@ -207,7 +207,7 @@ index d7dd9039..5d3672db 100755
 From e482b973e9269ad4119136ff5f16230c8a6c462c Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Sat, 25 Mar 2023 16:51:58 +0000
-Subject: [PATCH 06/30] uk_tvguide: fix duplicated programme when show time
+Subject: [PATCH 06/41] uk_tvguide: fix duplicated programme when show time
  overlaps 6am
 
 ---
@@ -258,7 +258,7 @@ index 5d3672db..34cf7e1a 100755
 From b424ef772a667856ca44b9dac3b4310d02191dea Mon Sep 17 00:00:00 2001
 From: Liam Potter <radioactivity@gmail.com>
 Date: Thu, 20 Apr 2023 17:33:53 +0100
-Subject: [PATCH 07/30] Update DTD example (#204)
+Subject: [PATCH 07/41] Update DTD example (#204)
 
 DTD: A more thorough example showcasing all tags and attributes
 ---
@@ -421,7 +421,7 @@ index fabe4465..305d1c63 100644
 From 9b41cdf387600f3101ce961ed495436bedc928dd Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Mon, 1 May 2023 17:49:33 +0100
-Subject: [PATCH 08/30] uk_tvguide: automatically find alternative IDs (#206)
+Subject: [PATCH 08/41] uk_tvguide: automatically find alternative IDs (#206)
  credit: @mkbloke
 
 ---
@@ -636,7 +636,7 @@ index 34cf7e1a..c6be1159 100755
 From 90f2e2ec899f20e61bf0bf84900a70d81a980f92 Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Mon, 1 May 2023 18:36:11 +0100
-Subject: [PATCH 09/30] uk_tvguide: code alignment (whitespace)
+Subject: [PATCH 09/41] uk_tvguide: code alignment (whitespace)
 
 ---
  grab/uk_tvguide/tv_grab_uk_tvguide | 925 ++++++++++++++---------------
@@ -1679,7 +1679,7 @@ index c6be1159..b38c96d2 100755
 From dadb434ad671029b71df7b8d995b1c29039f2b40 Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Mon, 1 May 2023 18:44:55 +0100
-Subject: [PATCH 10/30] uk_tvguide: utf8 encoding
+Subject: [PATCH 10/41] uk_tvguide: utf8 encoding
 
 ---
  grab/uk_tvguide/tv_grab_uk_tvguide | 2 +-
@@ -1705,7 +1705,7 @@ index b38c96d2..72b62255 100755
 From ac213cd3ab029e5811f3d0547bc3a769c44d5ea2 Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Mon, 1 May 2023 18:48:21 +0100
-Subject: [PATCH 11/30] uk_tvguide: performance improvements
+Subject: [PATCH 11/41] uk_tvguide: performance improvements
 
 ---
  grab/uk_tvguide/tv_grab_uk_tvguide | 33 +++++++++++++++++++++++++-----
@@ -1810,7 +1810,7 @@ index 72b62255..a15f537c 100755
 From 6718051f7eb0172763a89c8da79276e093d28c81 Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Mon, 1 May 2023 19:04:38 +0100
-Subject: [PATCH 12/30] uk_tvguide: debug output improvement
+Subject: [PATCH 12/41] uk_tvguide: debug output improvement
 
 ---
  grab/uk_tvguide/tv_grab_uk_tvguide | 6 +++++-
@@ -1854,7 +1854,7 @@ index a15f537c..957038d2 100755
 From fa47215ad6dc3ce4551887ac81df2a6b7b66d531 Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Mon, 1 May 2023 19:05:45 +0100
-Subject: [PATCH 13/30] uk_tvguide: fix progress bar
+Subject: [PATCH 13/41] uk_tvguide: fix progress bar
 
 ---
  grab/uk_tvguide/tv_grab_uk_tvguide | 6 +++---
@@ -1894,7 +1894,7 @@ index 957038d2..d89beb43 100755
 From 67bb925bbdf631dc620a324a588a287eb316c648 Mon Sep 17 00:00:00 2001
 From: Honir <honir999@gmail.com>
 Date: Tue, 2 May 2023 09:26:38 +0100
-Subject: [PATCH 14/30] uk_tvguide: fix punctuation test
+Subject: [PATCH 14/41] uk_tvguide: fix punctuation test
 
 ---
  grab/uk_tvguide/tv_grab_uk_tvguide | 4 ++--
@@ -1929,7 +1929,7 @@ index d89beb43..8c3be25e 100755
 From 56d851515243a85099d952f1983774f90ceb03f0 Mon Sep 17 00:00:00 2001
 From: Stefan Becker <chemobejk@gmail.com>
 Date: Sun, 16 Jul 2023 11:37:19 +0300
-Subject: [PATCH 15/30] common: add fetchJSON() API
+Subject: [PATCH 15/41] common: add fetchJSON() API
 
 Factor out the JSON fetch & parse code from telkku.com.
 ---
@@ -2023,7 +2023,7 @@ index 99dd8c13..ba22481e 100644
 From 474f790c9150626620b6ceddbd0d80b2ce5f6355 Mon Sep 17 00:00:00 2001
 From: Stefan Becker <chemobejk@gmail.com>
 Date: Sun, 16 Jul 2023 12:41:19 +0300
-Subject: [PATCH 16/30] programme: add source options to configuration
+Subject: [PATCH 16/41] programme: add source options to configuration
 
 Instead of hard-coding values that may change in the implementation,
 allow the source to fetch options from the configuration instead.
@@ -2097,7 +2097,7 @@ index 8a60c5e6..db633306 100644
 From e8049ae15d315d3f2f05410951d5b4ffeb3871c6 Mon Sep 17 00:00:00 2001
 From: Stefan Becker <chemobejk@gmail.com>
 Date: Sun, 16 Jul 2023 17:36:45 +0300
-Subject: [PATCH 17/30] yle: rewrite channels()
+Subject: [PATCH 17/41] yle: rewrite channels()
 
 Yle TV opas has been rewritten to be a dynamic Web Application based on
 Next.js, i.e. the data is only available via API.
@@ -2384,7 +2384,7 @@ index 59a7355b..c26fc753 100644
 From b4ae1855ba9828feacd4c01a95294e1c58fd5e63 Mon Sep 17 00:00:00 2001
 From: Stefan Becker <chemobejk@gmail.com>
 Date: Sat, 22 Jul 2023 18:35:10 +0300
-Subject: [PATCH 18/30] yle: rewrite grab()
+Subject: [PATCH 18/41] yle: rewrite grab()
 
 The data for this source is only available via an API that requires
 authentication. But we do not want to include secrets in the source
@@ -2618,7 +2618,7 @@ index c26fc753..824b897e 100644
 From 66390bd9b74ec1bbf9613362f3f85b9963e8ba31 Mon Sep 17 00:00:00 2001
 From: Stefan Becker <chemobejk@gmail.com>
 Date: Sat, 22 Jul 2023 19:11:34 +0300
-Subject: [PATCH 19/30] star: rename from foxtv.pm
+Subject: [PATCH 19/41] star: rename from foxtv.pm
 
 FOX TV has been renamed to STAR Channel a while ago. Rename the source
 and update all references accordingly.
@@ -2758,7 +2758,7 @@ index 824b897e..e4a50413 100644
 From ef37d2dddc5197114505fd4e5595e5a6f6c0163a Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Mon, 28 Feb 2022 19:29:21 +0000
-Subject: [PATCH 20/30] improve token revalidation logic
+Subject: [PATCH 20/41] improve token revalidation logic
 
 (cherry picked from commit 030187cf0ada1f4da58dbca1244f198074253b5f)
 ---
@@ -2851,7 +2851,7 @@ index 21f7ee75..af4473f0 100644
 From f0272a0c143fc083853f0c364a025a293abecc84 Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Mon, 17 Jul 2023 16:08:26 +0000
-Subject: [PATCH 21/30] adjust _resetSession and _resetError usage
+Subject: [PATCH 21/41] adjust _resetSession and _resetError usage
 
 (cherry picked from commit 5641d81383b1a89a5380069fa6ab8969453a1baa)
 ---
@@ -3028,7 +3028,7 @@ index af4473f0..0b8a2c56 100644
 From 9695c81145a90a7d5c65c520ddfa5ec31fa2dc9c Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Tue, 18 Jul 2023 01:28:41 +0000
-Subject: [PATCH 22/30] remove legacy commented out code
+Subject: [PATCH 22/41] remove legacy commented out code
 
 (cherry picked from commit 4afc11d1adb021f9e7bcfe928ac2d3366bd83c05)
 ---
@@ -3074,7 +3074,7 @@ index 0b8a2c56..23727067 100644
 From b9152f2af115a1f31b6f7592031cffbc78780bee Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Wed, 19 Jul 2023 02:56:14 +0000
-Subject: [PATCH 23/30] rename downloadQueued to downloadRetry
+Subject: [PATCH 23/41] rename downloadQueued to downloadRetry
 
 originally we retried only for requests that
 were queued on the server.  We now retry for
@@ -3263,7 +3263,7 @@ index 23727067..3cb8ea3f 100644
 From 81f491089b8110597d623d2034bb77288ccb68a5 Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Fri, 11 Aug 2023 14:32:14 +0000
-Subject: [PATCH 24/30] add in atsc 3.0 system type for get-lineup
+Subject: [PATCH 24/41] add in atsc 3.0 system type for get-lineup
 
 (cherry picked from commit 8db1de7f849eae011bc5f728f45f5d63bd96263e)
 ---
@@ -3341,7 +3341,7 @@ index 3cb8ea3f..d90367ba 100644
 From cd5675af53459e82e705ae500a4c6a580697564b Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Fri, 11 Aug 2023 15:42:56 +0000
-Subject: [PATCH 25/30] remove last updated datetime support
+Subject: [PATCH 25/41] remove last updated datetime support
 
 Schedules Direct has moved to a continous
 update process from their upstream, making
@@ -3732,7 +3732,7 @@ index d90367ba..408afb0d 100644
 From 26d316d79f0e7d7a74b547a68e5d4dd091f0db9c Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Fri, 11 Aug 2023 17:11:29 +0000
-Subject: [PATCH 26/30] support schedule hash download retry
+Subject: [PATCH 26/41] support schedule hash download retry
 
 (cherry picked from commit ab3272bdfdb88d0371bac216f14dd9eb70029a31)
 ---
@@ -4045,7 +4045,7 @@ index 408afb0d..18d18c12 100644
 From 25eb9ba7c6a7a293e3c0e3e63fa0e26d3f6a56a8 Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Fri, 11 Aug 2023 17:42:02 +0000
-Subject: [PATCH 27/30] add in delay for schedule hash retry
+Subject: [PATCH 27/41] add in delay for schedule hash retry
 
 (cherry picked from commit eec67f0fd8d04301496120548a7b9eab2d213375)
 ---
@@ -4089,7 +4089,7 @@ index 18d18c12..8469e15a 100644
 From e2bf1393088b79b2caacac948014c236b3e8a22a Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Sat, 12 Aug 2023 03:57:30 +0000
-Subject: [PATCH 28/30] limit potential messages for retry cases
+Subject: [PATCH 28/41] limit potential messages for retry cases
 
 In certain cases, one might encounter a large
 number of malformed responses.  Limit the
@@ -4317,7 +4317,7 @@ index 8469e15a..1dad2292 100644
 From c7da2129f16b0058d319cbf0b2ceb800aaf5eebf Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Mon, 14 Aug 2023 21:39:35 +0000
-Subject: [PATCH 29/30] Add routeto option for Schedules Direct debugging
+Subject: [PATCH 29/41] Add routeto option for Schedules Direct debugging
 
 Adding support for the RouteTo header is a request
 from the Schedules Direct staff to enable them to
@@ -4497,7 +4497,7 @@ index 1dad2292..a628321d 100644
 From 3711b0013740c5e0ac384244a36163b943fe5de3 Mon Sep 17 00:00:00 2001
 From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
 Date: Fri, 18 Aug 2023 02:45:30 +0000
-Subject: [PATCH 30/30] adjust retry numbers
+Subject: [PATCH 30/41] adjust retry numbers
 
 (cherry picked from commit 0f36e445dafdab7d4573509f2ef58b4c05cb4125)
 ---
@@ -4561,6 +4561,1087 @@ index a628321d..49e816a6 100644
    {
      my $startDateTime = DateTime->now(time_zone => 'UTC')->add(days => $opt->{'offset'});
      my $endDateTime = DateTime->now(time_zone => 'UTC')->add(days => $opt->{'offset'})->add(days => $opt->{'days'});
+-- 
+2.41.0
+
+
+From ac5555d766344fd869df6f4b370c51b8693b76a4 Mon Sep 17 00:00:00 2001
+From: Robert Eden <rmeden@gmail.com>
+Date: Mon, 4 Sep 2023 14:52:20 -0500
+Subject: [PATCH 31/41] remove tv_grab_na_dtv due to target site changes
+
+---
+ Makefile.PL | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/Makefile.PL b/Makefile.PL
+index f23930ef..15efb271 100644
+--- a/Makefile.PL
++++ b/Makefile.PL
+@@ -428,15 +428,16 @@ my @opt_components
+        grab_need_share => [ 'na_dd' ],
+      },
+ 
+-     { name => 'tv_grab_na_dtv',
+-       blurb => 'Grabber for North America (DirecTV)',
+-       exes => [ 'grab/na_dtv/tv_grab_na_dtv' ],
+-       prereqs => {
+-         'DateTime'         => 0,
+-         'HTTP::Cookies'    => 0,
+-         'URI'              => 0,
+-         'URI::Escape'      => 0, },
+-     },
++# 2023-09-04 edenr  tv_grab_na_dtv removed due to source site changes
++#     { name => 'tv_grab_na_dtv',
++#       blurb => 'Grabber for North America (DirecTV)',
++#       exes => [ 'grab/na_dtv/tv_grab_na_dtv' ],
++#       prereqs => {
++#         'DateTime'         => 0,
++#         'HTTP::Cookies'    => 0,
++#         'URI'              => 0,
++#         'URI::Escape'      => 0, },
++#     },
+ 
+      { name => 'tv_grab_na_tvmedia',
+        blurb => 'Grabber for North America (TVMedia)',
+-- 
+2.41.0
+
+
+From 686e1bd8bc4e84fc9cd86a005e35eb1be271eb98 Mon Sep 17 00:00:00 2001
+From: Robert Eden <rmeden@gmail.com>
+Date: Mon, 4 Sep 2023 14:53:41 -0500
+Subject: [PATCH 32/41] update changes for dtv removal
+
+---
+ Changes | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Changes b/Changes
+index 208672cc..0d11a2cb 100644
+--- a/Changes
++++ b/Changes
+@@ -1,3 +1,5 @@
++   - tv_grab_na_dtv      disabled grabber due to upstream changes
++   
+ 1.2.1  2023-02-23
+ 
+   - tv_grab_ar:          disable grabber
+-- 
+2.41.0
+
+
+From 6a6c5578c98f738417300b4f824732543db66660 Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Thu, 31 Aug 2023 21:38:48 +0000
+Subject: [PATCH 33/41] protect against missing or malformed json string
+
+(cherry picked from commit d4884f056d750faec7f5fecf4f58c1d5a834ff64)
+---
+ .../zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 41 ++++++-------------
+ 1 file changed, 12 insertions(+), 29 deletions(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index 49e816a6..6c3dad92 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -44,6 +44,7 @@
+ #
+ # Version history:
+ #
++# 2023/08/31 - 1.121 - protect against missing or malformed json string
+ # 2023/08/18 - 1.120 - adjust retry numbers
+ # 2023/08/14 - 1.119 - add routeto option for Schedules Direct debugging
+ # 2023/08/12 - 1.118 - limit potential messages for retry cases
+@@ -212,7 +213,7 @@ use sort 'stable';
+ my $RFC2838_COMPLIANT          = 1;            # RFC2838 compliant station ids, which makes XMLTV
+                                                # validate even though the docs say "SHOULD" not "MUST"
+ 
+-my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.120 2023/08/18 02:40:00 gtb Exp ed $';
++my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.121 2023/08/31 18:50:00 gtb Exp ed $';
+ my $SCRIPT_URL                 = 'https://github.com/garybuhrmaster/tv_grab_zz_sdjson_sqlite';
+ my $SCRIPT_NAME                = basename("$0");
+ my $SCRIPT_NAME_DIR            = dirname("$0");
+@@ -1641,22 +1642,10 @@ $w->startTag('tv',
+       # my $startTime = DateTime::Format::SQLite->parse_datetime($r->[1]);
+       # my $endTime = $startTime->clone()->add(seconds => $r->[2]);
+       my $pID = $r->[3];
+-      my $scheduleDetails = $JSON->decode($r->[4]);
+-      my $programDetails;
+-      if (defined($r->[5]))
+-        {
+-          $programDetails = $JSON->decode($r->[5]);
+-        }
+-      my $stationDetails;
+-      if (defined($r->[8]))
+-        {
+-          $stationDetails = $JSON->decode($r->[8]);
+-        }
+-      my $supplementalDetails;
+-      if (defined($r->[9]))
+-        {
+-          $supplementalDetails = $JSON->decode($r->[9]);
+-        }
++      my $scheduleDetails = eval { $JSON->decode($r->[4]) } || {};
++      my $programDetails = eval { $JSON->decode($r->[5]) } || {};
++      my $stationDetails = eval { $JSON->decode($r->[8]) } || {};;
++      my $supplementalDetails = eval { $JSON->decode($r->[9]) } || {};;
+ 
+       $w->startTag('programme', 'channel' => generateRFC2838($sID),
+                                 'start'   => "$r->[6] +0000",
+@@ -2986,12 +2975,8 @@ sub channelWriter
+       {
+         my $sID = $r->[0];
+         my $channum = $r->[1];
+-        my $c = $JSON->decode($r->[2]);
+-        my $s = {};
+-        if (defined($r->[3]))
+-          {
+-            $s = $JSON->decode($r->[3]);
+-          }
++        my $c = eval { $JSON->decode($r->[2]) } || {};
++        my $s = eval { $JSON->decode($r->[3]) } || {};;
+ 
+         $writer->startTag('channel', 'id' => generateRFC2838($sID) ) ;
+ 
+@@ -3380,8 +3365,8 @@ sub getLineup
+               {
+                 my $sID = $r->[0];
+                 my $channum = $r->[1];
+-                my $c = $JSON->decode($r->[2]);
+-                my $s = $JSON->decode($r->[3]);
++                my $c = eval { $JSON->decode($r->[2]) } || {};
++                my $s = eval { $JSON->decode($r->[3]) } || {};
+                 my $SDtype = $r->[4] || 'Unknown';
+                 my $type = mapTransport($r->[4]);
+ 
+@@ -5802,10 +5787,8 @@ sub manageLineups
+                         my $selected = $channelSelect->[3];
+                         my $cdetails = $channelSelect->[4];
+                         my $sdetails = $channelSelect->[5];
+-                        my $c = {};
+-                        $c = $JSON->decode($cdetails) if (defined($cdetails) && ($cdetails ne ''));
+-                        my $s = {};
+-                        $s = $JSON->decode($sdetails) if (defined($sdetails) && ($sdetails ne ''));
++                        my $c = eval { $JSON->decode($cdetails) } || {};
++                        my $s = eval { $JSON->decode($sdetails) } || {};
+                         my $name;
+                         $name = $s->{'name'} if (defined($s->{'name'}));
+                         my $callsign;
+-- 
+2.41.0
+
+
+From 590abb9cff53d2ab2fb498df63e7237b72e23fe3 Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Fri, 1 Sep 2023 17:17:18 +0000
+Subject: [PATCH 34/41] update cast and crew mappings
+
+(cherry picked from commit 079e8ef4d50f2f80a5a29e40242e98ea2481641f)
+---
+ .../zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 20 ++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index 6c3dad92..e1ce4b5a 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -44,6 +44,7 @@
+ #
+ # Version history:
+ #
++# 2023/09/01 - 1.122 - update cast and crew mappings
+ # 2023/08/31 - 1.121 - protect against missing or malformed json string
+ # 2023/08/18 - 1.120 - adjust retry numbers
+ # 2023/08/14 - 1.119 - add routeto option for Schedules Direct debugging
+@@ -213,7 +214,7 @@ use sort 'stable';
+ my $RFC2838_COMPLIANT          = 1;            # RFC2838 compliant station ids, which makes XMLTV
+                                                # validate even though the docs say "SHOULD" not "MUST"
+ 
+-my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.121 2023/08/31 18:50:00 gtb Exp ed $';
++my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.122 2023/09/01 17:00:00 gtb Exp ed $';
+ my $SCRIPT_URL                 = 'https://github.com/garybuhrmaster/tv_grab_zz_sdjson_sqlite';
+ my $SCRIPT_NAME                = basename("$0");
+ my $SCRIPT_NAME_DIR            = dirname("$0");
+@@ -1295,6 +1296,7 @@ my $castMap =
+     'Voice'                                => { 'role' => 'actor' },
+     'Guest Star'                           => { 'role' => 'actor', 'guest' => 1 },
+     'Guest Voice'                          => { 'role' => 'actor', 'guest' => 1 },
++    'Athlete'                              => { 'role' => 'guest' },
+     'Correspondent'                        => { 'role' => 'guest' },
+     'Contestant'                           => { 'role' => 'guest' },
+     'Guest'                                => { 'role' => 'guest' },
+@@ -1319,6 +1321,7 @@ my $crewMap =
+     'Film Consultant'                      => { 'role' => 'writer' },
+     'Screen Story'                         => { 'role' => 'writer' },
+     'Screenwriter'                         => { 'role' => 'writer' },
++    'Script'                               => { 'role' => 'writer' },
+     'Script Editor'                        => { 'role' => 'writer' },
+     'Story Supervisor'                     => { 'role' => 'writer' },
+     'Story'                                => { 'role' => 'writer' },
+@@ -1389,6 +1392,7 @@ my $crewMap =
+     'Trainee Assistant Director'           => { 'role' => 'director' },
+     'Unit Director'                        => { 'role' => 'director' },
+     'Voice Director'                       => { 'role' => 'director' },
++    'Wardrobe Director'                    => { 'role' => 'director' },
+     'Additional Editor'                    => { 'role' => 'editor' },
+     'Assistant Dialogue Editor'            => { 'role' => 'editor' },
+     'Assistant Editor'                     => { 'role' => 'editor' },
+@@ -1399,6 +1403,7 @@ my $crewMap =
+     'Dialogue Editor'                      => { 'role' => 'editor' },
+     'Editing'                              => { 'role' => 'editor' },
+     'Editor'                               => { 'role' => 'editor' },
++    'Film Editing'                         => { 'role' => 'editor' },
+     'Film Editor'                          => { 'role' => 'editor' },
+     'Foley Editor'                         => { 'role' => 'editor' },
+     'Music Editor'                         => { 'role' => 'editor' },
+@@ -1434,8 +1439,10 @@ my $crewMap =
+     'Visual Effects Producer'              => { 'role' => 'producer' },
+     'Additional Music'                     => { 'role' => 'composer' },
+     'Composer'                             => { 'role' => 'composer' },
++    'Lyricist'                             => { 'role' => 'composer' },
+     'Lyrics'                               => { 'role' => 'composer' },
+     'Music'                                => { 'role' => 'composer' },
++    'Music Arranger'                       => { 'role' => 'composer' },
+     'Music Score'                          => { 'role' => 'composer' },
+     'Music Supervisor'                     => { 'role' => 'composer' },
+     'Music Theme'                          => { 'role' => 'composer' },
+@@ -1470,16 +1477,20 @@ my $crewMap =
+     'Chief Hair Stylist'                   => { 'role' => 'undefined' },
+     'Chief Makeup Artist'                  => { 'role' => 'undefined' },
+     'Choreographer'                        => { 'role' => 'undefined' },
++    'Cinematography'                       => { 'role' => 'undefined' },
+     'Conductor'                            => { 'role' => 'undefined' },
+     'Construction Coordinator'             => { 'role' => 'undefined' },
+     'Co-Production Designer'               => { 'role' => 'undefined' },
++    'Costume Design'                       => { 'role' => 'undefined' },
+     'Costume Designer'                     => { 'role' => 'undefined' },
+     'Costume Supervisor'                   => { 'role' => 'undefined' },
+     'Creative Consultant'                  => { 'role' => 'undefined' },
+     'Design'                               => { 'role' => 'undefined' },
+     'Dialogue'                             => { 'role' => 'undefined' },
++    'Executive Assistant'                  => { 'role' => 'undefined' },
+     'Foley Artist'                         => { 'role' => 'undefined' },
+     'Graphic Artist'                       => { 'role' => 'undefined' },
++    'Graphic Design'                       => { 'role' => 'undefined' },
+     'Graphic Designer'                     => { 'role' => 'undefined' },
+     'Graphics'                             => { 'role' => 'undefined' },
+     'Hair Designer'                        => { 'role' => 'undefined' },
+@@ -1488,6 +1499,7 @@ my $crewMap =
+     'Key Grip'                             => { 'role' => 'undefined' },
+     'Key Hair Stylist'                     => { 'role' => 'undefined' },
+     'Key Makeup Artist'                    => { 'role' => 'undefined' },
++    'Lighting'                             => { 'role' => 'undefined' },
+     'Location Manager'                     => { 'role' => 'undefined' },
+     'Makeup'                               => { 'role' => 'undefined' },
+     'Makeup Artist'                        => { 'role' => 'undefined' },
+@@ -1497,11 +1509,13 @@ my $crewMap =
+     'Makeup Supervisor'                    => { 'role' => 'undefined' },
+     'Martial Arts Advisor'                 => { 'role' => 'undefined' },
+     'Martial Arts Choreographer'           => { 'role' => 'undefined' },
++    'Mixing'                               => { 'role' => 'undefined' },
+     'Music Mixer'                          => { 'role' => 'undefined' },
+     'Music Recordist'                      => { 'role' => 'undefined' },
+     'Original Concept'                     => { 'role' => 'undefined' },
+     'Photographer'                         => { 'role' => 'undefined' },
+     'Post-Production'                      => { 'role' => 'undefined' },
++    'Post-Production Manager'              => { 'role' => 'undefined' },
+     'Post-Production Supervisor'           => { 'role' => 'undefined' },
+     'Production Assistant'                 => { 'role' => 'undefined' },
+     'Production Coordinator'               => { 'role' => 'undefined' },
+@@ -1513,6 +1527,7 @@ my $crewMap =
+     'Production Sound Mixer'               => { 'role' => 'undefined' },
+     'Production Supervisor'                => { 'role' => 'undefined' },
+     'Property Master'                      => { 'role' => 'undefined' },
++    'Recording Engineer'                   => { 'role' => 'undefined' },
+     'Recording Supervisor'                 => { 'role' => 'undefined' },
+     'Researcher'                           => { 'role' => 'undefined' },
+     'Scene Designer'                       => { 'role' => 'undefined' },
+@@ -1526,6 +1541,7 @@ my $crewMap =
+     'Set Dresser'                          => { 'role' => 'undefined' },
+     'Singer'                               => { 'role' => 'undefined' },
+     'Sound'                                => { 'role' => 'undefined' },
++    'Sound Assistant'                      => { 'role' => 'undefined' },
+     'Sound Consultant'                     => { 'role' => 'undefined' },
+     'Sound Designer'                       => { 'role' => 'undefined' },
+     'Sound Effects'                        => { 'role' => 'undefined' },
+@@ -1541,7 +1557,9 @@ my $crewMap =
+     'Special Makeup Effects Artist'        => { 'role' => 'undefined' },
+     'Special Makeup Effects'               => { 'role' => 'undefined' },
+     'Special Photographic Effects'         => { 'role' => 'undefined' },
++    'Storyboard'                           => { 'role' => 'undefined' },
+     'Storyboard Artist'                    => { 'role' => 'undefined' },
++    'Storyboard Supervisor'                => { 'role' => 'undefined' },
+     'Stunt Choreographer'                  => { 'role' => 'undefined' },
+     'Stunt Coordinator'                    => { 'role' => 'undefined' },
+     'Stunt Supervisor'                     => { 'role' => 'undefined' },
+-- 
+2.41.0
+
+
+From c19d308cd098d940ae29eb739a3fd519b54ef751 Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Sat, 2 Sep 2023 02:29:34 +0000
+Subject: [PATCH 35/41] eliminate redundent json utf8 invokations
+
+The $JSON object already sets utf8
+
+(cherry picked from commit 71c29bf83b2d985de45b852522b28cea22f043a9)
+---
+ .../zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index e1ce4b5a..29b7fdef 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -44,6 +44,7 @@
+ #
+ # Version history:
+ #
++# 2023/09/01 - 1.123 - eliminate redundent json utf8 invokations
+ # 2023/09/01 - 1.122 - update cast and crew mappings
+ # 2023/08/31 - 1.121 - protect against missing or malformed json string
+ # 2023/08/18 - 1.120 - adjust retry numbers
+@@ -214,7 +215,7 @@ use sort 'stable';
+ my $RFC2838_COMPLIANT          = 1;            # RFC2838 compliant station ids, which makes XMLTV
+                                                # validate even though the docs say "SHOULD" not "MUST"
+ 
+-my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.122 2023/09/01 17:00:00 gtb Exp ed $';
++my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.123 2023/09/01 22:10:00 gtb Exp ed $';
+ my $SCRIPT_URL                 = 'https://github.com/garybuhrmaster/tv_grab_zz_sdjson_sqlite';
+ my $SCRIPT_NAME                = basename("$0");
+ my $SCRIPT_NAME_DIR            = dirname("$0");
+@@ -607,7 +608,7 @@ for (my $retry = 0; $retry < 4; $retry++)
+             my $station = $e->{'stationID'};
+             my $date = substr($e->{'date'}, 0, 10);
+             my $hash = $e->{'MD5'};
+-            my $details = $JSON->utf8->encode($e);
++            my $details = $JSON->encode($e);
+             $sth->bind_param( 1, $station, SQL_VARCHAR );
+             $sth->bind_param( 2, $date, SQL_DATE );
+             $sth->bind_param( 3, $hash, SQL_VARCHAR );
+@@ -860,7 +861,7 @@ for (my $retry = 0; $retry < 4; $retry++)
+                 my $airDateTime = $program->{'airDateTime'};
+                 my $duration = $program->{'duration'};
+                 my $phash = $program->{'md5'};
+-                my $details = $JSON->utf8->encode($program);
++                my $details = $JSON->encode($program);
+                 if ((!defined($duration)) || (!defined($phash)) || (!defined($pID)) || (!defined($airDateTime)))
+                   {
+                     print (STDERR "Unexpected parsing error in program (data malformed) in schedule for $sID on " . $sched->{'date'} . ", skipping\n") if (!$quiet);
+@@ -1059,7 +1060,7 @@ for (my $retry = 0; $retry < 4; $retry++)
+                   }
+                 next;
+               }
+-            my $details = $JSON->utf8->encode($program);
++            my $details = $JSON->encode($program);
+             my $supplemental;
+             if (substr($pID, 0, 2) eq 'EP')
+               {
+@@ -1235,7 +1236,7 @@ for (my $retry = 0; $retry < 4; $retry++)
+                   }
+                 next;
+               }
+-            my $details = $JSON->utf8->encode($program);
++            my $details = $JSON->encode($program);
+             my $supplemental;
+             if (substr($pID, 0, 2) eq 'EP')
+               {
+@@ -3890,7 +3891,7 @@ sub SD_downloadLineups
+         my $name = $l->{'name'} || '';
+         my $transport = $l->{'transport'} || '';
+         my $location = $l->{'location'} || '';
+-        my $details = $JSON->utf8->canonical->encode($l);
++        my $details = $JSON->canonical->encode($l);
+         $sth->bind_param( 1, $id, SQL_VARCHAR );
+         $sth->bind_param( 2, $name, SQL_VARCHAR );
+         $sth->bind_param( 3, $location, SQL_VARCHAR );
+@@ -4064,7 +4065,7 @@ sub SD_downloadLineupMaps
+       {
+         my $station = $c->{'stationID'};
+         $station = '' if (!defined($station));
+-        my $details = $JSON->utf8->canonical->encode($c);
++        my $details = $JSON->canonical->encode($c);
+         my $channum = '';
+         if (($lineupTransport eq 'Cable') ||
+             ($lineupTransport eq 'Satellite') ||
+@@ -4147,7 +4148,7 @@ sub SD_downloadLineupMaps
+       {
+         my $station = $s->{'stationID'};
+         next if (!defined($station));
+-        my $details = $JSON->utf8->canonical->encode($s);
++        my $details = $JSON->canonical->encode($s);
+ 
+         $sth->bind_param( 1, $station, SQL_VARCHAR );
+         $sth->bind_param( 2, $details, SQL_VARCHAR );
+@@ -4256,7 +4257,7 @@ sub lineupValidate
+           }
+         else
+           {
+-            my $lineupDeleted = $JSON->utf8->decode($llu->[4])->{'isDeleted'};
++            my $lineupDeleted = $JSON->decode($llu->[4])->{'isDeleted'};
+ 
+             if (defined($lineupDeleted) && $lineupDeleted)
+               {
+-- 
+2.41.0
+
+
+From e8a6dd6e9259c2c35225bf156bcc37044788c835 Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Sat, 2 Sep 2023 03:19:19 +0000
+Subject: [PATCH 36/41] protect against missing or malformed json string
+
+(cherry picked from commit f59dd16e6cf530f1ba2580815fded240fed52b46)
+---
+ grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index 29b7fdef..6ab3a11f 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -44,6 +44,7 @@
+ #
+ # Version history:
+ #
++# 2023/09/02 - 1.124 - protect against missing or malformed json string
+ # 2023/09/01 - 1.123 - eliminate redundent json utf8 invokations
+ # 2023/09/01 - 1.122 - update cast and crew mappings
+ # 2023/08/31 - 1.121 - protect against missing or malformed json string
+@@ -215,7 +216,7 @@ use sort 'stable';
+ my $RFC2838_COMPLIANT          = 1;            # RFC2838 compliant station ids, which makes XMLTV
+                                                # validate even though the docs say "SHOULD" not "MUST"
+ 
+-my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.123 2023/09/01 22:10:00 gtb Exp ed $';
++my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.124 2023/09/02 03:10:00 gtb Exp ed $';
+ my $SCRIPT_URL                 = 'https://github.com/garybuhrmaster/tv_grab_zz_sdjson_sqlite';
+ my $SCRIPT_NAME                = basename("$0");
+ my $SCRIPT_NAME_DIR            = dirname("$0");
+@@ -4257,7 +4258,7 @@ sub lineupValidate
+           }
+         else
+           {
+-            my $lineupDeleted = $JSON->decode($llu->[4])->{'isDeleted'};
++            my $lineupDeleted = eval { $JSON->decode($llu->[4])->{'isDeleted'} } || 0;
+ 
+             if (defined($lineupDeleted) && $lineupDeleted)
+               {
+-- 
+2.41.0
+
+
+From fb31ca8fb993a23ab6d38667af791ef5fdd14bf9 Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Mon, 4 Sep 2023 15:36:52 +0000
+Subject: [PATCH 37/41] improve retry logic for station schedules hashes
+
+(cherry picked from commit 4ce61b65e848d1c862dd8de64d76fa7577158853)
+---
+ grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index 6ab3a11f..9f4f2d29 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -44,6 +44,7 @@
+ #
+ # Version history:
+ #
++# 2023/09/04 - 1.125 - improve retry logic for station schedules hashes
+ # 2023/09/02 - 1.124 - protect against missing or malformed json string
+ # 2023/09/01 - 1.123 - eliminate redundent json utf8 invokations
+ # 2023/09/01 - 1.122 - update cast and crew mappings
+@@ -216,7 +217,7 @@ use sort 'stable';
+ my $RFC2838_COMPLIANT          = 1;            # RFC2838 compliant station ids, which makes XMLTV
+                                                # validate even though the docs say "SHOULD" not "MUST"
+ 
+-my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.124 2023/09/02 03:10:00 gtb Exp ed $';
++my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.125 2023/09/04 15:30:00 gtb Exp ed $';
+ my $SCRIPT_URL                 = 'https://github.com/garybuhrmaster/tv_grab_zz_sdjson_sqlite';
+ my $SCRIPT_NAME                = basename("$0");
+ my $SCRIPT_NAME_DIR            = dirname("$0");
+@@ -594,6 +595,19 @@ for (my $retry = 0; $retry < 4; $retry++)
+                 $downloadRetry++;
+                 next;
+               }
++            my $code = $e->{'code'} || 0;
++            if ($code != 0)
++              {
++                if ($code == 7100) # request queued
++                  {
++                    if ($downloadRetry < 10)
++                      {
++                        print (STDERR "Request for schedule queued when obtaining station schedules hashes: (will retry)\n") if (!$quiet);
++                      }
++                    $downloadRetry++;
++                  }
++                next;
++              }
+             if ((!defined($e->{'stationID'})) ||
+                 (!defined($e->{'date'})) ||
+                 ((substr($e->{'date'}, 0, 10)) !~ /^\d{4}-\d{2}-\d{2}$/) ||
+-- 
+2.41.0
+
+
+From 9df3fe558834885bab14165f7e761f78b3ad9a5d Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Mon, 4 Sep 2023 21:36:40 +0000
+Subject: [PATCH 38/41] always download current account lineups
+
+As a lineup request is low overhead, avoid trying
+to optimize it away, and also add the lineup
+cleanup routine into the download process directly.
+
+In API-NEXT all the lineup information will be in
+the status response, which is already required to
+be available, so it will have next to zero overhead.
+
+Also some minor message consistency.
+
+(cherry picked from commit de268a59c2a62d9420434a02bde46193bde7b15c)
+---
+ .../zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 181 ++++++------------
+ 1 file changed, 63 insertions(+), 118 deletions(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index 9f4f2d29..cbfde912 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -44,6 +44,7 @@
+ #
+ # Version history:
+ #
++# 2023/09/04 - 1.126 - always download current account lineups
+ # 2023/09/04 - 1.125 - improve retry logic for station schedules hashes
+ # 2023/09/02 - 1.124 - protect against missing or malformed json string
+ # 2023/09/01 - 1.123 - eliminate redundent json utf8 invokations
+@@ -217,7 +218,7 @@ use sort 'stable';
+ my $RFC2838_COMPLIANT          = 1;            # RFC2838 compliant station ids, which makes XMLTV
+                                                # validate even though the docs say "SHOULD" not "MUST"
+ 
+-my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.125 2023/09/04 15:30:00 gtb Exp ed $';
++my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.126 2023/09/04 21:30:00 gtb Exp ed $';
+ my $SCRIPT_URL                 = 'https://github.com/garybuhrmaster/tv_grab_zz_sdjson_sqlite';
+ my $SCRIPT_NAME                = basename("$0");
+ my $SCRIPT_NAME_DIR            = dirname("$0");
+@@ -447,28 +448,16 @@ my $expiryDateTime = DateTime::Format::ISO8601->parse_datetime($expiry);
+ 
+ print (STDERR "   Schedules Direct account expires on " . $expiryDateTime . "\n") if (!$quiet);
+ 
+-SD_cleanLineups();
+-
+ #
+ # Start the download process
+ #
+ print (STDERR "Downloading data from Schedules Direct\n") if (!$quiet);
+ 
+ #
+-# We can avoid downloading lineup and map information
+-# if we have updated our maps more recently than the
+-# account lineup information indicates
++# Always make sure we have a current lineup list
+ #
+-my $fetchLineupRequired = SD_isLineupFetchRequired($conf->{'lineup'});
+-if ($fetchLineupRequired)
+-  {
+-    print (STDERR "   downloading account lineups from Schedules Direct\n") if (!$quiet);
+-    SD_downloadLineups();
+-  }
+-else
+-  {
+-    print (STDERR "   not downloading lineups from Schedules Direct (data current)\n") if (!$quiet);
+-  }
++print (STDERR "   downloading account lineups from Schedules Direct\n") if (!$quiet);
++SD_downloadLineups();
+ 
+ #
+ # Validate that the configured lineup exists in our database
+@@ -2873,19 +2862,15 @@ sub listChannels
+         print (STDERR "   Schedules Direct account expires on " . $expiryDateTime . "\n") if (!$quiet);
+ 
+         #
+-        # We can avoid downloading lineup and map information
+-        # if we have updated our maps more recently than the
+-        # account lineup information indicates
++        # Start the download process
+         #
+-        if (SD_isLineupFetchRequired($conf->{'lineup'}))
+-          {
+-            print (STDERR "Downloading account lineups from Schedules Direct\n") if (!$quiet);
+-            SD_downloadLineups();
+-          }
+-        else
+-          {
+-            print (STDERR "Not downloading lineups from Schedules Direct (data current)\n") if (!$quiet);
+-          }
++        print (STDERR "Downloading data from Schedules Direct\n") if (!$quiet);
++
++        #
++        # Always make sure we have a current lineup list
++        #
++        print (STDERR "   downloading account lineups from Schedules Direct\n") if (!$quiet);
++        SD_downloadLineups();
+ 
+         #
+         # Validate that the configured lineup exists in our database
+@@ -3112,14 +3097,14 @@ sub listLineups
+         print (STDERR "   Schedules Direct account expires on " . $expiryDateTime . "\n") if (!$quiet);
+ 
+         #
+-        # Optimizing lineup download is simply not worth the effort
+-        # due to having the check if any lineup has been modified
+-        # since the last time the data was downloaded.  And since
+-        # list-lineups is expected to be used rarely, we are going
+-        # to skip any attempt at optimization
++        # Start the download process
+         #
++        print (STDERR "Downloading data from Schedules Direct\n") if (!$quiet);
+ 
+-        print (STDERR "Downloading lineups from Schedules Direct\n") if (!$quiet);
++        #
++        # Always make sure we have a current lineup list
++        #
++        print (STDERR "   downloading account lineups from Schedules Direct\n") if (!$quiet);
+         SD_downloadLineups();
+       }
+     else
+@@ -3245,19 +3230,15 @@ sub getLineup
+         print (STDERR "   Schedules Direct account expires on " . $expiryDateTime . "\n") if (!$quiet);
+ 
+         #
+-        # We can avoid downloading lineup and map information
+-        # if we have updated our maps more recently than the
+-        # account lineup information indicates
++        # Start the download process
+         #
+-        if (SD_isLineupFetchRequired($conf->{'lineup'}))
+-          {
+-            print (STDERR "Downloading account lineups from Schedules Direct\n") if (!$quiet);
+-            SD_downloadLineups();
+-          }
+-        else
+-          {
+-            print (STDERR "Not downloading lineups from Schedules Direct (data current)\n") if (!$quiet);
+-          }
++        print (STDERR "Downloading data from Schedules Direct\n") if (!$quiet);
++
++        #
++        # Always make sure we have a current lineup list
++        #
++        print (STDERR "   downloading account lineups from Schedules Direct\n") if (!$quiet);
++        SD_downloadLineups();
+ 
+         #
+         # Validate that the configured lineup exists in our database
+@@ -3272,12 +3253,12 @@ sub getLineup
+           {
+             if (SD_isLineupFetchRequired([$lineup]))
+               {
+-                print (STDERR "Downloading channel and station maps for lineup $lineup \n") if (!$quiet);
++                print (STDERR "   Downloading channel and station maps for lineup $lineup \n") if (!$quiet);
+                 SD_downloadLineupMaps($lineup);
+               }
+             else
+               {
+-                print (STDERR "Not downloading channel and station maps for lineup $lineup (data current)\n") if (!$quiet);
++                print (STDERR "   Not downloading channel and station maps for lineup $lineup (data current)\n") if (!$quiet);
+               }
+           }
+       }
+@@ -3778,74 +3759,6 @@ sub SD_isLineupFetchRequired
+     return ($fetchRequired);
+   }
+ 
+-#
+-# SD_cleanLineups
+-#
+-# Convenience routine to clean the database of
+-# lineups not in the account.  Errors are fatal.
+-#
+-#   Input:
+-#              <none>
+-#   Output:
+-#              <none>
+-#
+-sub SD_cleanLineups
+-  {
+-    my $sql;
+-    my $sth;
+-    my $param;
+-    my $lineups;
+-    my @accountLineups = ();
+-
+-    #
+-    # Delete any lineups not in our account
+-    #
+-    $lineups = $SD->obtainLineups();
+-
+-    if (!defined($lineups))
+-      {
+-        print (STDERR "Unable to obtain Schedules Direct account lineups: " . $SD->ErrorString() . "\n");
+-        exit(1);
+-      }
+-
+-    for my $lu(@{$lineups})
+-      {
+-        next if (ref($lu) ne 'HASH');
+-        if (defined($lu->{'lineupID'}))
+-          {
+-            push(@accountLineups, $lu->{'lineupID'});
+-          }
+-      }
+-
+-    $sql = 'delete from lineups where lineup not in ( ' . join(', ', ('?') x scalar(@accountLineups)) . ' )';
+-
+-    $sth = $DBH->prepare_cached($sql);
+-    if (!defined($sth))
+-      {
+-        print (STDERR "Unexpected error when preparing statement ($sql): " . $DBH->errstr . "\n");
+-        exit(1);
+-      }
+-
+-    $param = 1;
+-    for (my $i=0; $i < scalar(@accountLineups); $i++)
+-      {
+-        $sth->bind_param( $param, $accountLineups[$i], SQL_VARCHAR);
+-        $param++;
+-      }
+-
+-    $sth->execute();
+-    if ($sth->err)
+-      {
+-        print (STDERR "Unexpected error when executing statement ($sql): " . $sth->errstr . "\n");
+-        $DBH->rollback();
+-        exit(1);
+-      }
+-
+-    $DBH->commit();
+-
+-    return;
+-  }
+-
+ #
+ # SD_downloadLineups
+ #
+@@ -3863,14 +3776,17 @@ sub SD_downloadLineups
+     my $sth;
+     my $sql1;
+     my $sth1;
++    my $sql2;
++    my $sth2;
+     my $lu;
+     my $lineups;
+-
+-    SD_cleanLineups();
++    my $param;
++    my @accountLineups = ();
+ 
+     #
+     # Obtain our lineups
+     #
++
+     $lineups = $SD->obtainLineups();
+     if (!defined($lineups))
+       {
+@@ -3903,6 +3819,7 @@ sub SD_downloadLineups
+       {
+         next if ((ref($l) ne 'HASH') || (!defined($l->{'lineupID'})));
+         my $id = $l->{'lineupID'};
++        push(@accountLineups, $id);
+         my $name = $l->{'name'} || '';
+         my $transport = $l->{'transport'} || '';
+         my $location = $l->{'location'} || '';
+@@ -3933,6 +3850,34 @@ sub SD_downloadLineups
+           }
+       }
+ 
++    #
++    # Remove any lineups from our database not in our schedules direct account
++    #
++
++    $sql2 = 'delete from lineups where lineup not in ( ' . join(', ', ('?') x scalar(@accountLineups)) . ' )';
++
++    $sth2 = $DBH->prepare_cached($sql2);
++    if (!defined($sth2))
++      {
++        print (STDERR "Unexpected error when preparing statement ($sql2): " . $DBH->errstr . "\n");
++        exit(1);
++      }
++
++    $param = 1;
++    for (my $i=0; $i < scalar(@accountLineups); $i++)
++      {
++        $sth2->bind_param( $param, $accountLineups[$i], SQL_VARCHAR);
++        $param++;
++      }
++
++    $sth2->execute();
++    if ($sth2->err)
++      {
++        print (STDERR "Unexpected error when executing statement ($sql2): " . $sth2->errstr . "\n");
++        $DBH->rollback();
++        exit(1);
++      }
++
+     $DBH->commit();
+ 
+     return;
+-- 
+2.41.0
+
+
+From 681dd33bfce12f4d9239e2cc344ca2ab6f99f9a5 Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Mon, 4 Sep 2023 23:04:52 +0000
+Subject: [PATCH 39/41] various minor message text updates
+
+(cherry picked from commit b5d17c1d94857d18bc098905ba9d0d017b5afbc8)
+---
+ .../zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 30 +++++++++++++++----
+ 1 file changed, 24 insertions(+), 6 deletions(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index cbfde912..0fa279ab 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -44,6 +44,7 @@
+ #
+ # Version history:
+ #
++# 2023/09/04 - 1.127 - various minor message text updates
+ # 2023/09/04 - 1.126 - always download current account lineups
+ # 2023/09/04 - 1.125 - improve retry logic for station schedules hashes
+ # 2023/09/02 - 1.124 - protect against missing or malformed json string
+@@ -218,7 +219,7 @@ use sort 'stable';
+ my $RFC2838_COMPLIANT          = 1;            # RFC2838 compliant station ids, which makes XMLTV
+                                                # validate even though the docs say "SHOULD" not "MUST"
+ 
+-my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.126 2023/09/04 21:30:00 gtb Exp ed $';
++my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.127 2023/09/04 23:00:00 gtb Exp ed $';
+ my $SCRIPT_URL                 = 'https://github.com/garybuhrmaster/tv_grab_zz_sdjson_sqlite';
+ my $SCRIPT_NAME                = basename("$0");
+ my $SCRIPT_NAME_DIR            = dirname("$0");
+@@ -2885,12 +2886,12 @@ sub listChannels
+           {
+             if (SD_isLineupFetchRequired([$lineup]))
+               {
+-                print (STDERR "Downloading channel and station maps for lineup $lineup \n") if (!$quiet);
++                print (STDERR "   downloading channel and station maps for lineup $lineup \n") if (!$quiet);
+                 SD_downloadLineupMaps($lineup);
+               }
+             else
+               {
+-                print (STDERR "Not downloading channel and station maps for lineup $lineup (data current)\n") if (!$quiet);
++                print (STDERR "   not downloading channel and station maps for lineup $lineup (data current)\n") if (!$quiet);
+               }
+           }
+       }
+@@ -2901,6 +2902,8 @@ sub listChannels
+         $SD->Token($token) if (defined($token));
+       }
+ 
++    print (STDERR "Processing data and creating XMLTV output\n") if (!$quiet);
++
+     my $w = XML::Writer->new( 'ENCODING' => 'UTF-8',
+                               'DATA_MODE' => 1,
+                               'DATA_INDENT' => 1,
+@@ -2919,7 +2922,7 @@ sub listChannels
+     $w->endTag('tv');
+     $w->end();
+ 
+-    print (STDERR "$channelsWritten channels processed\n") if (!$quiet);
++    print (STDERR "   $channelsWritten channels processed\n") if (!$quiet);
+ 
+     return(encode('UTF-8', $w->to_string));
+   }
+@@ -3147,6 +3150,10 @@ sub listLineups
+ 
+     undef $sth;
+ 
++    print (STDERR "Processing data and creating XMLTV output\n") if (!$quiet);
++
++    my $lineupsWritten = 0;
++
+     my $w = XML::Writer->new( 'ENCODING' => 'UTF-8', 'DATA_MODE' => 1, 'DATA_INDENT' => 1, OUTPUT => 'self' );
+     $w->xmlDecl('UTF-8');
+     $w->comment('Note: list-lineups and get-lineup is still unofficial in XMLTV, and the format and content of this xml is liable to change.');
+@@ -3166,11 +3173,14 @@ sub listLineups
+             $w->dataElement('type', $type);
+             $w->dataElement('display-name', $lineupDesc);
+           $w->endTag('xmltv-lineup');
++          $lineupsWritten++;
+         }
+ 
+     $w->endTag('xmltv-lineups');
+     $w->end();
+ 
++    print (STDERR "   $lineupsWritten lineups processed\n") if (!$quiet);
++
+     return(encode('UTF-8', $w->to_string));
+   }
+ 
+@@ -3253,12 +3263,12 @@ sub getLineup
+           {
+             if (SD_isLineupFetchRequired([$lineup]))
+               {
+-                print (STDERR "   Downloading channel and station maps for lineup $lineup \n") if (!$quiet);
++                print (STDERR "   downloading channel and station maps for lineup $lineup \n") if (!$quiet);
+                 SD_downloadLineupMaps($lineup);
+               }
+             else
+               {
+-                print (STDERR "   Not downloading channel and station maps for lineup $lineup (data current)\n") if (!$quiet);
++                print (STDERR "   not downloading channel and station maps for lineup $lineup (data current)\n") if (!$quiet);
+               }
+           }
+       }
+@@ -3315,6 +3325,10 @@ sub getLineup
+ 
+     undef $sth;
+ 
++    print (STDERR "Processing data and creating XMLTV output\n") if (!$quiet);
++
++    my $channelsWritten = 0;
++
+     my $w = XML::Writer->new( 'ENCODING' => 'UTF-8', 'DATA_MODE' => 1, 'DATA_INDENT' => 1, OUTPUT => 'self' );
+     $w->xmlDecl('UTF-8');
+     $w->comment('Note: list-lineups and get-lineup is still unofficial in XMLTV, and the format and content of this xml is liable to change.');
+@@ -3547,6 +3561,8 @@ sub getLineup
+                       $w->endTag('dvb-channel');
+                     }
+ 
++                  $channelsWritten++;
++
+                 $w->endTag('lineup-entry');
+               }
+ 
+@@ -3561,6 +3577,8 @@ sub getLineup
+ 
+     $w->end();
+ 
++    print (STDERR "   $channelsWritten channels processed\n") if (!$quiet);
++
+     return(encode('UTF-8', $w->to_string));
+   }
+ 
+-- 
+2.41.0
+
+
+From 139f455b8dda59728840f403a243c27511a29c3a Mon Sep 17 00:00:00 2001
+From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
+Date: Sun, 10 Sep 2023 04:17:56 +0000
+Subject: [PATCH 40/41] protect against no database in manage-lineups
+
+(cherry picked from commit 7556b687215a0f76c7545141c66977abd2c30a75)
+---
+ grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+index 0fa279ab..f3984b76 100644
+--- a/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
++++ b/grab/zz_sdjson_sqlite/tv_grab_zz_sdjson_sqlite
+@@ -44,6 +44,7 @@
+ #
+ # Version history:
+ #
++# 2023/09/10 - 1.128 - protect against no database in manage-lineups
+ # 2023/09/04 - 1.127 - various minor message text updates
+ # 2023/09/04 - 1.126 - always download current account lineups
+ # 2023/09/04 - 1.125 - improve retry logic for station schedules hashes
+@@ -219,7 +220,7 @@ use sort 'stable';
+ my $RFC2838_COMPLIANT          = 1;            # RFC2838 compliant station ids, which makes XMLTV
+                                                # validate even though the docs say "SHOULD" not "MUST"
+ 
+-my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.127 2023/09/04 23:00:00 gtb Exp ed $';
++my $SCRIPT_VERSION             = '$Id: tv_grab_zz_sdjson_sqlite,v 1.128 2023/09/10 04:10:00 gtb Exp ed $';
+ my $SCRIPT_URL                 = 'https://github.com/garybuhrmaster/tv_grab_zz_sdjson_sqlite';
+ my $SCRIPT_NAME                = basename("$0");
+ my $SCRIPT_NAME_DIR            = dirname("$0");
+@@ -5537,9 +5538,16 @@ sub manageLineups
+           }
+         elsif ($choice eq 'Delete Password Hash')
+           {
+-            DB_settingsDelete('passwordhash');
+-            DB_settingsDelete('token');
+-            $prompt .= "Password hash deleted from the database\n";
++            if (!defined($DBH))
++              {
++                $prompt .= "No database available, unable to delete any stored password hash\n";
++              }
++            else
++              {
++                DB_settingsDelete('passwordhash');
++                DB_settingsDelete('token');
++                $prompt .= "Password hash deleted from the database\n";
++              }
+           }
+         elsif ($choice eq 'Initialize Database')
+           {
+-- 
+2.41.0
+
+
+From 882453f420baa265ff725270abb4522786fd9f4d Mon Sep 17 00:00:00 2001
+From: Patric Mueller <bhaak@gmx.net>
+Date: Wed, 20 Sep 2023 14:06:01 +0200
+Subject: [PATCH 41/41] tv_grab_ch_search: fix setting of configured channels
+
+Previous url has been changed into a redirect which prevented setting of
+the configured channels. This the user only got the default channels
+instead of the configured ones.
+
+Closes: #215
+---
+ grab/ch_search/tv_grab_ch_search.in | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/grab/ch_search/tv_grab_ch_search.in b/grab/ch_search/tv_grab_ch_search.in
+index f3502df3..6bcce766 100755
+--- a/grab/ch_search/tv_grab_ch_search.in
++++ b/grab/ch_search/tv_grab_ch_search.in
+@@ -139,15 +139,15 @@ sub get_page($);
+ 
+ ## attributes of xmltv root element
+ my $head = {
+-    'source-data-url'      => 'https://tv.search.ch/channels',
+-    'source-info-url'      => 'https://tv.search.ch/',
++    'source-data-url'      => 'https://search.ch/tv/channels',
++    'source-info-url'      => 'https://search.ch/tv',
+     'generator-info-name'  => 'XMLTV',
+     'generator-info-url'   => 'http://xmltv.org/',
+ };
+ 
+ 
+ 
+-## the timezone tv.search.ch lives in is, CET/CEST
++## the timezone search.ch lives in is, CET/CEST
+ my constant $TZ = "+0100";
+ my constant $lang = "de";
+ 
+@@ -535,7 +535,7 @@ sub grab_channels {
+ 
+         $tb->ignore_unknown(0); # otherwise, html5 tags like section are stripped out
+         $tb->parse(($ua->request($req))->content)
+-            or die "cannot parse content of http://tv.search.ch/?time=$loop_date+" . 4*$count .".00";
++            or die "cannot parse content of http://search.ch/tv/?time=$loop_date+" . 4*$count .".00";
+         $tb->eof;
+ 
+         parse_page($tb, $grabDate->clone()->truncate("to" => "hour")->set_hour(4*$count));
+@@ -559,7 +559,7 @@ sub get_channels() {
+ 
+     my $tb=new HTML::TreeBuilder();
+     # For some reason, we need to fetch this page twice. Probably a bug in search.ch.
+-    # If you open https://tv.search.ch/channels as first page in private mode in Firefox, the first click on the Save button doesn't work either.
++    # If you open https://search.ch/tv/channels as first page in private mode in Firefox, the first click on the Save button doesn't work either.
+     $ua->get($url);
+     $tb->parse($ua->get($url)->content)
+         or die "cannot parse content of $url";
 -- 
 2.41.0
 
