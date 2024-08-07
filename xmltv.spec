@@ -1,11 +1,21 @@
 Name:           xmltv
 Version:        1.3.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPL-2.0
 URL:            http://xmltv.org/wiki/
 Source0:        https://github.com/XMLTV/xmltv/archive/v%{version}/xmltv-v%{version}.tar.gz
+
+#
+# Patches since 1.3.0 release
+#
+Patch0001:      0001-uk_freeview-adjust-cache-location.patch
+Patch0002:      0002-uk_freeview-fix-actor-names-containing-utf8.patch
+Patch0003:      0003-uk_freeview-fix-grab-times-wrong-during-BST-230.patch
+Patch0004:      0004-uk_freeview-fix-missing-title-in-api-data-231.patch
+Patch0005:      0005-fix-error-handling-in-DB_open.patch
+
 
 BuildArch:      noarch
 
@@ -254,6 +264,9 @@ make test
 
 
 %changelog
+* Tue Aug 06 2024 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.3.0-3
+- Pull in upstream patches since 1.3.0
+
 * Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.3.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 

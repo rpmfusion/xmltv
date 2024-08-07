@@ -1,0 +1,48 @@
+From de77b48377dc37b36ff0c820b95fc07a10383463 Mon Sep 17 00:00:00 2001
+From: Honir <honir999@gmail.com>
+Date: Thu, 23 May 2024 11:32:45 +0100
+Subject: [PATCH 3/5] uk_freeview: fix grab times wrong during BST (#230)
+
+---
+ grab/uk_freeview/tv_grab_uk_freeview | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/grab/uk_freeview/tv_grab_uk_freeview b/grab/uk_freeview/tv_grab_uk_freeview
+index c19c2ab4..9a68aefa 100755
+--- a/grab/uk_freeview/tv_grab_uk_freeview
++++ b/grab/uk_freeview/tv_grab_uk_freeview
+@@ -371,13 +371,17 @@ foreach my $ch_did (@channels) {
+ 
+ 
+ # time limits for grab
+-my $today_date = DateTime->today(time_zone => 'Europe/Lisbon');
+-my $grab_start = $today_date->epoch() + ($opt_offset * 86400);
++my $today_date = DateTime->today(time_zone => 'Europe/London');
++my $grab_start = $today_date->epoch + ($opt_offset * 86400);
+ my $grab_stop  = $grab_start + ($opt_days * 86400);
+-print STDERR "\n start/end grab: $grab_start $grab_stop \n" if $opt_debug;
+ 
+-my $dt_start = DateTime->from_epoch( epoch => $grab_start );
+-my $dt_stop  = DateTime->from_epoch( epoch => $grab_stop );
++my $dt_start = DateTime->from_epoch( epoch => $grab_start )->set_time_zone('Europe/London');
++my $dt_stop  = DateTime->from_epoch( epoch => $grab_stop )->set_time_zone('Europe/London');
++
++$grab_start += ($dt_start->is_dst * 3600);
++$grab_stop  += ($dt_stop->is_dst * 3600);
++
++print STDERR "start/end grab: $grab_start $grab_stop \n" if $opt_debug;
+ 
+ 
+ # get the programmes and write the <programme> elements
+@@ -496,7 +500,7 @@ sub get_programmes {
+ 	t "Getting programmes \n";
+ 
+ 	my $programmes = {};
+-	my $start_time = $grab_start;				# note start_time has to be xxxT00:00:00
++	my $start_time = $grab_start;				# note start_time has to be xxxT00:00:00 (in local time)
+ 
+ 	while ( $start_time < $grab_stop ) {
+ 
+-- 
+2.45.2
+

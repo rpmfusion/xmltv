@@ -1,0 +1,25 @@
+From b7c742cbab9936b0fc40a7d3bee11a7831f5ccd3 Mon Sep 17 00:00:00 2001
+From: Honir <honir999@gmail.com>
+Date: Thu, 23 May 2024 11:25:21 +0100
+Subject: [PATCH 1/5] uk_freeview: adjust cache location
+
+---
+ grab/uk_freeview/tv_grab_uk_freeview | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/grab/uk_freeview/tv_grab_uk_freeview b/grab/uk_freeview/tv_grab_uk_freeview
+index edaac09b..c8f1194e 100755
+--- a/grab/uk_freeview/tv_grab_uk_freeview
++++ b/grab/uk_freeview/tv_grab_uk_freeview
+@@ -171,7 +171,7 @@ XMLTV::Ask::init($opt_gui);
+ # Initialise the web page cache
+ if ($opt_debug) {
+ HTTP::Cache::Transparent::init( {
+-	BasePath => '/root/.xmltv/cache',
++	BasePath => '/tmp/.xmltv/cache',
+ 	NoUpdate => 60*60,			# cache time in seconds
+ 	MaxAge => 24,				# flush time in hours
+ 	Verbose => $opt_debug,
+-- 
+2.45.2
+
