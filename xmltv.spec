@@ -1,6 +1,6 @@
 Name:           xmltv
 Version:        1.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A set of utilities to manage your TV viewing
 
 License:        GPL-2.0
@@ -40,7 +40,6 @@ BuildRequires:  perl(lib)
 BuildRequires:  perl(integer)
 BuildRequires:  perl(Unicode::String)
 BuildRequires:  perl(CGI)
-BuildRequires:  perl(Text::Unidecode)
 BuildRequires:  perl(Tk)
 BuildRequires:  perl(Tk::ProgressBar)
 BuildRequires:  perl(Tk::TableMatrix)
@@ -107,6 +106,7 @@ BuildRequires:  perl(POSIX)
 BuildRequires:  perl(Scalar::Util)
 BuildRequires:  perl(SOAP::Lite)
 BuildRequires:  perl(Storable)
+BuildRequires:  perl(Text::Unidecode)
 BuildRequires:  perl(Time::HiRes)
 BuildRequires:  perl(Time::Local)
 BuildRequires:  perl(Time::Piece)
@@ -260,6 +260,10 @@ make test
 
 
 %changelog
+* Thu Apr 17 2025 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.4.0-2
+- Remove dangling patch
+- Move grabber BR to correct stanza
+
 * Thu Apr 17 2025 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 1.4.0-1
 - Update to xmltv 1.4.0 release
 
