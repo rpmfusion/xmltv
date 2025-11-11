@@ -61,9 +61,7 @@ BuildRequires:  perl(Date::Parse)
 BuildRequires:  perl(DateTime)
 BuildRequires:  perl(DateTime::Duration)
 BuildRequires:  perl(DateTime::Format::ISO8601)
-%if 0%{?fedora} || 0%{?rhel} > 6
 BuildRequires:  perl(DateTime::Format::SQLite)
-%endif
 BuildRequires:  perl(DateTime::Format::Strptime)
 BuildRequires:  perl(DateTime::TimeZone)
 BuildRequires:  perl(DBD::SQLite)
